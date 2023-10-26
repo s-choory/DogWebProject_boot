@@ -65,7 +65,7 @@
 
 <div class="footer-topcontainer">
 	<div class="footer-container1">
-		<a href="main">도기도기 홈</a><br>
+		<a href="/app/">도기도기 홈</a><br>
 		<a href="community">도기도기 커뮤니티</a><br>
 		<a href="dogshop_main">도기도기 샵</a><br>
 		<div class="footer-container1-1">

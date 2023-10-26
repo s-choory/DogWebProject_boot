@@ -13,6 +13,7 @@
 <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript">
 $(function(){ //roomName userCnt roomPwd
 	
@@ -56,7 +57,7 @@ function enterRoom(){
                     location.href = "chatRoom/"+roomId;
                 }
             }else{
-                alert("비밀번호가 일치하지 않습니다.\n입장하시려는 대화방명이 맞는지 확인해주세요.")
+            	Swal.fire('경고', '비밀번호가 일치하지 않습니다.\n입장하시려는 대화방명이 맞는지 확인해주세요.', 'warning');
             }
         }
     });
@@ -74,7 +75,7 @@ function chkRoomUserCnt(roomId){
         type : "GET",
         success : function(result){
             if (!result) {
-                alert("대화 중인 사용자가 많아 입장 할 수 없습니다.\n잠시 후 다시 시도해 주세요.");
+            	Swal.fire('경고', '대화 중인 사용자가 많아 입장 할 수 없습니다.\n잠시 후 다시 시도해 주세요."', 'warning');
             }
             UserCntchk = result;
         }

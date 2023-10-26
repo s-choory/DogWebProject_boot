@@ -10,12 +10,12 @@
 	    margin: 0;
 	    padding: 0;
 	    background-color: #3c3c3c; 
-	    font-family: Arial, sans-serif;
+	    font-family: "Exo", sans-serif;
   	}
   	
 	.link-container {
-		margin-left: 30%;
-		margin-right: 30%;
+		margin-left: 37%;
+		margin-right: 37%;
 		margin-top: 2%;
 		color:white;
 		text-align: center; /* 중앙 정렬을 위해 추가 */
@@ -27,14 +27,13 @@
 	
 	.form-list {
 	    margin-bottom: 5px;
-	    border: 1px solid #ccc;
+	    border: 1px solid gray;
 	    background-color: #3c3c3c; /* 배경색 설정 */
 	    color: white; /* 텍스트 색상 설정 */
 	}
 	
 	.form-item {
-	    border: 0.5px solid;
-	    height:30px;
+	    border: 1px solid gray;
 	    padding : 5px;
 	}
 	
@@ -90,6 +89,29 @@
 		font-size: 14px;
 		width: 200px;
 	}
+	.button-contatiner{
+		display: flex;
+		justify-content: space-between;
+		text-align: center;
+	}
+		
+	.other-button{
+		margin: 0 auto;
+		margin-top: 10px;
+		height:30px;
+		background: white; /* 그라데이션 색상 지정 */
+		border-radius: 10px;
+		font-weight: bolder;
+		border: 0;
+		width:150px;
+		margin-bottom: 10px;
+		transition: transform 0.3s;
+		cursor: pointer;
+	}
+	
+	.other-button:hover{
+		transform: translateY(-5px);
+	}
 	
 </style>
 </head>
@@ -105,29 +127,41 @@
 	    String masking = new String(new char[totalChars - charsToKeep]).replace('\0', '*');
 	    UserID = prefix + masking;
     }else{
-    	UserID = "인증하신 번호에 해당되는 회원 이름이 없습니다. 이름과 번호를 다시 확인해주세요.";
+    	UserID = "인증하신 번호에 해당되는 회원 이름이 없습니다.<br>이름과 번호를 다시 확인해주세요.";
     }
 %>
 <body>
+<script type="text/javascript">
+	function findPW(){
+		location.href="findPW";
+	}
+	function login(){
+		location.href="login";
+	}
+	function findID(){
+		location.href="findID";
+	}
+</script>
 <div class="link-container">
-	<img src="resources/a.jpg" id="로고" width=60 height="60"><br>
-	<h1>아이디찾기확인</h1><br>
+<a href="/app/"><img src="resources/로고아이콘.png" id="로고" width=80 height="60"></a><br>
+	<h1>Result Find ID</h1><br>
 	<form method="post" name="myForm" id="myForm" action="findID">
 		
 		<div class="form-list">
 		    <div class="form-item">
-		    	<div style="display: flex; align-items: center;">
+		    	<div style="display: flex; justify-content: center; color:#7AFF7A">
 		    		<%= UserID %>
 			    </div>
 		    </div>
 		</div>
-				    <% if(originalString != null){ %>
-				    <a href="findPW" style="color: blue;">비밀번호 찾기</a><br><br>
-				    <% } %>
-		<a href="login" style="color: blue;">로그인 페이지로 이동</a><br><br>
-		<a href="findID" style="color: blue;">아이디 찾기 페이지로 이동</a>		
-		
 	</form>
+	<div class="button-contatiner">
+	<% if(originalString != null){ %>
+		<button class="other-button" onclick="findPW()">비밀번호 찾기</button><br><br>
+	<% } %>
+		<button class="other-button" onclick="findID()">아이디 찾기</button>	
+		<button class="other-button" onclick="login()">로그인 페이지로 이동</button><br><br>  
+	</div>
 </div>
 </body>
 </html>

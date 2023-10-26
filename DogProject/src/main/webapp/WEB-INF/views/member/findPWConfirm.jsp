@@ -6,17 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
 	body {
 	    margin: 0;
 	    padding: 0;
 	    background-color: #3c3c3c; 
-	    font-family: Arial, sans-serif;
+	    font-family: "Exo", sans-serif;
   	}
   	
 	.link-container {
-		margin-left: 30%;
-		margin-right: 30%;
+		margin-left: 37%;
+		margin-right: 37%;
 		margin-top: 2%;
 		color:white;
 		text-align: center; /* 중앙 정렬을 위해 추가 */
@@ -34,7 +35,7 @@
 	}
 	
 	.form-item {
-	    border: 0.5px solid;
+	    border: 0.1px solid gray;
 	    height:30px;
 	    padding : 5px;
 	}
@@ -92,7 +93,49 @@
 		width: 200px;
 	}
 	
+	.success-button{
+		margin-top: 10px;
+		margin-bottom: 30px;
+		height:30px;
+		background: linear-gradient(135deg, #7AFF7A, #429F6B); /* 그라데이션 색상 지정 */
+		border-radius: 10px;
+		font-weight: bolder;
+		border: 0;
+		transition: transform 0.3s;
+		cursor: pointer;
+	}
+	
+	.success-button:hover{
+		transform: translateY(-5px);
+	}
+
+	
+	.button-contatiner{
+		display: flex;
+		justify-content: space-between;
+		text-align: center;
+	}
+	
+	.other-button{
+		margin: 0 auto;
+		height:30px;
+		background: white; /* 그라데이션 색상 지정 */
+		border-radius: 10px;
+		font-weight: bolder;
+		border: 0;
+		width:150px;
+		margin-bottom: 10px;
+		transition: transform 0.3s;
+		cursor: pointer;
+	}
+	
+	.other-button:hover{
+		transform: translateY(-5px);
+	}
+	
+	
 </style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	
@@ -103,23 +146,30 @@
 		var validate = /^[a-zA-Z0-9]{4,12}$/;
 		
         if(!validate.test(pw1)){ 
-            alert("passwd는 4~12자의 영문 대소문자와 숫자조합입니다.");
+        	Swal.fire('경고', 'passwd는 4~12자의 영문 대소문자와 숫자조합입니다.', 'warning');
 			event.preventDefault();
             return false;
         }
         if(!validate.test(pw2)){ 
-            alert("passwd는 4~12자의 영문 대소문자와 숫자조합입니다.");
+        	Swal.fire('경고', 'passwd는 4~12자의 영문 대소문자와 숫자조합입니다.', 'warning');
 			event.preventDefault();
             return false;
         }
 		
 		if(pw1 != pw2){
-            alert("입력하신 비밀번호가 같지 않습니다.");
+        	Swal.fire('경고', '입력하신 비밀번호가 일치하지 않습니다.', 'warning');
 			event.preventDefault();
 		}else{
 			$("#myForm").attr("action", "changePW");
 		}
 		
+	}
+	function login(){
+		location.href="login";
+	}
+	
+	function findPW(){
+		location.href="findPW";
 	}
 	
 </script>
@@ -129,9 +179,9 @@
 %>
 <body>
 <div class="link-container">
-	<img src="resources/a.jpg" id="로고" width=60 height="60"><br>
+<a href="/app/"><img src="resources/로고아이콘.png" id="로고" width=80 height="60"></a><br>
 	<% if(user != null){ %>
-	<h1>비밀번호변경</h1><br>
+	<h1>Result Find Password</h1><br>
 	<form method="post" name="myForm" id="myForm" action="">
 		<input type="hidden" name="UserID" value="<%= user.getUserID() %>">
 		<div class="form-list">
@@ -146,14 +196,15 @@
 			    </div>
 		    </div>
 		</div>
-		<button onclick="checkEqualPW()">변경하기</button><br><br>
+		<button class="success-button" onclick="checkEqualPW()">변경하기</button><br>
 				    
 	<% }else{ %>
-		<h1>입력하신 정보에 해당하는 계정이 존재하지 않습니다. 입력 정보를 다시 확인해주세요.</h1>
-		<% } %>			
-		<a href="findPW" style="color: blue;">이전 페이지로 이동</a><br><br>		
-		<a href="login" style="color: blue;">로그인 페이지로 이동</a>
-		
+		<h1>입력하신 정보에 해당하는 계정이 존재하지 않습니다.<br><br> 입력 정보를 다시 확인해주세요.</h1>
+		<% } %>
+		<div class="button-contatiner">
+			<button onclick="findPW()" class="other-button">이전 페이지로 이동</button><br>
+			<button onclick="login()" class="other-button">로그인 페이지로 이동</button><br>
+		</div>
 	</form>
 </div>
 </body>

@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript">
 	<% int roomId = (int)request.getAttribute("roomId"); %>
 	let roomId = <%= roomId %>;
@@ -54,7 +55,7 @@
 	function attend(){
 		var nickName = $("#nickName").val();
 		if(nickName == null || nickName.trim() == ""){
-			alert("대화명을 입력해주세요.");
+			Swal.fire('경고', '대화명을 입력해주세요.', 'warning');
 			$("#nickName").focus();
 		}else{
 			connect();

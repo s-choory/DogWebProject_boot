@@ -112,8 +112,8 @@ public class UsersController {
 		
 		//암호화
 		String password = user.getPassword();
-//		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
-//		user.setPassword(encodePW);
+		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
+		user.setPassword(encodePW);
 		
 		int n = service.memberAdd(user);
 		
@@ -133,18 +133,18 @@ public class UsersController {
 
 	//비밀번호찾기1
 	@RequestMapping(value="/findPW", method = RequestMethod.GET)
-	public String findPW() {
+	public String findPW(HttpSession session) {
 		return "member/findPW";
 	}
 	//비밀번호찾기2. 아이디 있는지 검사
 	@RequestMapping(value="/findPW2", method = RequestMethod.GET)
-	public String findPW2(String UserID, Model model) {
+	public String findPW2(String UserID, Model model, HttpSession session) {
 		int n = service.idChk(UserID);
 		if(n == 1) {
 			model.addAttribute("UserID", UserID);
 			return "member/findPW2";
 		}else {
-			model.addAttribute("msg", "해당 아이디가 존재하지 않습니다.");
+			session.setAttribute("msg", "해당 아이디가 존재하지 않습니다.");
 			return "redirect:/findPW";
 		}
 	}
@@ -198,8 +198,12 @@ public class UsersController {
 	
 	//비밀번호 찾기 확인
 	@RequestMapping(value = "/findPWConfirm", method = RequestMethod.POST)
-	public String findPWConfirm(UsersDTO uDTO, Model model) {
+	public String findPWConfirm(UsersDTO uDTO, HttpSession session, Model model) {
 		//DB에는 010-1234-1234형태로 저장되어있기 때문에 하이픈을 추가한다.
+		if(uDTO.getPhoneNumber() == null || uDTO.getUserName() == null || uDTO.getPhoneNumber().length() != 11) {
+			session.setAttribute("msg", "이름과 휴대번호 정보를 제대로 입력하세요");
+			return "redirect:/findPW2?UserID="+uDTO.getUserID();
+		}
 		String PhoneNumber = uDTO.getPhoneNumber();
 		String insertion = "-";
 		
@@ -210,9 +214,8 @@ public class UsersController {
 		uDTO.setPhoneNumber(result);
 		
 		UsersDTO user = service.findPW(uDTO);
-		if(user != null) {
-			model.addAttribute("user", user);
-		}
+		model.addAttribute("user", user);
+		
 		return "member/findPWConfirm";
 	}
 	
@@ -221,8 +224,8 @@ public class UsersController {
 	public String changePW(UsersDTO uDTO, HttpSession session) {
 		//암호화
 		String password = uDTO.getPassword();
-//		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
-//		uDTO.setPassword(encodePW);
+		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
+		uDTO.setPassword(encodePW);
 		
 		int n = service.updatePW(uDTO);
 		session.setAttribute("msg", "비밀번호를 변경했습니다.");
