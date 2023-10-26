@@ -5,17 +5,10 @@
 <%@page import="com.example.dto.AccompanyingFacilitiesDTO"%>
 <%@page import="com.example.dto.GoodsDTO"%>
 <%@page import="java.util.Arrays"%>
-<%@page import="com.dto.ReviewsDTO"%>
-<%@page import="com.dto.LikeDTO"%>
-<%@page import="com.dto.ProductsDTO"%>
-<%@page import="com.dto.NoticeDTO"%>
-<%@page import="com.dto.AccompanyingFacilitiesDTO"%>
-<%@page import="com.dto.PostsDTO"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
 <%@page import="java.time.Duration"%>
 <%@page import="java.time.LocalDateTime"%>
-<%@page import="com.dto.GoodsDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -319,7 +312,7 @@
         if (event.which === 13) { 
           event.preventDefault(); 
           var searchValue = $(this).val();
-          window.location.href = '/test/main_searchList?search='+ encodeURIComponent(searchValue);
+          window.location.href = '/app/main_searchList?search='+ encodeURIComponent(searchValue);
         }
       });
       
@@ -351,7 +344,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 	<div class="category">게시글(<%= post.size() %>)</div>
-	<div class="postOthers"><a id="postOthers" href="/test/?search=<%=search%>">더보기 +</a></div>
+	<div class="postOthers"><a id="postOthers" href="/app/?search=<%=search%>">더보기 +</a></div>
 </div>
 </div>
     <div class="post_container">
@@ -410,8 +403,9 @@ String search = (String)request.getAttribute("search");
                 </div>
             </div>
             </a>
-            <%}
-    }%>
+            <% if(i == 2){
+            	break;
+            }}} %>
     </section>
     </div>
 <br>
@@ -419,7 +413,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 <div class="category">스토어(<%= product.size() %>)</div>
-<div><a class="postOthers" href="/test/search?SearchName=<%= search %>">더보기 +</a></div>
+<div><a class="postOthers" href="/app/search?SearchName=<%= search %>">더보기 +</a></div>
 </div>
 </div>
 <div class="pro-big">
@@ -467,7 +461,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 <div class="category">장소(<%= accompanyingFacilitie.size() %>)</div>
-<div><a class="postOthers" href="/test/map?RodeAddress=<%=search%>">더보기 +</a></div>
+<div><a class="postOthers" href="/app/map?RodeAddress=<%=search%>">더보기 +</a></div>
 </div>
 </div>
 <div class="pro-big">
@@ -500,7 +494,7 @@ String search = (String)request.getAttribute("search");
 			String Sparking = accompanyingFacilitie.get(i).getParking();
 			String SRestrictions = accompanyingFacilitie.get(i).getRestrictions();
  %>
-		<a href="/test/map?RodeAddress=<%=Sname%>">
+		<a href="/app/map?RodeAddress=<%=Sname%>">
 		<div class = "AFList">
         <div class = "text-result">
 			<div class = "place-container">
@@ -529,7 +523,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 <div class="category">공지사항(<%= Notices_list.size() %>)</div>
-<div><a class="postOthers" href="/test/ContactCenter_Notice">더보기 +</a></div>
+<div><a class="postOthers" href="/app/ContactCenter_Notice">더보기 +</a></div>
 </div>
 </div>
 <div class="pro-big">

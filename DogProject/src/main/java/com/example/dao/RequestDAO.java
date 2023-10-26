@@ -24,6 +24,13 @@ public class RequestDAO {
 	public List<RequestDTO> adminSelectList() {
 		return session.selectList("RequestMapper.adminSelectList");
 	}
+	public List<RequestDTO> adminSelectList2() {
+		return session.selectList("RequestMapper.adminSelectList2");
+	}
+	
+	public void replyRecontent(RequestDTO rDTO) {
+		session.update("RequestMapper.replyRecontent", rDTO);
+	}
 	
 	
 }

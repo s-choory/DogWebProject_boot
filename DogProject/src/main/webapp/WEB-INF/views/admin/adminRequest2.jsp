@@ -10,7 +10,7 @@
 <style type="text/css">
 	
 	.content{
-		width:500px;
+		width:350px;
 	}
 	
 	.table-container{
@@ -25,23 +25,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script type="text/javascript">
 
-function openRequest(requestid) {
-	var w = 500;
-	var h = 400;
-	var xPos = (document.body.offsetWidth/2) - (w/2); // 가운데 정렬
-	var yPos = (document.body.offsetHeight/2) - (h/2);
-	
- 	window.open("adminRequestResponse?requestid="+requestid, "_blank", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
-}
-
 </script>
 <body>
     <header>
-        <h1 style="text-align: center; margin: 30px 0; ">문의 답변 대기 목록</h1>
+        <h1 style="text-align: center; margin: 30px 0; ">문의 답변 완료 목록</h1>
     </header>
     <div style="text-align: center; margin-bottom: 30px;">
     	<a href="adminPage" >관리자페이지</a><br>
-    	<a href="adminRequest2" >문의 답변 완료 목록</a>
+    	<a href="adminRequest" >문의 답변 대기 목록</a>
 	</div>
     <div class="table-container">
     <table class="table">
@@ -51,8 +42,8 @@ function openRequest(requestid) {
     		<td>태그</td>
     		<td>유저ID</td>
     		<td>내용</td>
+    		<td>답변내용</td>
     		<td>답변상태</td>
-    		<td>action</td>
     	</tr>
     	<% List<RequestDTO> list = (List<RequestDTO>)request.getAttribute("rList"); 
     		for(int i = 0; i<list.size(); i++){
@@ -64,8 +55,8 @@ function openRequest(requestid) {
     		<td><%= rDTO.getTag() %></td>
     		<td><%= rDTO.getUserid() %></td>
     		<td class="content"><%= rDTO.getContent() %></td>
+    		<td class="content"><%= rDTO.getRecontent() %></td>
     		<td><%= rDTO.getRequeststate() %></td>
-    		<td><button class="btn btn-primary" onclick="openRequest(<%=rDTO.getRequestid()%>)">답변</button></td>
     	</tr>
     	<%} %>
     </table>

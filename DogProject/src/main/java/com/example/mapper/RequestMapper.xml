@@ -14,4 +14,12 @@
 <select id="adminSelectList" resultType="Request">
 	SELECT * FROM REQUEST WHERE requeststate='답변대기'
 </select>
+
+<select id="adminSelectList2" resultType="Request">
+	SELECT * FROM REQUEST WHERE requeststate='답변완료'
+</select>
+
+<update id="replyRecontent" parameterType="Request">
+	UPDATE REQUEST SET recontent=#{recontent}, requeststate='답변완료' where requestid=#{requestid}
+</update>
 </mapper>                

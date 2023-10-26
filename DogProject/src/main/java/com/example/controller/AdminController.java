@@ -32,6 +32,7 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
+	//문의 목록(답변대기)
 	@GetMapping("/adminRequest")
 	public String adminRequest(Model model) {
 		List<RequestDTO> rList = rService.adminSelectList();
@@ -39,7 +40,26 @@ public class AdminController {
 		return "admin/adminRequest";
 	}
 	
+	//문의 목록(답변완료)
+	@GetMapping("/adminRequest2")
+	public String adminRequest2(Model model) {
+		List<RequestDTO> rList = rService.adminSelectList2();
+		model.addAttribute("rList", rList);
+		return "admin/adminRequest2";
+	}
 	
+	//문의 답변 창 띄우기
+	@GetMapping("/adminRequestResponse")
+	public String adminRequestResponse(String requestid) {
+		return "admin/adminRequestResponse";
+	}
+	
+	//문의 답변
+	@GetMapping("/adminRequestResponseConfirm")
+	public String adminRequestResponseConfirm(RequestDTO rDTO) {
+		rService.replyRecontent(rDTO);
+		return "admin/closeWindow";
+	}
 }
 
 
