@@ -1,0 +1,113 @@
+--간식(선동)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'자연한입 오리염통 강아지 고양이 습식 간식 대형견 노령견 노묘','간식','진짜 무첨가 국내산 간식입니다. 
+알러지 고민 zero 진짜 자연식  국내산 오리염통 100% 휴먼그레이드 천연재료만 사용합니다.',13500,'간식1',7);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'닥터바이 강아지 간식 강아지껌 식물성 대체육 다이어트 덴탈껌 비욘드츄','간식','닥터바이와 경기도 농업기술원의 협업을 통해 개발된 100% 식물성 대체육으로 만든 껌 비욘드츄2.0',15900,'간식2',7);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'닥터바이 우주트릿 소화율 높은 강아지 동결건조 간식 야채 영양 트릿','간식','식물성 영양소를 한번에 비타민! 미네랄! 필수 영양소 함유로 한입도 완벽하게!',13900,'간식3',8);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 수제 간식 보양식 오리목뼈 100g+100g 대형견 반려견','간식','네이월 강아지 수제간식은 건강한 강아지식품을 위해 100% 선별구매한 신선하고 건강한재료를 사용합니다.
+신선함이 살아 있어 강아지들이 좋아하는 진한 고향이 특징입니다.',4500,'간식4',8);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 트릿 미니 피부 눈물 간식 노즈워크간식 한입고기 오리 큐브','간식','100% 진짜 오리고기 사용
+어성초분말, 헤마토코쿠스, 빌베리추출물 피부 건강에 도움되는 진짜 한입 육포',4900,'간식5',5);
+--간식(태현)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 도그트릿 메모리 간식','간식','저칼로리 설계, 소프트 트릿이며 인지력 관리 돕는 MCT 오일',3500,'간식6',50);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'반려소반 바른채식 군고구마and단호박 노즈워크 트릿 150g','간식','부담없는 사이즈and칼로리, 휴먼 그레이드 원료 사용한 채식 레시피',4300,'간식7',50);
+--간식(경영)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'뉴트리오 국내산 치아에좋은 강아지껌 4가지맛 80g X 4개','간식','국내산 강아지껌','10600','간식8','20');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'포켄스 오래먹는 빅사이즈 덴탈껌 맥스틱 4개','간식','대형견 전용','13300','간식9','20');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'슈퍼포우 오래 먹는 껌 오래츄','간식','강아지껌','13800','간식10','20');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'그루머스 꽈배기 70g','간식','애견간식','1200','간식11','20');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'달링키친 연어 100g','간식','반려견간식','10970','간식12','20');
+--간식(용태)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 흑염소뿔 수제간식','간식','흑염소의 뿔은 기력회복, 원기회복, 노화방지, 눈건강, 피부건강, 관절건강에 도움이 될 수 있으며, 치석제거, 이갈이, 스트레스 해소에 도움이 됩니다.','2500','간식13','100');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 오리목뼈 수제간식','간식','오리목뼈는 불포화지방산이 풍부하여 혈액순환과 체내 독소를 제거에 도움을 주어 원기회복에 좋고 칼슘이 풍부해 관절이나 뼈건강에 도움을 줍니다.','4300','간식14','100');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 한우우족 수제간식','간식','한우우족는 눈건강, 관절건강, 치석제거, 원기회복, 스트레스해소, 노화방지, 골다공증 도움. 면역력 증진 도움을 줍니다.','8500','간식15','100');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 상어연골 수제간식','간식','상어연골은 고칼슘 및 고단백 식품으로 콘드로이친 및 글루코사민 함유로 관절건강에 도움을 줍니다..','7900','간식16','100');
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 돼지귀 수제간식','간식','돼지귀는 콜라겐이 풍부하여 피부 모질 개선 도움, 스트레스 해소, 치석제거에 도움을 줍니다..','5000','간식17','100');
+
+--사료(선동)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'피부모질 닥터독 사료1kg','사료','높은 분해율로 소화 흡수and영양공급에 도움!
+속까지 맛있게 구워낸 사료 닥터독
+닥터톡만의 H.T.P.R 공법으로 더욱 건강한 사료 탄생!',18500,'사료1',9);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'관절 닥터독 사료2kg','사료','높은 분해율로 소화 흡수and영양공급에 도움!
+관절 건강 최적의 개선 레시피 어린 생양고기 함유!
+저지방 고단백 칼슘 등 고품질 영양소 제공
+',32500,'사료2',8);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'피부모질 닥터독 사료2kg','사료','높은 분해율로 소화 흡수and영양공급에 도움!
+피부모질 최적의 개선 레시피 알래스카산 생연어 함유
+신선한 알래스카산 생연어 공수로 원육의 고품질 영양소 제공!',32500,'사료3',12);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'닥터독 그레인프리 오리 사료 1.6kg','사료','높은 분해율로 소화 흡수and영양공급에 도움!
+밀을 비롯해 강아지 식이 알레르기 반응을 최소화 하기 위해 모든 곡류 제외!
+소화,면역 시스템 기능성 기타 건강 기능성 원료 투입!',29000,'사료4',50);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'다이어트 닥터독 사료4kg','사료','높은 분해율로 소화 흡수and영양공급에 도움!
+맛있고 즐거운 다이어트 레시피 생칠면조 함유 
+저지방 고단백과 비타민, 무기질 영양소 제공!',62000,'사료5',11);
+--사료(태현)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'네이처알로 강아지 눈물 곤충사료 900g','사료','항균and항염 효과와 면역력 증진, 각종 염증성 질환에 도움을 줄 수 있음',8900,'사료6',50);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'슈퍼포우 연어 책스 미니 40g','사료','휴먼그레이드 재료만 가득하며 물과 같이 먹어 음수량 걱정이 없는 사료',9800,'사료7',50);
+--사료(경영)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'퍼피 딜리셔스 8kg 국내산','사료','전연령 강아지 대용량 사료',21000,'사료8',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'데이스포 초유 분유 200g','사료','애견전용 밀크',28430,'사료9',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'숨탄 강아지 우유','사료','애견전용 밀크',39510,'사료10',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'시저 불고기 100g','사료','강아지 사료',1790,'사료11',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'목우촌 펫9단 말티즈 전용사료 1.8kg','사료','전연령 말티즈 전용 사료',20000,'사료12',20);
+--영양제(태현)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'펫츠워드 초유 단백질 면역영양제 100g','영양제','강아지의 성장발달과 면역 건강에 좋은 펫츠워드 초유 단백질',7600,'영양제1',50);
+
+--식기(대준)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 고양이 심플 도자기 물그릇 밥그릇 애견 식기 1구 2구 식기식탁','식기','다양한 컬러와 구성으로 분위기 연출, 인터리어 효과까지!',10900,'식기1',100);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'초코펫하우스 편백나무 강아지 고양이 식기 (1구) / 알러지free','식기','자연 그대로의 편백향이 가득해서 건강에 탁월! 사이즈 선택가능!',22800,'식기2',100);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'식탁 애견밥그릇 대나무 원목 사각 애견식기','식기','대나무로 만들어져 단단하고 강력하며 뒤틀림이 없어 오래 사용가능합니다. 수분침투가 어려워 위생적으로 사용가능', 47900,'식기3',100);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'수퍼펫 스테인리스 심플보울 L (SDB-07-L)','식기','영구적으로 사용 가능한 스테인리스 재질입니다. 바닥면의 고무패킹으로 밀림과 소음을 최소화합니다.', 12000,'식기4',100);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'토이거 반자동 급식 급수기','식기','대용량 2000cc 이상 용량으로 넉넉하게 사용가능합니다. 사료 급여 잠금버튼이 있어 제한급식이 가능합니다.', 14000,'식기5',100);
+--식기(선동)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 고양이 물그릇 밥그릇 높이조절 각도조절 식기 식탁','식기','자연소재로 친숙하고 안전합니다.
+오랜 시간 동안 사용이 가능합니다,
+세정과 유지 보수가 쉽습니다.',19900,'식기6',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,' 태평양 수반 강아지 물그릇 밥그릇 식기','식기','세상에서 가장 편안하게 물 먹일 수 있는 태평양 수반
+우리 아이들의 다양한 물취향과 신체특성, 보호자의 급수편의를 고려했습니다. 
+열과 충격에 강한 내열 강화유리 사용 ',28000,'식기7',30);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'헬로우펫 강아지밥그릇 식기 물그릇 애견 식탁 10cm','식기','국내 제조로 더욱 믿음이 가는 애견 전용 식탁 및 도자기 그릇입니다.
+도자기 그릇은 경기도 이천에서 강아지 전용 밥그릇 물그릇으로 제작되었습니다.
+',12900,'식기8',40);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'웰 핏 테이블 and 보울','식기','높이and각도조절이 가능한 국내 유일! 자체 개발 반려동물 전용 식기!
+국내 장인이 손수 제작한 도자기 그릇!
+',48900,'식기9',40);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지밥그릇 물그릇 식기 높이조절 대형견 애견','식기','발육 맞춤식 5단 높이 조절
+내구성 좋고, 위생적인 ABS 재질
+청결 관리 분리 세척 가능! 방수코팅으로 인한 물기제거로 청소 끝!',22900,'식기10',30);
+
+--의류(선동)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'NEW 항균 알러지 케어 수트','의류','천연 하이테크 구리 이온 섬유 Voltron.
+강력한 항균과 탈취, 피부병, 알러지 예방 기능.
+정전기 방지, 먼지 방지, 편안한 활동성까지.',52700,'의류1',10);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'칼라 일체형 레인수트','의류','완전히 새롭게 만나는 레인 수트와 일체형 칼라.
+놀라운 편리함과 강력한 안전성. 완벽한 방수의
+멤브레인 공법과 초경량 설계.
+어디서든 돋보이고, 어떤 날에도 산책할 수 있죠.',144000,'의류2',10);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'Alpin Top','의류','시원한 냉기 순환 설계와 해충 방지 기술의 만남.
+100% PET 플라스틱 재활용 원사와 흡한 속건.
+우수한 활동성과 쾌적함의 쿨맥스 에코메이드.
+알프스 산맥의 자연과 색감을 담은 디자인까지.',61800,'의류3',11);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'Alpin Suit Floral Gray','의류','시원한 냉기 순환 설계와 해충 방지 기술의 만남.
+100% PET 플라스틱 재활용 원사와 흡한 속건.
+우수한 활동성과 쾌적함의 쿨맥스 에코메이드.
+알프스 산맥의 자연과 색감을 담은 디자인까지.',53100,'의류4',12);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'Ain Puffer 2 Black','의류','완벽한 보온성의 스누드 일체형 초경량 발열 패딩.
+얼굴부터 엉덩이, 열반사 히트 세이브 소재, 초경량 보온재의 만남.
+손쉬운 착용의 맞춤형 탭, 생활 방수, 빛반사까지.',121500,'의류5',20);
+
+--장난감(선동)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'네추라 너리쉬 덴탈토이 치석제거 간식장난감','장난감','장난감을 이용해 치석제거나 아이들의 오감을 자극하는 노즈워크 덴탈토이입니다. 
+',14500,'장난감1',50);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'공 프린팅 뼈다귀 강아지 삑삑이 라텍스 장난감 ','장난감','한 잎에 물기 편안한 뼈다귀 모양의 삑삑이 장난감 ',2500,'장난감2',40);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'빅사이즈 핫도그 삑삑이 ','장난감','귀여운 핫도그 모양의 삑삑이 장난감
+대형 사이즈로 소형견부터 대형견까지 모두 사용할 수 있어요.',5000,'장난감3',50);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'숨은 곰 찾기 노즈워크 삑삑이','장난감','삑삑이가 들어있는 곰돌이들과 곰돌이가 숨을 수 있는 집이 한 세트!
+던지고, 곰돌이 삑삑이 간식과 인형을 숨길 수 있는 곰돌이 하우스로 댕댕이와 신나게 놀 수 있어요 ',13500,'장난감4',70);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'해비웨이급 60cm 대형 터그','장난감','대형견을 위한 해비웨이급 튼튼 터그 장난감이에요 :)
+총 길이 60cm로 대형견들이 신나게 물고 뜯고 놀기 좋아요.',7500,'장난감5',60);
+--장난감(경영)
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'펫스테이지 도그 우드스틱S','장난감','실제 나무 원료로 가공한 이갈이 장난감',14630,'장난감6',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'패리스독 라텍스 강아지 장난감 플레이볼 스몰 1p 4개','장난감','색상 랜덤',8200,'장난감7',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'EVA 소프트 판타스틱 폼볼 로프 L','장난감','중형견 대형견 강아지 장난감 터그',5700,'장난감8',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 분리불안 훈련 부착형 노즈워크 장난감 오렌지','장난감','반려동물 아크 노즈위크 장난감',3900,'장난감9',20);
+INSERT INTO Products VALUES (PRODUCTS_PRODUCTID_SEQ.NEXTVAL,'강아지 스넥볼 훈련장난감 애견공 스낵볼 볼','장난감','핑크색상',8140,'장난감10',20);
