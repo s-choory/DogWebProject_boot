@@ -122,6 +122,8 @@ $RECYCLE.BIN/
 pom.properties
 # Exclude the resources folder
 !/src/main/resources/
+# Ignore classpath
+.classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
 /target/
