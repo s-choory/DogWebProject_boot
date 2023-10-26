@@ -130,7 +130,7 @@ public class OrdersController {
 				rdto.setRequestid(dto.getRequestid());
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
 				session.setAttribute("request_UserOrderSelectList", rlist);
-				return "request/requestList";
+				return "redirect:/requestPage?userid="+dto.getUserid()+"&orderid="+dto.getRequestid();
 			}
 			@RequestMapping(value = "/requestPost")
 			public String requestPost(HttpSession session, String userid, int requestid, int count) {
