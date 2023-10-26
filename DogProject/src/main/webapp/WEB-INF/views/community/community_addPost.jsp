@@ -6,6 +6,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type=text/javascript charset=utf-8 src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(function () {
 	CKEDITOR.replace('content', {
@@ -20,7 +21,7 @@ $(function () {
 	    $(this).val('#');
 	  } else if (e.key === '#') {
 	    e.preventDefault();
-	    alert('#을 사용할 수 없습니다.');
+	    Swal.fire('경고', '# 문자를 사용할 수 없습니다.', 'warning');
 	  } else if (e.key === ' ') {
 	    e.preventDefault();
 	    var currentValue = $(this).val();
@@ -42,7 +43,7 @@ $(function () {
 $(function () {
 	  $('.submitButton').on('click', function(e) {
 	    if ($('#postTitle').val() === '') {
-	      alert("제목을 입력하시오");
+	      Swal.fire('경고', '제목을 입력하세요', 'warning');
 	      e.preventDefault();
 	    } 
 	    /* else if ($('#editor').val().trim() === '') {

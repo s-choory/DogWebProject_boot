@@ -5,17 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
 	body {
 	    margin: 0;
 	    padding: 0;
 	    background-color: #3c3c3c; 
-	    font-family: Arial, sans-serif;
+	    font-family: "Exo", sans-serif;
   	}
   	
 	.link-container {
-		margin-left: 30%;
-		margin-right: 30%;
+		margin-left: 37%;
+		margin-right: 37%;
 		margin-top: 2%;
 		color:white;
 		text-align: center; /* 중앙 정렬을 위해 추가 */
@@ -33,7 +34,7 @@
 	}
 	
 	.form-item {
-	    border: 0.5px solid;
+	    border: 0.1px solid gray;
 	    height:30px;
 	    padding : 5px;
 	}
@@ -66,7 +67,7 @@
 		bottom: 20px;
 		left: 50%;
 		transform: translateX(-50%);
-		background-color: #FFC81E;
+		background-color: #7AFF7A;
 		color: white;
 		padding: 10px 20px;
 		border: none;
@@ -91,6 +92,39 @@
 		width: 200px;
 	}
 	
+	.form-middle-container{
+		display: flex;
+		align-items: center;
+		font-weight: bolder;
+	}
+	.form-middle-text1{
+		margin-right: 5px;
+	}
+	.form-middle-text2{
+		margin-right: 50px;
+	}
+	.form-middle-text3 {
+	  margin-left: auto; /* 수정된 부분 */
+	}
+	.form-middle-text3 a{
+		color: #a0a0a0;
+		text-decoration: none;
+		transition: color 0.3s;
+		font-size: 14px;
+	}
+	.form-middle-text3 a:hover{
+		color: #7AFF7A;
+	}
+	.form-middle-text4{
+		margin-right: 100px;
+	}
+	.selectoption{
+		height:20px;
+		background-color:#7AFF7A; 
+		border-radius: 30px;
+		font-weight: 600;
+	}
+	
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -110,9 +144,9 @@
 		        cache : false,
 		        success:function(data){
 		            if(data == "error"){ //실패시 
-		                alert("휴대폰 번호가 올바르지 않습니다.")
+		            	Swal.fire('경고', '휴대폰 번호가 올바르지 않습니다.', 'warning');
 		            }else{            //성공시        
-		                alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주세요.")
+		            	Swal.fire('성공', '인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주세요.', 'success');
 		                Code = data; // 성공하면 데이터저장
 		            }
 		        }
@@ -123,10 +157,10 @@
 		//휴대폰 인증번호 대조
 		$("#phoneChk2").click(function() {
 			if ($("#phone2").val() == Code) { // 위에서 저장한값을 비교한다
-				alert('인증성공');
+				Swal.fire('Success', '인증성공', 'success');
 				ChkFlag = true;
 			} else {
-				alert('인증실패');
+				Swal.fire('Fail', '인증실패', 'error');
 				ChkFlag = true;	//임시로 넣은 코드
 			}
 		});
@@ -145,10 +179,9 @@ s	})
 </head>
 <body>
 <div class="link-container">
-	<img src="resources/a.jpg" id="로고" width=60 height="60"><br>
-	<h1>아이디찾기</h1><br>
+<a href="/app/"><img src="resources/로고아이콘.png" id="로고" width=80 height="60"></a><br>
+	<h1>Find ID</h1><br>
 	<form method="get" name="myForm" id="myForm" action="findIDConfirm">
-	<div style="display: flex; align-items: center;">회원정보에 등록한 휴대전화 인증</div>
 		
 		<div class="form-list">
 		    <div class="form-item">
@@ -156,19 +189,29 @@ s	})
 		    </div>
 		
 		    <div class="form-item">
-		        <div style="display: flex; align-items: center;">
-		            <select>
-		                <option>+82</option>
-		            </select>
-		            <input type="text" placeholder="휴대번호 (01012341234)" name="PhoneNumber" id="PhoneNumber">
-		            <a href="#" id="phoneChk" style="color: white;">인증번호발송</a>
+		        <div class = "form-middle-container">
+		        	<div class="form-middle-text1">
+			            <select class="selectoption">
+			                <option>+82</option>
+			            </select>
+		            </div>
+		            <div class="form-middle-text2">
+		            	<input type="text" placeholder="휴대번호 (01012341234)" name="PhoneNumber" id="PhoneNumber">
+		            </div>
+		            <div class="form-middle-text3">
+		            	<a href="#" id="phoneChk">인증번호발송</a>
+		            </div>	
 		        </div>
 		    </div>
 		    
 		    <div class="form-item">
-			    <div style="display: flex; align-items: center;">
-			        <input type="text" placeholder="인증번호 6자리 숫자 입력" id="phone2">
-		    	    <a href="#" id="phoneChk2" style="color: white;">인증번호확인</a>
+			    <div class="form-middle-container">
+			    	<div class="form-middle-text4">
+			        	<input type="text" placeholder="인증번호 6자리 숫자 입력" id="phone2">
+			        </div>
+			        <div class="form-middle-text3">	
+		    	    	<a href="#" id="phoneChk2">인증번호확인</a>
+		    	    </div>
 		    	</div>
 		    </div>
 		</div>

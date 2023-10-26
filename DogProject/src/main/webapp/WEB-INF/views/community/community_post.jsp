@@ -26,6 +26,7 @@
 
 <link rel="stylesheet" href="resources/postcss/test.css">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
@@ -57,7 +58,7 @@ $(document).ready(function(){ //PostType 컬럼상태가 바뀌는 버튼
 				 event.preventDefault();
 			 },
 			 error:function(xhr,status,error){
-				 alert('삭제할 수 없습니다');
+				 Swal.fire('경고', '삭제할 수 없습니다', 'warning');
 		         location.href = "/app/community"; 
 			 }
 		  });//end ajax
@@ -343,7 +344,7 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 					getreplylist();
 				},
 				error : function(error) {
-					 alert('삭제할 수 없습니다');
+					 Swal.fire('경고', '삭제할 수 없습니다', 'warning');
 				}
 			});
 		} else {//취소

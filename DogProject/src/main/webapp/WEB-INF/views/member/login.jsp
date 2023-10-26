@@ -2,27 +2,32 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>Login</title>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="resources/css/main.css">
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-
 </head>
 <script type="text/javascript">
-<%	String msg = (String)session.getAttribute("msg");
-	if(msg != null){%>
-		alert("<%= msg %>");
-<% } 
-	session.removeAttribute("msg");
-%>
+	
+	document.addEventListener("DOMContentLoaded", function() {
+		<%	String msg = (String)session.getAttribute("msg");
+		if(msg != null){
+			if(msg.equals("비밀번호를 변경했습니다.")){ %>
+				Swal.fire('성공', '<%= msg %>', 'success');
+	<%		}else{ %>
+				Swal.fire('경고', '<%= msg %>', 'warning');
+	<%  	}
+			session.removeAttribute("msg");
+		}
+	%>
+	});
 
 	function memadd(){
-		var link = 'membership_agree';
-		location.href=link;
+		location.href='membership_agree';
 	}
 	
 	function findID(){
