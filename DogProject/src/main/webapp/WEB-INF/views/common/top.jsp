@@ -106,8 +106,13 @@
 			    <a href="/app/mypage" class="login-link"><img src="${pageContext.request.contextPath}/resources/마이페이지아이콘.png" width=60 height=60><br>MyPage</a>
 			    <a href="/app/cartList" class="login-link"><img src="${pageContext.request.contextPath}/resources/장바구니아이콘.png" width=60 height=60><br>Cart</a>
 			    <a href="/app/logout" class="login-link" style="color:red"><img src="${pageContext.request.contextPath}/resources/강아지로그아웃아이콘.png" width=60 height=60><br>Logout</a>
-			    <%} %>
+				<%	if(User.getUserType().equals("admin")) {%>
+				    	<a href="/app/adminPage" class="login-link" style="color:purple"><img src="${pageContext.request.contextPath}/resources/관리자아이콘.png" width=60 height=60><br>관리자</a>
+				<% } %>
+			    <% } %>
+			    
 			</div>
+
 	</header>
 </div>
 

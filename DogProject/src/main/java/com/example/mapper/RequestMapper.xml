@@ -10,4 +10,8 @@
 <select id="UserOrderSelectList" parameterType="Request" resultType="Request">
 	SELECT * FROM REQUEST WHERE userid=#{userid} AND requestid=#{requestid} order by count asc
 </select>
+
+<select id="adminSelectList" resultType="Request">
+	SELECT * FROM REQUEST WHERE requeststate='답변대기'
+</select>
 </mapper>                

@@ -57,6 +57,7 @@ public class UsersController {
 		}else {
 			session.setAttribute("msg", "아이디를 잘못 입력했습니다.");
 		}
+		System.out.println(session.getAttribute("User"));
 		return href;
 	}
 	

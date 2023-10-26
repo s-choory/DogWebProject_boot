@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -112,10 +113,13 @@ public class OrdersController {
 				session.setAttribute("request_requestid", requestid);
 				session.setAttribute("request_category", "상품주문");
 				session.setAttribute("request_UserOrderSelectList", rlist);
+				session.setAttribute("request_PageSee", rlist);
+				session.setAttribute("request_num", 1);
 				if(rlist.size() == 0) {
 					return "request/requestForm";
 				} else {
-				return "request/requestList";
+					int num = 1;
+				return "redirect:/requestPageChange?num=1";
 				}
 			}
 			@RequestMapping(value = "/requestSave")
@@ -144,6 +148,22 @@ public class OrdersController {
 			@RequestMapping(value = "/requestRerequest")
 			public String requestRerequest(HttpSession session) {
 				return "request/requestForm";
+			}
+			@RequestMapping(value = "/requestPageChange")
+			public String requestRerequest(HttpSession session, int num) {
+				System.out.println("requestRerequest" + num);
+				List<RequestDTO> pageChangList = new ArrayList<RequestDTO>();
+ 				List<RequestDTO> rlist = (List<RequestDTO>)session.getAttribute("request_UserOrderSelectList");
+				int rlistMax = rlist.size();
+ 				for (int i = rlistMax-(num*9); i < rlistMax-((num-1)*9); i++) {
+ 					if(i >= 0) {
+ 					pageChangList.add(rlist.get(i));
+ 					System.out.println(rlist.get(i));
+ 					}
+				}
+				session.setAttribute("request_PageSee", pageChangList);
+				session.setAttribute("request_num", num);
+				return "request/requestList";
 			}
 			
 }
