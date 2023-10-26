@@ -1,0 +1,387 @@
+--시퀀스 14개
+DROP SEQUENCE MEETUPS_MEETUPID_SEQ;
+DROP SEQUENCE Notices_NoticeID_SEQ;
+DROP SEQUENCE Orders_OrderID_SEQ;
+DROP SEQUENCE Products_ProductID_SEQ;
+DROP SEQUENCE Facilities_FacilitiesID_SEQ;
+DROP SEQUENCE Posts_PostID_SEQ;
+DROP SEQUENCE Comments_CommentID_SEQ;
+DROP SEQUENCE FAQs_FAQID_SEQ;
+DROP SEQUENCE Reviews_ReviewID_SEQ;
+DROP SEQUENCE Cart_CartNum_SEQ;
+DROP SEQUENCE Files_FileID_SEQ;
+DROP SEQUENCE calendar_calendarno_SEQ;
+drop SEQUENCE CHATROOM_SEQ;
+
+--테이블 18개
+DROP TABLE Posts CASCADE CONSTRAINTS;
+DROP TABLE Comments;
+DROP TABLE Users CASCADE CONSTRAINTS;
+DROP TABLE Products CASCADE CONSTRAINTS;
+DROP TABLE Cart; -- 
+DROP TABLE Orders CASCADE CONSTRAINTS;
+DROP TABLE Reviews;
+DROP TABLE Notices;
+DROP TABLE AccompanyingFacilities;
+DROP TABLE DogType;
+DROP TABLE FAQs;
+DROP TABLE Files;
+DROP TABLE Likes;
+DROP TABLE calendar;
+drop table chatRoom;
+drop table chatMessage;
+drop table Request;
+
+-- 회원 정보 테이블 (Users)
+CREATE TABLE Users (
+    UserID VARCHAR2(255) PRIMARY KEY,
+    UserName VARCHAR2(255) NOT NULL,
+    UserAlias VARCHAR2(255) NOT NULL,
+    Password VARCHAR2(255) NOT NULL,
+    Email1 VARCHAR2(255),
+    Email2 VARCHAR2(255),
+    Post INT,
+    RodeAddress VARCHAR2(255),
+    HouseAddress VARCHAR2(255),
+    DetailAddress VARCHAR(255),
+    PhoneNumber VARCHAR2(20) NOT NULL,
+    DogName VARCHAR2(30),
+    DogType VARCHAR2(30),
+    UserType VARCHAR2(6) CHECK(UserType IN ('user', 'admin', 'unuser')) NOT NULL,
+    UserImg BLOB
+); 
+
+
+-- Posts의 PostID 시퀀스
+CREATE SEQUENCE Posts_PostID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+-- 게시물 테이블 (Posts)
+CREATE TABLE Posts (
+    PostID INT PRIMARY KEY,
+    AuthorID VARCHAR2(255),
+    Title VARCHAR2(255) NOT NULL,
+    Tag VARCHAR2(255),
+    Content VARCHAR2(999) NOT NULL,
+    CreationTime date default sysdate,
+    UpdateTime date default sysdate,
+    Likes INT,
+    Category VARCHAR2(255),
+    Image VARCHAR2(255),
+    HIT NUMBER DEFAULT 0,
+    PostType VARCHAR2(10) CHECK(PostType IN ('undeleted', 'deleted')) NOT NULL,
+    FOREIGN KEY (AuthorID) REFERENCES Users(UserID)
+);
+
+
+--insert into posts values(POSTS_POSTID_SEQ.nextval, 'asds', '제목', '태그', '내용', sysdate, sysdate, 11, 'QnA', '이미지경로', 0, 'undeleted');
+
+
+-- Comments CommentID 시퀀스
+CREATE SEQUENCE Comments_CommentID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+-- 댓글 정보 테이블 (Comments)
+CREATE TABLE Comments (
+    CommentID INT PRIMARY KEY,
+    PostID INT,
+    ParentCommentID INT,  -- 부모 댓글의 CommentID
+    AuthorID VARCHAR2(255),
+    Content VARCHAR2(999) NOT NULL,
+    CreationTime date default sysdate,
+    repIndent   number(4),
+    CommentType VARCHAR2(10) CHECK(CommentType IN ('undeleted', 'deleted')) NOT NULL,
+    FOREIGN KEY (PostID) REFERENCES Posts(PostID),
+    FOREIGN KEY (ParentCommentID) REFERENCES Comments(CommentID),
+    FOREIGN KEY (AuthorID) REFERENCES Users(UserID)
+);
+
+
+-----------------------------------------
+-- Products의 ProductsID 시퀀스
+CREATE SEQUENCE Products_ProductID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 스토어 상품 테이블 (Products)
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR2(255) NOT NULL,
+    Category VARCHAR2(255) NOT NULL,
+    Content VARCHAR2(255) NOT NULL,
+    Price DECIMAL(10, 0) NOT NULL,
+    Image VARCHAR2(255) NOT NULL,
+    StockQuantity INT
+);
+
+-- Cart의 CartNum 시퀀스
+CREATE SEQUENCE Cart_CartNum_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 장바구니 테이블 (Cart)
+CREATE TABLE Cart (
+    CartNum INT PRIMARY KEY,
+    UserID VARCHAR2(255),
+    ProductID INT,
+    ProductName VARCHAR2(255),
+    Price INT NOT NULL,
+    Psize VARCHAR2(10),
+    Amount INT,
+    Color VARCHAR2(20),
+    Image VARCHAR2(20),
+    OrderNumber INT,
+    OrderState VARCHAR(10) check(OrderState in ('before', 'after')),
+    ReviewFlag VARCHAR(20) check(ReviewFlag in ('true','false')),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+
+-- Orders의 OrderID 시퀀스
+CREATE SEQUENCE Orders_OrderID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 주문 정보 테이블 (Orders)
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    UserID VARCHAR2(255),
+    OrderName VARCHAR2(255) NOT NULL,
+    UserName VarCHAR2(255) NOT NULL,
+    Email VARCHAR2(255),
+    RodeAddress VARCHAR2(255) NOT NULL,
+    HouseAddress VARCHAR2(255) NOT NULL,
+    DetailAddress VARCHAR(255),
+    PhoneNumber VARCHAR2(255) NOT NULL,
+    PayMethod VARCHAR2(255) NOT NULL,
+    OrderTime VARCHAR2(255),
+    TotalPrice NUMBER(10, 2),
+    Requested VARCHAR2(255),
+    OrderState VARCHAR2(255),
+    PayMethodCard VARCHAR2(255),
+    PayMethodNumber VARCHAR2(255),
+    PostNumber NUMBER,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+--insert into orders values(ORDERS_ORDERID_SEQ.nextval,'asds','oName','userName','bora121111@naver.com','RodeAdr','HouseAdr','DetailAdr','010-9268-1933','무통장입금',sysdate,1000,'요구','before',null,'12345');
+
+-----------------------------------------
+
+-- Notices의 NoticeID 시퀀스
+CREATE SEQUENCE Notices_NoticeID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 공지사항 테이블 (Notices)
+CREATE TABLE Notices (
+    NoticeID INT  PRIMARY KEY,
+    Title VARCHAR2(255) NOT NULL,
+    Content VARCHAR2(255) NOT NULL,
+    CreationTime date default sysdate,
+    HIT NUMBER DEFAULT 0
+);
+
+-- AccompanyingFacilities의 FacilitiesID 시퀀스
+CREATE SEQUENCE Facilities_FacilitiesID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 99999
+ MINVALUE 1
+ NOCACHE;
+
+-- 동반가능시설 테이블(AccompanyingFacilities)
+CREATE TABLE AccompanyingFacilities(
+    FacilitiesID INT PRIMARY KEY,
+    FacilitiesName VARCHAR2(255) NOT NULL,
+    Category1 VARCHAR2(50) NOT NULL,
+    Category2 VARCHAR2(50) NOT NULL,
+    Address1 VARCHAR2(50),
+    Address2 VARCHAR2(50),
+    Latitude NUMBER(16,10),
+    Longitude NUMBER(16,10),
+    PostNumber INT,
+    RodeAddress VARCHAR2(200),
+    HouseAddress VARCHAR2(200),
+    PhoneNumber VARCHAR2(50),
+    DayOff VARCHAR2(100),
+    OperationHours VARCHAR2(200),
+    Parking VARCHAR2(50),
+    Restrictions VARCHAR2(255)
+);
+
+
+--반려견종분류 테이블(DogType)
+CREATE TABLE DogType (
+    DogName VARCHAR2(70) PRIMARY KEY,
+    Picture VARCHAR2(255) NOT NULL,
+    Personality VARCHAR2(1999) NOT NULL,
+    Characteristic VARCHAR2(1999) NOT NULL,
+    Introduction VARCHAR2(999) NOT NULL,
+    DogSize VARCHAR2(10) NOT NULL,
+    Popularity NUMBER(5,0) default 0
+);
+
+
+-- FAQs의 FAQID 시퀀스
+CREATE SEQUENCE FAQs_FAQID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- FAQ 테이블 (FAQs)
+CREATE TABLE FAQs (
+    FAQID INT  PRIMARY KEY,
+    Title VARCHAR2(255) NOT NULL,
+    Content VARCHAR2(255) NOT NULL  
+);
+
+
+-- Reviews의 ReviewID시퀀스
+CREATE SEQUENCE Reviews_ReviewID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 리뷰 테이블(Reviews)
+CREATE TABLE Reviews (
+    ReviewID INT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    ProductID INT NOT NULL,
+    UserAlias VARCHAR2(50) NOT NULL,
+    CreationTime date default sysdate,
+    Rating NUMBER(2,1) NOT NULL,
+    ReviewContent VARCHAR2(999),
+    rImg VARCHAR2(200),
+    rThumbImg VARCHAR2(200),
+    ReviewType VARCHAR2(10) CHECK(ReviewType IN ('undeleted', 'deleted')) NOT NULL,
+    UserImg BLOB,
+    FOREIGN KEY (OrderID) REFERENCES orders(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES products(ProductID)
+);
+
+
+-- Files 시퀀스 추가
+CREATE SEQUENCE Files_FileID_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- Files 테이블 수정
+CREATE TABLE Files (
+    FileID INT PRIMARY KEY,
+    PostID INT,
+    RealName VARCHAR2(255),
+    Extension VARCHAR2(255),	
+    FileName VARCHAR2(255),
+    UploadPath VARCHAR2(255),
+    FileUrl VARCHAR2(255),
+    FOREIGN KEY (PostId) REFERENCES Posts(PostId)
+);
+
+
+-- 좋아요 정보 테이블 (Likes)
+CREATE TABLE LIKES (
+  userID VARCHAR2(255),
+  categoryID INT,
+  CATEGORIES VARCHAR2(50)
+);
+ALTER TABLE LIKES
+ADD CONSTRAINT fk_user FOREIGN KEY (userID) REFERENCES USERS(USERID);
+
+
+-- 캘린더 시퀀스
+CREATE SEQUENCE calendar_calendarno_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 캘린더 테이블 (calendar)
+CREATE TABLE calendar (
+    calendarno int PRIMARY KEY,
+    calendaruserid VARCHAR(255),
+    calendartitle VARCHAR(255) NOT NULL,
+    calendarstart TIMESTAMP(6) NOT NULL,	
+    calendarend TIMESTAMP(6) NOT NULL
+);
+
+
+
+CREATE TABLE chatRoom (
+    roomId NUMBER(10) PRIMARY KEY,
+    roomName VARCHAR2(50) NOT NULL,
+    userCnt NUMBER(3),
+    maxUserCnt NUMBER(3) NOT NULL,
+    secretChk VARCHAR2(10) NOT NULL,
+    roomPwd VARCHAR2(50)
+);
+
+
+
+CREATE SEQUENCE CHATROOM_SEQ
+    MINVALUE 1
+    MAXVALUE 9999999999
+    INCREMENT BY 1
+    START WITH 1
+    NOORDER
+    NOCYCLE ;
+
+
+
+CREATE TABLE chatMessage (
+    roomId NUMBER(10),
+    sender VARCHAR2(50) NOT NULL,
+    message VARCHAR2(500) NOT NULL,
+    sendDate date,
+    CONSTRAINT fk_code FOREIGN KEY(roomId)
+    REFERENCES chatRoom(roomId) ON DELETE CASCADE
+);
+
+
+-- Request의 RequestID 시퀀스
+CREATE SEQUENCE REQUEST_COUNT_SEQ
+ START WITH 1
+ INCREMENT BY 1
+ MAXVALUE 9999
+ MINVALUE 1
+ NOCACHE;
+
+-- 문의하기 테이블 (Request)
+CREATE TABLE Request (
+  userID VARCHAR2(255),
+  categoryID INT,
+  CATEGORY VARCHAR2(255),
+  TAG VARCHAR2(255),
+  CONTENT VARCHAR2(255),
+  COUNT NUMBER,
+  RECONTENT VARCHAR2(255),
+  REQUESTSTATE VARCHAR2(255),
+  CREATETIME VARCHAR2(255)
+);
