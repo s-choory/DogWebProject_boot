@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GoodsMapper">      
+
+<select id="selectAll" resultType="Goods">
+	select * from PRODUCTS
+</select> 
+
+<select id="random" resultType="goods">
+   select * from products sample(35)
+</select>
+	
+<select id="selectOne" parameterType="String" resultType="Goods">
+	select * from PRODUCTS where PRODUCTID = #{PRODUCTID} 
+
+</select>
+
+<select id="goodsList" parameterType="String" resultType="Goods">
+	select * from PRODUCTS where category= #{category}
+</select>
+<!-- 오름차순  가격 낮은순  -->
+<select id="ASCPriceList" parameterType="String" resultType="Goods">
+	SELECT * FROM PRODUCTS where category= #{category} ORDER BY price ASC
+</select>
+<!-- 내림차순  가격 높은순  -->
+<select id="DESCPriceList" parameterType="String" resultType="Goods">
+	SELECT * FROM PRODUCTS where category= #{category} ORDER BY price DESC
+</select>
+
+<select id="MostPopular" resultType="Goods">
+	SELECT O.ProductID, O.Image, P.Category, P.PRODUCTNAME, P.Content, P.Price, P.STOCKQUANTITY, COUNT(*) AS Count 
+		FROM Products P
+		JOIN Orders O ON P.ProductID = O.ProductID
+		WHERE P.category= #{category}
+		GROUP BY O.ProductID, O.Image, P.Category, P.PRODUCTNAME, P.Content, P.Price, P.STOCKQUANTITY 
+		ORDER BY Count DESC
+</select>
+
+<select id="searchList" resultType="Goods" parameterType="String">
+	SELECT * FROM products WHERE PRODUCTNAME LIKE '%'||#{SearchName}||'%' OR category LIKE '%'||#{SearchName}||'%'
+</select>
+
+<select id="CartCount" resultType="int" parameterType="String">
+	SELECT COUNT(*) FROM Cart WHERE UserID = #{userID}
+</select>
+
+</mapper>                                              

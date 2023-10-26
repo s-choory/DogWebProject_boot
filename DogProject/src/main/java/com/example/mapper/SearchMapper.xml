@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SearchMapper">
+   
+   <select id="AccompanyingFacilities_search" parameterType="String" resultType="AccompanyingFacilities">
+   		SELECT * FROM AccompanyingFacilities WHERE FACILITIESNAME LIKE '%' || #{search} || '%' AND ROWNUM &lt; 100
+   </select>
+   <select id="Notices_search" parameterType="String" resultType="Notice">
+   		SELECT * FROM Notices WHERE title LIKE '%' || #{search} || '%'
+   </select>
+   <select id="Posts_search" parameterType="String" resultType="Posts">
+   		SELECT * FROM Posts WHERE title LIKE '%' || #{search} || '%' OR tag LIKE '%' || #{search} || '%'
+			ORDER BY title, creationtime
+   </select>
+   <select id="Products_search" parameterType="String" resultType="Goods">
+   		SELECT * FROM products WHERE productname LIKE '%' || #{search} || '%'
+   </select>
+    <select id="Like_search" resultType="Like">
+    	select * from likes
+    </select>
+    <select id="Review_search" resultType="Reviews">
+    	select * from Reviews
+    </select>
+</mapper>

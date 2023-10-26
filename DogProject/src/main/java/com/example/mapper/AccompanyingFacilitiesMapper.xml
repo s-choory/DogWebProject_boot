@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AccompanyingFacilitiesMapper">	<!-- Mapper 생성 후 Configuration 수정 -->
+
+<select id="selectList" resultType="AccompanyingFacilities" parameterType="AccompanyingFacilities">
+	SELECT * FROM AccompanyingFacilities WHERE
+    <if test="RodeAddress != null and Category2 != null">
+         (RodeAddress LIKE '%' || #{RodeAddress} || '%' OR HouseAddress LIKE '%' || #{RodeAddress} || '%' OR FACILITIESNAME LIKE '%' || #{RodeAddress} || '%')
+        AND Category2 LIKE '%' || #{Category2} || '%' AND
+    </if>
+    <if test="RodeAddress != null and Category2 == null">
+         (RodeAddress LIKE '%' || #{RodeAddress} || '%' OR HouseAddress LIKE '%' || #{RodeAddress} || '%' OR FACILITIESNAME LIKE '%' || #{RodeAddress} || '%') AND
+     </if>
+    <if test="RodeAddress == null and Category2 != null">
+         Category2 LIKE '%' || #{Category2} || '%' AND
+    </if> ROWNUM &lt; 100
+</select>
+
+<select id="selectListChange" resultType="AccompanyingFacilities" parameterType="Hashmap">
+	SELECT * FROM AccompanyingFacilities WHERE 
+	<if test="RodeAddress != null and Category2 != null">
+        (RodeAddress LIKE '%' || #{RodeAddress} || '%' OR HouseAddress LIKE '%' || #{RodeAddress} || '%' OR FACILITIESNAME LIKE '%' || #{RodeAddress} || '%')
+        AND Category2 LIKE '%' || #{Category2} || '%' AND
+    </if>
+    <if test="RodeAddress != null and Category2 == null">
+        (RodeAddress LIKE '%' || #{RodeAddress} || '%' OR HouseAddress LIKE '%' || #{RodeAddress} || '%' OR FACILITIESNAME LIKE '%' || #{RodeAddress} || '%') AND
+    </if>
+    <if test="RodeAddress == null and Category2 != null">
+        Category2 LIKE '%' || #{Category2} || '%' AND
+    </if>
+    <if test="RodeAddress == null and Category2 == null">
+        1 = 1 AND
+    </if>
+    (latitude &gt; #{Latitude1} and latitude &lt; #{Latitude2} ) and (longitude &gt; #{Longitude1} and longitude &lt; #{Longitude2})
+</select>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RequestMapper">      
+<insert id="AddRequest" parameterType="Request">
+	INSERT INTO REQUEST (userid, requeststate, requestid, tag, content, category, count, recontent, createtime) 
+	VALUES(#{userid}, #{requeststate}, #{requestid}, #{tag}, #{content}, #{category}, REQUEST_COUNT_SEQ.nextval, null, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'))
+</insert>
+<select id="UserOrderSelectList" parameterType="Request" resultType="Request">
+	SELECT * FROM REQUEST WHERE userid=#{userid} AND requestid=#{requestid} order by count asc
+</select>
+</mapper>                

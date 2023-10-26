@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LikeMapper">
+
+<!-- list 화면 출력 및 페이징 관련 SQL문 -->
+ <select id="selectLikeList" resultType="Like">
+	select * from Likes
+</select>
+
+<!-- 좋아요 버튼 클릭 시 db값 insert -->
+<insert id="likeinsert">
+          INSERT INTO Likes ( 
+          		userID
+			  , categoryID
+			  , categories) 
+    	values ( #{userID} , #{categoryID} , #{categories})
+</insert>
+
+<!-- 좋아요 버튼 클릭 시 db값 delete -->
+<delete id="likedelete" parameterType="Like">
+		DELETE FROM Likes WHERE userID = #{userID}  and categoryID = #{categoryID} and categories = #{categories}
+</delete> 
+
+<!-- 로그인한 회원이 좋아요 누를 시 갯수(0,1)로 insert할 지 delete할 지를 판별 -->
+<select id="like_likeCount" resultType="int" parameterType="Like">
+		SELECT COUNT(*) FROM Likes WHERE userID = #{userID}  and categoryID = #{categoryID} and categories = #{categories}
+</select>
+
+<!-- 카테고리와 그에 맞는 카테고리번호(categoryID)의 갯수를 출력  ==> 좋아요 갯수 확인 -->
+<select id="like_likeTotalCount" resultType="int" parameterType="Like">
+		SELECT COUNT(*) FROM Likes WHERE categoryID = #{categoryID} and categories = #{categories}
+</select>
+	
+    
+
+	
+	
+</mapper>

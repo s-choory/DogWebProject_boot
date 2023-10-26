@@ -1,0 +1,208 @@
+@charset "UTF-8";
+.ContactCenter_Top {
+	background: #aba8f4;
+	color: #4646b4;
+	width: 100%;
+	padding-top:20px;
+	padding-bottom:0px;
+	margin: 0 auto;
+}
+.ContactCenter_Top_Name {
+	color: black;
+	padding-bottom: 40px;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+.ContactCenter_Choice_Table {
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 100%;
+}
+.ContactCenter_Choice_Yes {
+	background: purple;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	width: 25%;
+	height: 65px;
+	text-align: center;
+	border-bottom: 2px solid purple;
+}
+.ContactCenter_Choice_No {
+	background: white;
+	color: purple;
+	font-size: 20px;
+	font-weight: bold;
+	width: 25%;
+	height: 65px;
+	text-align: center;
+	border-bottom: 2px solid purple;
+}
+.ContactCenter_Choice_Side {
+	background: white;
+	width: 25%;
+	height: 32.5px;
+}
+.ContactCenter_Notice {
+	background: white;
+	color: #4646b4;
+	width: 100%;
+	padding-top: 20px;
+}
+.ContactCenter_Notice_Table {
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 50%;
+	height: 100px;
+}
+.ContactCenter_Notice_Top_Name {
+	font-size: 15px;
+	font-weight: bold;
+	width: 25%;
+	height: 50px;
+	text-align: center;
+	border-top: 2px solid purple;
+	border-bottom: 2px solid #aba8f4;
+	}
+.ContactCenter_Notice_Top_Count {
+	font-size: 15px;
+	font-weight: bold;
+	width: 5%;
+	height: 50px;
+	text-align: center;
+	border-top: 2px solid purple;
+	border-bottom: 2px solid #aba8f4;
+	}
+.ContactCenter_Notice_Top_Writer {
+	font-size: 15px;
+	font-weight: bold;
+	width: 5%;
+	height: 50px;
+	text-align: center;
+	border-top: 2px solid purple;
+	border-bottom: 2px solid #aba8f4;
+	}
+.ContactCenter_Notice_Top_Uploaddate {
+	font-size: 15px;
+	font-weight: bold;
+	width: 10%;
+	height: 50px;
+	text-align: center;
+	border-top: 2px solid purple;
+	border-bottom: 2px solid #aba8f4;
+	}
+.ContactCenter_Notice_Bottom_Center {
+	font-size: 15px;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	border-bottom: 1px solid #c0c0c0;
+	}
+.ContactCenter_Notice_Bottom_Left {
+	font-size: 15px;
+	width: 120px;
+	height: 40px;
+	text-align: left;
+	border-bottom: 1px solid #c0c0c0;
+	}
+.ContactCenter_Notice_Bottom_Pages {
+	font-size: 15px;
+	height: 40px;
+	text-align: center;
+	}
+.ContactCenter_Notice_Bottom_First {
+	font-size: 15px;
+	height: 40px;
+	text-align: center;
+	padding-left: 40px
+	}
+.ContactCenter_Notice_Bottom_Last {
+	font-size: 15px;
+	height: 40px;
+	text-align: center;
+	padding-right: 40px
+	}
+.ContactCenter_Button {
+	width: 50px;
+	height: 50px;
+	
+	text-align: center;
+	}
+.ContactCenter_FAQ_Table {
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 50%;
+	height: 50px;
+}
+.ContactCenter_FAQ_Q {
+	font-size: 25px;
+	color: purple;
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 3%;
+	height: 50px;
+	border: 1px solid purple;
+	text-align: center;
+}
+.ContactCenter_FAQ_Name {
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 47%;
+	height: 50px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+}
+.ContactCenter_FAQ_Q2 {
+	font-size: 25px;
+	color: purple;
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 100%;
+	height: 50px;
+	text-align: center;
+}
+.ContactCenter_FAQ_Content {
+	background-color : gray;
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 50%;
+	height: 50px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+}
+
+/* 드롭박스 */
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.button{
+    padding: 10px 40px;
+    font-size:20px;
+    background-color: brown;
+    color: wheat;
+}
+#drop-content{
+    position: absolute;
+    z-index: 1;
+}
+#drop-content a{
+	width: 100%;
+	height: 50px;
+    display:block;
+    font-size: 20px;
+    background-color: #dfdfdf;
+    color: black;
+    text-decoration: none;
+    margin: -1px;
+}

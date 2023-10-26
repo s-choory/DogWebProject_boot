@@ -1,0 +1,45 @@
+절대무단 수정/삭제 금지
+--------------------------
+
+// include (헤드, 푸터, 사이드)
+common
+
+//커뮤니티
+community
+	community_addPost 게시물상세보기 
+	community_main 커뮤니티메인화면, 
+	community_post 게시물등록
+
+//반려견맵
+guide
+	dogdiv 문화시설목록, 
+	gmap 동물병원찾기
+	savedogdiv 문화시설상세
+
+//마이페이지
+mypage
+	mypage_white 마이페이지
+
+//스토어
+store
+	dogshop_main 스토어메인
+	goodsRetrieve 상품상세
+	orderConfirm 결제확인
+//모임
+group
+	meeting_create 모임생성
+	MoIm 모임목록
+	MoIm2 모임상세화면
+
+//고객센터
+customer_center
+	ContactCenter_FAQ 고객센터QnA
+	ContactCenter_Notice 고객센터글목록(페이징)
+
+
+--------------------------------
+History
+ContactCenter_FAQ 삭제 ContactCenter_FAQ2 기존파일 대체
+ContactCenter_Notice 삭제 ContactCenter_Notice2 기존파일 대체
+
+

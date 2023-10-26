@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+.MI_Top_center {
+  text-align: center; /* 내용을 가운데로 정렬 */
+}
+.MI_Middle_right {
+  text-align: right;
+}
+.MI_Bottom_center {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+.MI_Top_1 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  text-align: right;
+  color: purple;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.MI_Top_2 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  text-align: left;
+  color: #aba8f4;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 1px solid #eee;
+}
+.MI_Top_3 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  text-align: right;
+  color: purple;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #eee;
+}
+.MI_Top_4 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  text-align: left;
+  color: #aba8f4;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.MI_Botton_list1 {
+  float:left;
+  text-align: center;
+  display: flex;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 1%;
+  width: 29%; /* 50% - 15px */
+}
+.MI_Botton_list0 {
+  float:right;
+  text-align: center;
+  display: flex;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 1%;
+  width: 29%; 
+}
+.MI_Middle_bar1 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  text-align: center;
+  color: purple;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+  margin-block-start: 0px;
+  padding-inline-start: 3px;
+  padding-inline-end: 3px;
+}
+.MI_Middle_bar2 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  text-align: center;
+  color: purple;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 20%;
+  border: 1px solid black;
+  margin-block-start: 0px;
+  padding-inline-start: 3px;
+  padding-inline-end: 3px;
+}
+.MI_Botton_ul1 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  padding-inline-start: 0px;
+  margin: 1px;
+}  
+.MI_Botton_ul1-1 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  padding-inline-start: 0px;
+  padding-top: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}  
+.MI_Botton_ul2 {
+  display: inline-block; /* 요소를 인라인 블록으로 설정 */
+  vertical-align: top; /* 요소를 위쪽으로 정렬 */
+  padding-inline-start: 0px;
+  margin-block-start: 1px;
+  margin-block-end: 1px;
+}  
+.MI_Botton_li1 {
+  list-style-type: none;
+  padding-inline-start: 5px;
+  margin-block-start: 1px;
+  margin-block-end: 1px;
+  text-align: left;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 2px;
+}
+.MI_Botton_li2 {
+  list-style-type: none;
+  padding-inline-start: 5px;
+  margin-block-start: 1px;
+  margin-block-end: 1px;
+  padding-top: 5px;
+  text-align: left;
+  font-size: 20px;
+}
+.MI_Botton_li3 {
+  list-style-type: none;
+  padding-inline-start: 5px;
+  margin-block-start: 1px;
+  margin-block-end: 1px;
+  text-align: left;
+  font-size: 15px;
+  float:left;
+  padding-top: 5px;
+}
+.MI_Botton_li4 {
+  list-style-type: none;
+  padding-inline-start: 5px;
+  margin-block-start: 1px;
+  margin-block-end: 1px;
+  text-align: left;
+  font-size: 15px;
+  float:left;
+  padding-top: 5px;
+}

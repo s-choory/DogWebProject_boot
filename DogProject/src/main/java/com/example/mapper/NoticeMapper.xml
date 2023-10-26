@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeMapper">
+	
+	
+	<!-- 제목 클릭시 상세페이지 이동 -->
+  <select id="Notice_read" parameterType="int" resultType="Notice">
+		SELECT	NoticeID
+			  , Title
+			  , Content
+			  , TO_CHAR(CreationTime, 'yy.mm.dd hh24:mi:ss') CreationTime
+			  ,Hit
+		 FROM notices
+		 WHERE NoticeID = #{NoticeID}
+	</select> 
+	
+	
+	<!-- list 화면 출력 및 페이징 관련 SQL문 -->
+ <select id="selectList" resultType="Notice">
+	select * from notices
+</select>
+
+<!-- 카테고리 totalCount -->
+<select id="totalCount" parameterType="map" resultType="int">
+      select count(*)
+      from notices
+		<!-- 카테고리 select -->
+			<if test="order == '최신순' ">
+    			order by CreationTime desc
+   			</if>
+			<if test="order == '오래된 순' ">
+    			order by CreationTime asc
+   			</if>
+</select>
+
+<!-- 카테고리 SelectAll -->
+<select id="selectOrder" parameterType="map" resultType="Notice">
+	  select *	from notices
+    	<if test="order == '최신순' ">
+    		order by CreationTime desc
+    	</if>
+    	<if test="order == '오래된 순' ">
+    		order by CreationTime asc
+   		</if>
+    	
+</select>
+
+
+<!-- 검색조건 TotalCount -->
+ <select id="selectTotalCount" parameterType="map" resultType="int">
+      select count(*)
+      from notices
+        검색기능
+      	<where>
+			<if test="search != null">
+			title like '%'||#{search}||'%' or content like '%'||#{search}||'%'
+			</if>
+		</where>
+</select>
+
+<!--검색조건 SelectAll -->
+ <select id="selectSearch" parameterType="map" resultType="Notice">
+	  select * from notices
+    <where>
+    	<if test="search != null">
+    		title like '%'||#{search}||'%' or content like '%'||#{search}||'%'
+    	</if>
+    </where>
+</select> 
+	
+	<!-- 조회수 -->
+	<update id="Notice_hitadd" parameterType="Notice">
+		UPDATE notices SET Hit=Hit+1 WHERE NoticeID = #{NoticeID}
+	</update>
+	
+	
+	
+</mapper>

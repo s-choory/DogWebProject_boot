@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+button {
+	background-color: #06f;
+	color:  #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+}
+
+#modal-box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	
+	 z-index:9999; 
+}
+
+#modal-box.active{
+	display: flex;
+}
+
+#modal-contents {
+	background-color: #fff;
+	width: 800px;
+	padding: 20px;
+	border-radius: 5px;
+	position: relative;
+}
+
+#modal-contents button {
+	background-color: #fff;
+	color: #ccc;
+}
+
+	#profil {
+		display: flex;
+		align-items: center;
+	}
+
+	#profil-img {
+		margin-right: 10px;
+		display: flex;
+		flex-direction: column; /* 세로 방향으로 요소를 배치합니다. */
+		align-items: center;
+    }
+
+	#profil-img img,
+	.button-group input {
+	    margin-bottom: 10px; /* 이미지와 버튼 사이의 간격을 조정합니다. */
+	}
+	
+	.button-group {
+	    display: flex;
+	}
+	
+	.button-group input {
+	    margin-right: 10px;
+	}
+	
+	#desc {
+		margin-left: 10px;
+	}
+
+    #profil-img-change, #profil-img-change3  {
+	    background-color: #06f;
+	    color: #fff;
+	    border: none;
+	    border-radius: 5px;
+	    padding: 15px;
+
+        display: inline-block;
+        align-items:center; /* 버튼 내부의 텍스트를 수직 가운데 정렬합니다. */
+    }
+
+	#profil-img-change2 {
+	    background-color: #06f;
+	    color: #fff;
+	    border: none;
+	    border-radius: 5px;
+	    padding: 15px;
+	    
+	    display: block;
+ 		margin: 0 auto;
+
+    }

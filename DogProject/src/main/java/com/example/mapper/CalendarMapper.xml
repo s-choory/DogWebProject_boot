@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CalendarMapper">      
+
+ <select id="selectEvent" resultType="CalendarDTO" parameterType="String">
+    SELECT * FROM calendar where calendaruserid=#{userid}
+ </select>
+ 
+ <insert id="addEvent" parameterType="CalendarDTO">
+        INSERT INTO calendar (calendarNo, calendaruserid, calendartitle, calendarstart, calendarend)
+        VALUES (calendar_calendarNo_seq.nextval, #{calendaruserid}, #{calendartitle}, #{calendarstart}, #{calendarend})
+ </insert>
+ 
+ <select id="findcalNO" resultType="CalendarDTO" parameterType="java.util.Map">
+ 	SELECT * FROM calendar WHERE calendarstart =#{startDate} AND calendarend =#{endDate}
+ </select>
+ 
+ <select id="findCalDate" resultType="CalendarDTO" parameterType="java.util.Map">
+ 	SELECT * FROM calendar WHERE calendarstart =#{oldStart} AND calendarend =#{oldEnd}
+ </select>
+ 
+ <delete id="deleteEvent" parameterType="CalendarDTO">
+ 	delete from calendar where calendarNo= #{calNO}
+ </delete>
+ 
+ <update id="upDateEvent" parameterType="java.util.Map">
+        UPDATE calendar
+        SET calendarstart = #{updateDTO.calendarstart},
+            calendarend = #{updateDTO.calendarend}
+        WHERE calendarNo = #{calNo}
+    </update>
+	
+</mapper>

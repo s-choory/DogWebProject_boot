@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartMapper">      
+
+<insert id="addCartList" parameterType="Cart">
+	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, 0, 'before', 'true')
+</insert>
+
+<insert id="addAfterList" parameterType="Cart">
+	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, #{OrderNumber}, #{OrderState}, 'true')
+</insert>
+
+<select id="findCartOrder" parameterType="hashmap" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and ProductID = #{ProductID} and OrderState = 'after' and ReviewFlag = 'true'
+</select>
+
+<update id="ReviewFlagUpdate" parameterType="int">
+	UPDATE CART SET ReviewFlag='false' WHERE CartNum=#{cartNum}
+</update>
+
+<select id="cartList" parameterType="string" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderState = 'before'
+</select>
+
+<delete id="delCart" parameterType="string">
+	DELETE FROM CART WHERE CartNum = #{CartNum}
+</delete>
+
+<delete id="delAllCart">
+	DELETE FROM CART WHERE UserID = #{UserID}
+</delete>
+
+<update id="cartAmountUpdate" parameterType="map">
+	UPDATE CART SET Amount = #{Amount} WHERE CartNum = #{CartNum}
+</update>
+
+<select id="cartOneList" parameterType="map" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and CartNum = #{CartNum}
+</select>
+
+<select id="cartNumList" parameterType="list" resultType="Cart">
+  SELECT * FROM CART WHERE
+    <foreach collection="list" item="cartNum" separator=" OR ">
+      CartNum = #{cartNum}
+    </foreach>
+</select>
+
+<delete id="cartDelCheckedList" parameterType="list">
+	DELETE FROM CART WHERE
+	<foreach collection="list" item="cartNum" separator=" OR ">
+      CartNum = #{cartNum}
+    </foreach>
+</delete>
+
+<select id="dupleSelect" parameterType="Cart" resultType="Cart">
+	select * from cart where UserID=#{UserID} and ProductID=#{ProductID} and Psize = #{Psize} and Color = #{Color}
+</select>
+
+<update id="dupleUpdate" parameterType="map">
+	UPDATE CART SET Amount = Amount+#{Amount} WHERE CartNum = #{CartNum}
+</update>
+
+<select id="selectAfterList" parameterType="Cart" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderNumber = #{OrderNumber} and OrderState = 'after' 
+</select>
+
+<select id="selectOrderAllList" parameterType="string" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderState = 'after'
+</select>
+</mapper>                                              

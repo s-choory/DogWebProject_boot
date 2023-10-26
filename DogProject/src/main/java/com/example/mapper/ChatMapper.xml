@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChatMapper">
+
+	<!-- 모든채팅방 조회 -->
+	<select id="findAllRoom" resultType="ChatRoom">
+		select * from chatRoom order by 1
+	</select>
+
+	<!-- 채팅방 생성 -->
+	<insert id="createChatRoom" parameterType="ChatRoom">
+		<choose>
+			<when test= "secretChk == true">
+				insert into chatRoom (roomId, roomName, maxUserCnt, secretChk, roomPwd)
+				values (CHATROOM_SEQ.NEXTVAL, #{roomName}, #{maxUserCnt}, #{secretChk}, #{roomPwd})
+			</when>
+			<when test="secretChk == false">
+				insert into chatRoom (roomId, roomName, userCnt, maxUserCnt, secretChk)
+				values (CHATROOM_SEQ.NEXTVAL, #{roomName}, #{userCnt}, #{maxUserCnt}, #{secretChk})
+			</when>
+		</choose>
+	</insert>
+	
+	<!-- 채팅방 채팅내용 불러오기 -->
+	<select id="findAllChatMessage" resultType="ChatMessage">
+		select * from chatMessage order by 1
+	</select>
+	
+	<!-- 채팅방입장, 특정 채팅방 찾기 -->
+	<select id="findChatRoom" resultType="ChatRoom" parameterType="int">
+		select * from chatRoom where roomId = #{roomId}
+	</select>
+	
+	<!-- 비공개채팅방 입장시 암호확인 -->
+	<select id="roomPwdCh" resultType="int" parameterType="ChatRoom">
+		select count(*) from chatRoom where roomId = #{roomId} and roomPwd = #{roomPwd}
+	</select>
+	
+	<!-- 대화방입장 시 현재인원과 정원찾기 -->
+	<select id="chkUserCnt" resultType="ChatRoom" parameterType="int">
+		select userCnt, maxUserCnt from chatRoom where roomId = #{roomId}
+	</select>
+	
+	<!-- 대화방 제거 -->
+	<delete id="delChatRoom" parameterType="int">
+		delete from chatRoom where roomId = #{roomId}
+	</delete>
+	
+	<!-- 채팅방에서 채팅전송 -->
+	<insert id="sendChat" parameterType="ChatMessage">
+		insert into chatMessage (roomId, sender, message, sendDate)
+		values (#{roomId}, #{sender}, #{message}, SYSDATE)
+	</insert>
+	
+	
+
+</mapper>

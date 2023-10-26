@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DogTypeMapper">	<!-- Mapper 생성 후 Configuration 수정 -->
+
+<!-- 반려견 종분류, dogsList.jsp - 버튼동작부 -->
+<select id="dogsList" resultType="DogType" parameterType="map">
+	select * from DogType 
+	<where>
+		<if test="dogSize == 'standard'">
+			1=1
+		</if>
+		<if test="dogSize == 'small'">
+			dogSize= #{dogSize}
+		</if>
+		<if test="dogSize == 'big'">
+			dogSize= #{dogSize}
+		</if>
+	</where>
+</select>
+
+<!-- 반려견 종분류, dogsList.jsp - 검색동작부 -->
+<select id="dogSearch" resultType="DogType" parameterType="string">
+	select * from DogType 
+	where dogName like '%'||#{dogSearch}||'%'
+</select>
+
+
+</mapper>
