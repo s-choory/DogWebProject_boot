@@ -80,3 +80,4 @@
         out.print( "<a  href='?curPage=" + totalNum + "&search=" + search + "&order="+ order +"'>마지막</a>" );
 } else{
 	out.print( " " );}%>
+	
