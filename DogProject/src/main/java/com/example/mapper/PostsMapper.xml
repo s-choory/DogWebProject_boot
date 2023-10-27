@@ -11,12 +11,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- list 화면 출력 및 페이징 관련 SQL문 -->
  <select id="selectList" resultType="Posts">
-	select * from Posts where PostType = 'undeleted'
+	select * from Posts
+	where PostType = 'undeleted'
 </select>
 
 <!-- mypage list 화면 출력 및 페이징 관련 SQL문 -->
  <select id="selectList2" resultType="Posts" parameterType="String">
-	select * from Posts where AUTHORID = #{userID}
+	select * from Posts 
+		 where AUTHORID = #{userID}
 </select>
 
 <!-- 특정 페이징 getTotalCount -->
@@ -88,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="selectTotalCount" parameterType="map" resultType="int">
       select count(*)
       from Posts
-        검색기능
+        <!-- 검색기능 -->
       	<where>
 			<if test="search != null">
 			posttype = 'undeleted' and title like '%'||#{search}||'%' or content like '%'||#{search}||'%'
@@ -159,7 +161,7 @@ VALUES (Posts_PostID_SEQ.nextval, #{AuthorID}, #{Title}, #{Tag},
 
 
 <update id="updateContent" parameterType="Posts">
-		  UPDATE posts SET content= #{Content} , tag=#{Tag}, title=#{Title} WHERE PostID = #{PostID}
+		UPDATE posts SET content= #{Content} , tag=#{Tag}, title=#{Title} WHERE PostID = #{PostID}
 </update> 
 
 
@@ -190,6 +192,9 @@ VALUES (Posts_PostID_SEQ.nextval, #{AuthorID}, #{Title}, #{Tag},
 		  UPDATE posts SET PostType = 'deleted' WHERE PostID = #{PostID}
 	</update> 
 
+	<update id="likeUpdate" parameterType="map">
+		UPDATE posts SET Likes = #{Likes} where PostID = #{PostID}
+	</update>
 
 
  
