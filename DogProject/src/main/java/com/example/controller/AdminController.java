@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.dto.ChatMessageDTO;
 import com.example.dto.ChatRoomDTO;
 import com.example.dto.GoodsDTO;
+import com.example.dto.PageDTO;
 import com.example.dto.RequestDTO;
 import com.example.service.ChatService;
 import com.example.service.GoodsService;
+import com.example.service.PageService;
+import com.example.service.PostsService;
 import com.example.service.RequestService;
 
 @Controller
@@ -28,6 +33,12 @@ public class AdminController {
 	
 	@Autowired
 	private GoodsService gService;
+	
+	@Autowired
+	private PostsService pService;
+	
+	@Autowired 
+	private PageService Pageservice;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -44,7 +55,7 @@ public class AdminController {
 	}
 	
 	
-	//Request=================================================================
+	//Request===========================================================
 	//문의 목록(답변대기)
 	@GetMapping("/adminRequest")
 	public String adminRequest(Model model) {
@@ -76,7 +87,7 @@ public class AdminController {
 	//=================================================================
 	
 	
-	//Chat=================================================================
+	//Chat=============================================================
 	//모임 목록
 	@GetMapping("/adminGroup")
 	public String adminGroup(Model model) {
@@ -102,7 +113,7 @@ public class AdminController {
 	//=================================================================
 	
 	
-	//Store=================================================================
+	//Store============================================================
 	@GetMapping("/adminGoodsList")
 	public String adminGoodsList(Model model) {
 		List<GoodsDTO> gList = gService.select();
@@ -125,6 +136,23 @@ public class AdminController {
 	public String adminDeleteProduct(int PRODUCTID) {
 		gService.delete(PRODUCTID);
 		return "redirect:/adminGoodsList";
+	}
+	//=================================================================
+	
+	
+	//Posts============================================================
+	@GetMapping("/adminPostsList")
+	public String adminPostsList(String curPage, Model model, PageDTO pDTO ,HttpServletRequest request, HttpServletResponse response) {
+		if(curPage == null) curPage = "1";
+		String search= request.getParameter("search");
+		String order= request.getParameter("order");
+		
+		pDTO = Pageservice.selectAll(Integer.parseInt(curPage), search, pDTO, order);
+		model.addAttribute("pDTO",pDTO);
+		model.addAttribute("search", search);
+		model.addAttribute("order", order);
+		/* System.out.println("all 최신 내림차순 정렬"+ pDTO); */
+		return "admin/adminPostsList";
 	}
 	
 	//=================================================================
