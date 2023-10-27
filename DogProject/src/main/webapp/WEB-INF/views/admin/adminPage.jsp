@@ -28,7 +28,7 @@
             <a href="#">공지사항/FAQ 목록 조회</a> <br><br>
             <a href="#">전체 게시물 목록 조회</a> <br><br>
             <a href="#">상품 목록 조회</a> <br><br>
-            <a href="#">모임 목록 조회</a>
+            <a href="adminGroup">모임 목록 조회</a>
 	</nav>
 
 </body>

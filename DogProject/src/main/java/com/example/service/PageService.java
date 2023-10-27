@@ -43,8 +43,8 @@ public class PageService {
 		    return dao.selectOrder2(map, curPage, pDTO);
 		}
 		
-		public int selecTotalCount2(String userID) {
-			return dao.selecTotalCount2(userID);
+		public int selecTotalCount2(String userID, String order) {
+			return dao.selecTotalCount2(userID, order);
 		}
 
 

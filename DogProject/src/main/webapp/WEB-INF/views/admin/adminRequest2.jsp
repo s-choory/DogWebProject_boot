@@ -23,15 +23,12 @@
 <!-- 부트스트랩 코드 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script type="text/javascript">
-
-</script>
 <body>
     <header>
         <h1 style="text-align: center; margin: 30px 0; ">문의 답변 완료 목록</h1>
     </header>
     <div style="text-align: center; margin-bottom: 30px;">
-    	<a href="adminPage" >관리자페이지</a><br>
+    	<a href="adminPage" >관리자페이지로 이동</a><br><br>
     	<a href="adminRequest" >문의 답변 대기 목록</a>
 	</div>
     <div class="table-container">
