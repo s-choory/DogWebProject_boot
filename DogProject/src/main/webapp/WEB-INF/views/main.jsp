@@ -253,7 +253,7 @@
 <div class="posttitle2">
 <div class="posttitle">
 	<div class="category"> 인기글</div>
-	<div class="postOthers"><a id="postOthers" href="../app/">더보기 +</a></div>
+	<div class="postOthers"><a id="postOthers" href="../app/community">더보기 +</a></div>
 </div>
 </div>
 <!--  검색어에 대한 게시물 정보유무 if문 처리 -->

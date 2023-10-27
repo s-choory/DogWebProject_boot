@@ -55,7 +55,6 @@ public class PostController {
 	public String community(Locale locale, Model model) {
 		List<PostsDTO> list = Postsservice.selectList();
 		model.addAttribute("list",list);
-		
 		return "community/community_main";
 	}
 	
@@ -71,6 +70,7 @@ public class PostController {
 		model.addAttribute("pDTO",pDTO);
 		model.addAttribute("search", search);
 		model.addAttribute("order", order);
+		/* System.out.println("all 최신 내림차순 정렬"+ pDTO); */
 		return "community/community_main";
 	}
 	

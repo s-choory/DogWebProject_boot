@@ -12,6 +12,7 @@ public class PostsDTO {
 	private String Content; // 내용
 	private String CreationTime; // 작성일
 	private String UpdateTime; // 수정날짜
+	
 	//private Date CreationTime; // 작성일
 	//private Date UpdateTime; // 수정날짜
 	//private LocalDateTime creationtime;

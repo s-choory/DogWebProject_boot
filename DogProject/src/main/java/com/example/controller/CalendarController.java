@@ -51,7 +51,6 @@ public class CalendarController {
         List<CalendarDTO> listAll = calservice.selectEvent(userid);
         JSONArray jsonArr = new JSONArray(); // 디펜더시 추가함
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.KOREA);
-		
         
         for (int i = 0; i < listAll.size(); i++) {
         	HashMap<String, Object> map = new HashMap<String, Object>();
