@@ -49,7 +49,7 @@ function deleteChatroom(roomId) {
         <h1 style="text-align: center; margin: 30px 0; ">모임 방 목록</h1>
     </header>
     <div style="text-align: center; margin-bottom: 30px;">
-    	<a href="adminPage" >관리자페이지</a><br>
+    	<a href="adminPage" >관리자페이지로 이동</a><br>
 	</div>
     <div class="table-container">
     <table class="table">

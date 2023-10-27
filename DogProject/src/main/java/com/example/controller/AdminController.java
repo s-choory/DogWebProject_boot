@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.dto.ChatMessageDTO;
 import com.example.dto.ChatRoomDTO;
+import com.example.dto.GoodsDTO;
 import com.example.dto.RequestDTO;
 import com.example.service.ChatService;
+import com.example.service.GoodsService;
 import com.example.service.RequestService;
 
 @Controller
@@ -23,6 +25,9 @@ public class AdminController {
 	
 	@Autowired
 	private ChatService cService;
+	
+	@Autowired
+	private GoodsService gService;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -98,6 +103,29 @@ public class AdminController {
 	
 	
 	//Store=================================================================
+	@GetMapping("/adminGoodsList")
+	public String adminGoodsList(Model model) {
+		List<GoodsDTO> gList = gService.select();
+		model.addAttribute("gList", gList);
+		return "admin/adminGoodsList";
+	}
+	
+	@GetMapping("/adminAddProductForm")
+	public String adminAddProductForm() {
+		return "admin/adminAddProductForm";
+	}
+	
+	@GetMapping("/adminAddProduct")
+	public String adminAddProduct(GoodsDTO gDTO) {
+		gService.insert(gDTO);
+		return "admin/closeWindow";
+	}
+	
+	@GetMapping("/adminDeleteProduct")
+	public String adminDeleteProduct(int PRODUCTID) {
+		gService.delete(PRODUCTID);
+		return "redirect:/adminGoodsList";
+	}
 	
 	//=================================================================
 }
