@@ -46,4 +46,12 @@
 	SELECT COUNT(*) FROM Cart WHERE UserID = #{userID}
 </select>
 
+<insert id="insert" parameterType="Goods">
+	INSERT INTO PRODUCTS VALUES(PRODUCTS_PRODUCTID_SEQ.nextval,#{PRODUCTNAME},#{Category},#{Content},#{Price},#{Image},#{STOCKQUANTITY})
+</insert>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM PRODUCTS WHERE PRODUCTID=#{PRODUCTID}
+</delete>
+
 </mapper>                                              

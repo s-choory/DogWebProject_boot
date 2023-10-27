@@ -87,4 +87,12 @@ public class GoodsDAO {
 		return session.selectOne("GoodsMapper.CartCount", userID);
 	}
 
+	public void insert(GoodsDTO gDTO) {
+		session.insert("GoodsMapper.insert",gDTO);
+	}
+
+	public void delete(int PRODUCTID) {
+		session.delete("GoodsMapper.delete",PRODUCTID);
+	}
+
 }
