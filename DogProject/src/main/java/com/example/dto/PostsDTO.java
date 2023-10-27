@@ -150,5 +150,4 @@ public class PostsDTO {
 	}
 	
 	
-	
 }// end class
