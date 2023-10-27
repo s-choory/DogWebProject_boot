@@ -86,7 +86,6 @@ public class PostController {
 			
 				FileDTO fdto = fservice.fileSelect(PostID);
 						
-						
 				//조회수-Cookie or 세션 이용해서 조회수 중복 방지
 				Cookie[] cookies=request.getCookies();
 				int countCookie=0;
@@ -144,13 +143,14 @@ public class PostController {
 			ldto.setCategories("posts");    //컨트롤러에서 임의로 설정
 			
 			int n = 0;
-			if(LikeService.like_likeCount(ldto) == 0) { //좋아요 갯수 db 
+			if(LikeService.like_likeCount(ldto) == 0) { //좋아요 갯수 db
 				LikeService.likeinsert(ldto); //좋아요 버튼 클릭 시  db 1개 추가
 				n = LikeService.like_likeTotalCount(ldto);
-				
+				Postsservice.likeUpdate(Integer.toString(n), Integer.toString(PostID));
 			}else if(LikeService.like_likeCount(ldto) != 0) {
 				LikeService.likedelete(ldto); //좋아요 버튼 클릭 시  db 1개 감소
 				n = LikeService.like_likeTotalCount(ldto);
+				Postsservice.likeUpdate(Integer.toString(n), Integer.toString(PostID));
 			}
 			//return "redirect:/community/community_post";
 			return n;
