@@ -7,44 +7,41 @@
 <%@page import="com.example.dto.UsersDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<link rel="stylesheet" type="text/css" href="resources/css/profil.css">
-<head>
-<meta charset="UTF-8">
-<title>수정하는곳2</title>
-<style type="text/css">
+	<head>
+		<title>Prologue by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="resources/assets/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/profil.css">
+		
+		<style type="text/css">
 
-/* 전체틀 */	
-	#full {
-		width: 1000px;
-		height: 1000px;
-		background-color: white;
-	}
-	
-/* 전체틀 끝 */	
-	
-	
-/* 왼쪽부분 */	
-	#screen_left {
-		width: 450px;
-		height: 1000px;
-		background-color: white;
-		float: left;
-	}
+/* 내 정보 부분 스타일 */
+
 	
 	#screenleft-1 {
-		width: 350px;
+		width: 1200px;
 		height: 900px;
-		background-color: pink;
+		background-color: white;
 		position: relative;
 		top: 50px;
 		left: 50px;
+		
+		padding-left: 15%;
+		padding-right: 15%;
+		border: 1px solid #ccc; /* 테두리 추가 */
+		border-radius: 5px;
+		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+		display: flex; /* 플렉스 컨테이너로 설정 */
+	    flex-direction: row; /* 가로로 나열 */
+	    align-items: center; /* 수직 정렬 가운데로 조정 */
 	}
 	
 	#userbutton {
 		position: relative;
-		padding-left: 35%;
+		text-align: center;
 	}	
 	
 	.circle {
@@ -53,6 +50,7 @@
 		height: 350px;
 		border-radius: 50%;
 		overflow: hidden;
+		margin-right: 20px; /* 요소 간 간격을 위한 마진 설정 */
 	}
 	
 	.view {
@@ -60,13 +58,14 @@
 		top: 25px;
 		width: 350px;
 		height: 350px;
+		margin-right: 20px; /* 요소 간 간격을 위한 마진 설정 */
 	}
 	
 	.view_title {
 		position: relative;	
 		width: 350px;
 		height: 50px; 
-		border: 1px dashed pink; 
+		border: 1px dashed white; 
 		text-align: center;
 		line-height: 70px;
 		font-size: 1.5em;
@@ -78,193 +77,195 @@
 		top: 10px;
 		width: 350px;
 		height: 170px; 
-		border: 1px dashed pink; 
-		text-align: center;
+		border: 1px dashed white; 
+		text-align: left;
 		line-height: 30px;
-		font-size: 1.2em;
+		font-size: 14px;
+		
+		/* font-family: -apple-system,BlinkMacSystemFont,helvetica,"Apple SD Gothic Neo",sans-serif; */
+		border-top: 1px solid rgba(220,227,233,.8); 
 	}
 	
 	.view_text input {
- 		 width: 100px; /* input 요소의 넓이 조절 */
+ 		 width: 110px; /* input 요소의 넓이 조절 */
+		 border: none;
+		 background-color: transparent;
 	}
 	
-/* 왼쪽부분 끝 */	
-	
-	
-	
-/* 오른쪽 부분 */	
-	#screenright {
-		width: 550px;
-		height: 1000px;
-		background-color: white;
-		float: left;
+	#tel{
+		width:200px;
 	}
 	
-	#rightbox1 {
-		width: 500px;	/* 450px; */
-		height:450px;	/* 300px; */
-		background-color: pink;
-		position: relative;
-		top: 25px;	/* 25px; */
-		left: 50px;	/* 50px;	 */
+	#address {
+		 width: 250px; /* 주소 입력란 너비 */
+		 border: none;
+		 background-color: transparent;
 	}
-	
-	#rightbox2 {
-		width: 450px;
-		height: 300px;
-		background-color: pink;
-		position: relative;
-		top: 25px;
-		left: 50px;
-		margin-top: 25px;
-		margin-bottom: 25px; /* 간격 조절 */
-	}
-	
-	#rightbox3 {
-		width: 450px;
-		height: 300px;
-		background-color: pink;
-		position: relative;
-		top: 25px;
-		left: 50px;	
-	}
-	
-	#rightbox_title {
-		font-size: 1.5em;
-		font-weight: bold; 
-	}
-	
-	#shoppingbasket {
-		position: relative;	
-		top: 25px;
-		left: 25px;
-		bottom: 25px;
-		width: 400px;
-		height: 250px;
-		white-space: nowrap; /* 세로 스크롤 삭제 */
-		overflow-x:scroll;	 /* 가로 스크롤만 생성 */
-		
-	}
-	
-	#shoppingbasket2 {
-	/* 	position: relative;	
-		display: inline-block;
-		background-color: white;
-		margin-right: 20px;
-		margin-bottom: 20px; */ /* 이미지아래 간격, 추가되었습니다. */
-		swiper-theme-color: #007aff;
-	    swiper-navigation-size: 44px;
-	    font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic, AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
-	    font-size: 1.5rem;
-	    line-height: 1.4;
-	    color: #555555;
-	    letter-spacing: -1px;
-	    text-align: left;
-	    box-sizing: border-box;
-	    margin: 0;
-	    padding: 0;
-	    width: 45%;
-	    display: flex;
-	    margin-right: 4%;
-	    margin-bottom: 20px; /* 각각의 div 간격 띄우기 */
-	}
-	#shoppingbasket2 > div {
-    /* 기존 스타일 속성 */
-    flex: 1; /* 추가된 스타일 속성 */
-	}
-	
-	#shoppingbasket_info{
-    --swiper-theme-color: #007aff;
-    --swiper-navigation-size: 44px;
-    font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic, AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    color: #555555;
-    letter-spacing: -1px;
-    text-align: left;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    width: 45%;
-    display: inline-block;
-    margin-right: 4%;
-	}
-	
-	
-	#orderlist {
-		position: relative;	
-		top: 25px;
-		left: 25px;
-		bottom: 25px;
-		width: 400px;
-		height: 250px;
-		white-space: nowrap; /* 세로 스크롤 삭제 */
-		overflow-x:scroll;	 /* 가로 스크롤만 생성 */
-		
-	}
-	
-	#orderlist2 {
-		position: relative;	
-		display: inline-block;
-		background-color: white;
-		margin-right: 20px;
-		margin-bottom: 20px; /* 이미지아래 간격, 추가되었습니다. */
-	}	
-	
-	 /*  달력 부분 스타일 */ 
- 
-        td {
-            width: 50px;
-            height: 29px;
-        }
 
-        .Calendar { 
-            text-align: center;
-            margin: 0 auto; 
-        }
 
-        .Calendar>thead>tr:first-child>td { font-weight: bold; }
+/* 내 정보 부분 스타일 끝  */
 
-        .Calendar>thead>tr:last-child>td {
-            background-color: gray;
-            color: white;
-        }        
+/*  구매목록 부분 스타일 */
+#orderlist {
+	position: relative;
+	top: 25px;
+	left: 25px;
+	bottom: 25px;
+	width: 1200px;
+	height: 520px;
+	white-space: nowrap; /* 세로 스크롤 삭제 */
+	overflow-x: scroll; /* 가로 스크롤만 생성 */
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid #ccc; /* 테두리 추가 */
+	border-radius: 5px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        .pastDay{ background-color: lightgray; }
+#orderlist2 {
 
-        .today{            
-            background-color: #FFCA64;            
-            cursor: pointer;
-        }
+	swiper-theme-color: #007aff;
+	swiper-navigation-size: 44px;
+	font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic,
+		AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
+	font-size: 1.5rem;
+	line-height: 1.4;
+	color: #555555;
+	letter-spacing: -1px;
+	text-align: left;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	width: 45%;
+	display: flex;
+	margin-right: 4%;
+	margin-bottom: 20px; /* 각각의 div 간격 띄우기 */
+}
+/*  구매목록 부분 스타일 끝 */
 
-        .futureDay{            
-            background-color: #FFFFFF;
-            cursor: pointer;
-        }
+/*  장바구니 부분 스타일 */
+#shoppingbasket {
+	position: relative;
+	top: 25px;
+	left: 25px;
+	bottom: 25px;
+	width: 1200px;
+	height: 520px;
+	white-space: nowrap; /* 세로 스크롤 삭제 */
+	overflow-x: scroll; /* 가로 스크롤만 생성 */
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid #ccc; /* 테두리 추가 */
+	border-radius: 5px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        .futureDay.choiceDay, .today.choiceDay{            
-            background-color: #3E85EF;            
-            color: #fff;
-            cursor: pointer;
-        }
-        
-        /* 달력부분 스타일 끝  */
-	
-	
-	
-	
-/* 오른쪽부분 끝 */	
-	
-/* 하단부분 스타일(내가 쓴글,좋아요한글) */
-	#full2 {
+#shoppingbasket2 {
+	swiper-theme-color: #007aff;
+	swiper-navigation-size: 44px;
+	font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic,
+		AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
+	font-size: 1.5rem;
+	line-height: 1.4;
+	color: #555555;
+	letter-spacing: -1px;
+	text-align: left;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	width: 45%;
+	display: flex;
+	margin-right: 4%;
+	margin-bottom: 20px; /* 각각의 div 간격 띄우기 */
+}
+
+#shoppingbasket2>div {
+	/* 기존 스타일 속성 */
+	flex: 1; /* 추가된 스타일 속성 */
+}
+
+#shoppingbasket_info { -
+	-swiper-theme-color: #007aff; -
+	-swiper-navigation-size: 44px;
+	font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic,
+		AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
+	font-size: 1.5rem;
+	line-height: 1.4;
+	color: #555555;
+	letter-spacing: -1px;
+	text-align: left;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	width: 45%;
+	display: inline-block;
+	margin-right: 4%;
+}
+
+/* 장바구니 부분 스타일 끝*/
+
+/*  달력 부분 스타일 */
+td {
+	width: 50px;
+	height: 29px;
+}
+
+.Calendar {
+	text-align: center;
+	margin: 0 auto;
+	width: 1200px;
+	height: 520px;
+}
+
+.Calendar>thead>tr:first-child>td {
+	font-weight: bold;
+}
+
+.Calendar>thead>tr:last-child>td {
+	background-color: gray;
+	color: white;
+}
+
+.pastDay {
+	background-color: lightgray;
+}
+
+.today {
+	background-color: #FFCA64;
+	cursor: pointer;
+}
+
+.futureDay {
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+.futureDay.choiceDay, .today.choiceDay {
+	background-color: #3E85EF;
+	color: #fff;
+	cursor: pointer;
+}
+
+/* 달력부분 스타일 끝  */
+
+/* post 부분 */
+
+#full2 {
 		margin-top:7%;
-		width: 1000px;
+		width: 1300px;
 		height: auto;
 		background-color: white;
+		justify-content: center;
 	}
 	.post {
+		width: 1100px;
         display: flex;
         align-items: flex-start;
+        
        	border: 1px solid #ccc;
 	    padding: 15px;
 	    border-radius: 5px;
@@ -316,22 +317,125 @@
 		display: flex;
 		justify-content: center;
 	}
+	
 	#post-category1, #post-category2  {
-	    background-color: #06f;
-	    color: #fff;
+	
+		position: relative;
 	    border: none;
-	    border-radius: 5px;
-	    padding: 15px;
-
-        display: inline-block;
-        align-items:center; /* 버튼 내부의 텍스트를 수직 가운데 정렬합니다. */
-        margin-right: 10px; /* 오른쪽 여백 설정 */
+	    display: inline-block;
+	    padding: 15px 30px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	    text-decoration: none;
+	    font-weight: 600;
+	    transition: 0.25s;
+		
+		background-color: aliceblue;
+    	color: #1e6b7b;
+	
+        margin-right: 10px;      /* 오른쪽 여백 설정 */ 
     }
 	
-	
-	
-/* 하단 끝 */
+	#post-category1:hover, #post-category2:hover {
+    background-color: #06f; /* 호버 시 배경색을 #06f(초록)으로 변경 */
+    color: #fff; /* 호버 시 텍스트 색상을 #fff(흰색)으로 변경 */
+}
+	.userxx{
+		padding:0 30px 30px 30px;
+	}
+	.dogxx{
+		padding:30px 30px 0 30px;
+	}
+/* post 부분 끝 */
+
+
+
 </style>
+    <script>
+        window.onload = function () { buildCalendar(); }    // 웹 페이지가 로드되면 buildCalendar 실행
+
+        let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
+        let today = new Date();     // 페이지를 로드한 날짜를 저장
+        today.setHours(0,0,0,0);    // 비교 편의를 위해 today의 시간을 초기화
+
+        // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
+        function buildCalendar() {
+
+            let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);     // 이번달 1일
+            let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);  // 이번달 마지막날
+
+            let tbody_Calendar = document.querySelector(".Calendar > tbody");
+            document.getElementById("calYear").innerText = nowMonth.getFullYear();             // 연도 숫자 갱신
+            document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1);  // 월 숫자 갱신
+
+            while (tbody_Calendar.rows.length > 0) {                        // 이전 출력결과가 남아있는 경우 초기화
+                tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
+            }
+
+            let nowRow = tbody_Calendar.insertRow();        // 첫번째 행 추가           
+
+            for (let j = 0; j < firstDate.getDay(); j++) {  // 이번달 1일의 요일만큼
+                let nowColumn = nowRow.insertCell();        // 열 추가
+            }
+
+            for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {   // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복  
+
+                let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
+                nowColumn.innerText = leftPad(nowDay.getDate());      // 추가한 열에 날짜 입력
+
+            
+                if (nowDay.getDay() == 0) {                 // 일요일인 경우 글자색 빨강으로
+                    nowColumn.style.color = "#DC143C";
+                }
+                if (nowDay.getDay() == 6) {                 // 토요일인 경우 글자색 파랑으로 하고
+                    nowColumn.style.color = "#0000CD";
+                    nowRow = tbody_Calendar.insertRow();    // 새로운 행 추가
+                }
+
+
+                if (nowDay < today) {                       // 지난날인 경우
+                    nowColumn.className = "pastDay";
+                }
+                else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
+                    nowColumn.className = "today";
+                    nowColumn.onclick = function () { choiceDate(this); }
+                }
+                else {                                      // 미래인 경우
+                    nowColumn.className = "futureDay";
+                    nowColumn.onclick = function () { choiceDate(this); }
+                }
+            }
+        }
+
+        // 날짜 선택
+        function choiceDate(nowColumn) {
+            if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
+                document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
+            }
+            nowColumn.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
+        }
+        
+        // 이전달 버튼 클릭
+        function prevCalendar() {
+            nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
+            buildCalendar();    // 달력 다시 생성
+        }
+        // 다음달 버튼 클릭
+        function nextCalendar() {
+            nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
+            buildCalendar();    // 달력 다시 생성
+        }
+
+        // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+        function leftPad(value) {
+            if (value < 10) {
+                value = "0" + value;
+                return value;
+            }
+            return value;
+        }
+    </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
     	$(function () {
@@ -417,9 +521,57 @@
     		 
     		    // 모달창 안에서 프로필 정보 변경 클릭시 
     		    $("#profil-img-change2").on("click", function() {
-    		        console.log("프로필 정보 변경 버튼 클릭됨");
+    		        
+    		     // 이름 필드 검사
+    		        var name = $("#name-2").val().trim();
+    		        if (name === "") {
+    		            alert("이름 칸이 비어있습니다.");
+    		            return;
+    		        }
 
-    		     	// 폼 데이터 가져오기
+    		        // 닉네임 필드 검사
+    		        var nickname = $("#nickname-2").val().trim();
+    		        if (nickname === "") {
+    		            alert("닉네임 칸이 비어있습니다.");
+    		            return;
+    		        }
+
+    		        // 연락처 필드 검사
+    		        var tel = $("#tel-2").val().trim();
+    		        if (tel === "") {
+    		            alert("연락처 칸이 비어있습니다.");
+    		            return;
+    		        }
+
+    		       // 이메일 필드 검사
+    		       var email1 = $("#Email1-2").val().trim();
+    		       var email2 = $("#Email2-2").val().trim();
+    		       if (email1 === "" || email2 === "") {
+    		           alert("이메일 칸이 비어있습니다.");
+    		           return;
+    		       }
+
+    		       // 주소 필드 검사
+    		       var postcode = $("#sample4_postcode").val().trim();
+    		       var roadAddress = $("#sample4_roadAddress").val().trim();
+    		      // var jibunAddress = $("#sample4_jibunAddress").val().trim();  //지번은 가끔 빈칸인 지번주소도 있으므로 제외 시킴
+    		       
+    		       if (postcode === "" || roadAddress === "") {
+    		           alert("주소 칸이 비어있습니다.");
+    		           return;
+    		       }
+    		      	
+	    		    // 세부주소 필드 검사
+	   		        var DetailAddress = $("#DetailAddress_xxx").val().trim();
+	   		        if (DetailAddress === "") {
+	   		            alert("상세주소 칸이 비어있습니다.");
+	   		            return;
+	   		        }
+    		      
+	   		  		//반려견 이름,품종은 안함 
+	   		        
+    		        
+    		        // 폼 데이터 가져오기
     		        var formData = $("#profil-text-form").serialize();
     		        
     		        $.ajax({
@@ -445,26 +597,32 @@
 		})//end dom
 		
     </script>
-</head>
-<body>
-<jsp:include page = "../common/top.jsp" flush="true"/><br>
-<jsp:include page = "../common/side.jsp" flush="true"/><br>
+	</head>
+	<body class="is-preload">
+<jsp:include page = "../common/top.jsp" flush="true"/>
+<jsp:include page = "../common/side.jsp" flush="true"/>
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+		
+					<!-- Logo -->
 <% 
     UsersDTO dto = (UsersDTO) session.getAttribute("User"); 	
-	
-	String DetailAddress = dto.getDetailAddress();
-	int Post = dto.getPost();
-    String UserName = dto.getUserName();
-    String UserAlias = dto.getUserAlias();
-    String PhoneNumber = dto.getPhoneNumber();
-    String Email1 = dto.getEmail1();
-    String Email2 = dto.getEmail2();
-    String Password = dto.getPassword();
-    String RodeAddress = dto.getRodeAddress();
-    String HouseAddress = dto.getHouseAddress();
-    String DogName = dto.getDogName();
-    String DogType = dto.getDogType();
-    String UserType = dto.getUserType();
+	// 삼항연산자를 사용해서 db값이 null 인경우  화면에 빈칸으로 표시되도록 null이 아니면 그 값이 표시되도록  
+	String DetailAddress = dto.getDetailAddress() != null ? dto.getDetailAddress() : "";
+	int Post 			 = dto.getPost();
+	String UserName      = dto.getUserName() != null ? dto.getUserName() : "";
+	String UserAlias 	 = dto.getUserAlias() != null ? dto.getUserAlias() : "";
+	String PhoneNumber   = dto.getPhoneNumber() != null ? dto.getPhoneNumber() : "";
+	String Email1        = dto.getEmail1() != null ? dto.getEmail1() : "";
+	String Email2        = dto.getEmail2()!= null ? dto.getEmail2(): "";
+	String Password      = dto.getPassword()!=null?dto.getPassword(): "";	
+	String RodeAddress   = dto.getRodeAddress()!=null?dto.getRodeAddress(): "";	
+	String HouseAddress  = dto.getHouseAddress()!=null?dto.getHouseAddress(): "";	
+	String DogName       = dto. getDogName()!=null?dto. getDogName(): "";	
+	String DogType       = dto. getDogType()!=null?dto. getDogType(): "";	
+	String UserType      = dto.getUserType()!=null?dto.getUserType(): "";	
 
     byte[] userImgBytes = dto.getUSERIMG();  // 바이트 배열 형태의 이미지 데이터
     String imageSrc = null;
@@ -475,143 +633,248 @@
     	 imageSrc = "data:image/jpeg;base64," + base64Image;
     }
 %>
-<div id="full">
-<h1>mypage</h1>
+						<div id="logo">
+							<%-- <span class="image avatar48"><img src="<%= imageSrc %>" alt="" /></span> --%>
+							<h1 id="title"><%=UserName%></h1>
+							<p>마이페이지</p>
+						</div>
 
-	<!-- 반나눠서 왼쪽 부분  -->
-	<div id="screen_left">
-		<div id="screenleft-1">
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="#top" id="top-link"><span class="icon solid fa-address-card">내 정보</span></a></li>
+								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-calendar-check">달력/산책일지</span></a></li>
+								<li><a href="#about" id="about-link"><span class="icon solid fa-shopping-basket">장바구니</span></a></li>
+								<li><a href="#contact" id="contact-link"><span class="icon solid fa-shopping-cart">구매목록</span></a></li>
+								<li><a href="#post" id="post-link"><span class="icon solid fa-comment">POST</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- 내 정보 -->
+		<section id="top" class="two">
+			<div id="screenleft-1">
 				<div class="circle">
-					<% if(userImgBytes == null ){ %>
-					<img src="resources/<%= imageSrc %>.JPG" height="350" width="350"/>
-					<% } else { %>
-					<img src="<%= imageSrc %>" height="350" width="350"/>
-					<% } %>
+					<%
+						if (userImgBytes == null) {
+					%>
+					<img src="resources/<%=imageSrc%>.JPG" style="width: 350px; height: 350px;" />
+					<%
+						} else {
+					%>
+					<img src="<%=imageSrc%>" style="width: 350px; height: 350px;" />
+					<%
+						}
+					%>
 					<button>프로필변경</button>
 				</div>
 				<div class="view">
-						<div class="view_title">회원정보</div>
-						<div class="view_text">
-							이름:<input type="text" id="name" value="<%=UserName%>"disabled><Br>
-							닉네임:<input type="text" id="nickname" value="<%=UserAlias%>"disabled><Br>
-							전화번호:<input type="text" id="tel" value="<%=PhoneNumber%>"disabled><Br>
-							이메일:<input type="text" id="email1" value="<%=Email1%>"disabled>@<input type="text" id="<%=Email2%>" value="naver.com" disabled><Br>
-							주소 :<input type="text" id="address" value="<%=RodeAddress%>"disabled><Br>
-						</div>
-						<div class="view_title">반려견 정보</div>
-						<div class="view_text">
-							이름 :<input type="text" id="dogname" value="<%=DogName%>"disabled> <Br>
-							품종 :<input type="text" id="dogbreed" value="<%=DogType%>"disabled> <Br>
-						</div>
-						
- <!-- ======================= 프로필 변경 모달창 ===========================================  -->
-						<div id="userbutton">
-							 <!-- <input type="button" value="수정"> -->
-							 <button class="open" id="open">프로필 변경</button>
-							 <div id="modal-box">
-							 	<div id="modal-contents">
-							 		<button id="close" style="color: white-space; background-color: red;" >닫기&times;</button>
-							 		<h1 id="title">my profile</h1>
-							 		<div id="profil">
-							 		<!-- 이미지 변경 폼 들어갈 부분 -->
-							 		<form id="profil-img-form" action="profil-img" method="post" enctype="multipart/form-data"> <!-- enctype 안적으면 파일 안넘어감  -->
-							 			<div id="profil-img">
-											        <!-- <img id="preview-img" src="resources/sun.png" alt="sun" style="width: 300px; height: 300px;"><br> -->
-											<% if(userImgBytes == null ){ %>
-											<img  id="preview-img" src="resources/<%= imageSrc %>.JPG" alt="profile image" style="width: 300px; height: 300px;"><br>
-										    <% } else { %>
-										    <img id="preview-img" src="<%= imageSrc %>" height="350" width="350"/><br>
-										    <% } %>
-										    <input type="file" id="file" value="파일찾기" name="file"><br>
-							 				<div  id="button-group">
-										        <input type="button" id="profil-img-change" value="이미지 변경">
-										        <input type="button" id="profil-img-change3" value="이미지 삭제">
-										    </div>
-							 			</div>
-							 		</form>
-							 		<!-- 회원정보  수정  -->
-							 		<form id="profil-text-form" action="profil-text" method="post">	
-							 			<div id="desc">
-							 				<p class="user">회원정보</p>
-							 				<div id="aa">
-								 				<p class="user">이름: <input type="text" id="name" name="UserName" value="<%=UserName%>"></p>
-								 				<p class="user">닉네임:<input type="text" id="nickname" name="UserAlias" value="<%=UserAlias%>"></p>
-								 				<p class="user">연락처:<input type="text" id="tel" name="PhoneNumber" value="<%=PhoneNumber%>" placeholder="'-'을 포함하여 입력하세요."></p>
-								 				<p class="user">이메일:<input type="text" id="Email1" name="Email1" value="<%=Email1%>" placeholder="직접 입력해주세요.">@
-										        <input type="text" name="Email2" id="Email2" name="Email2" value="<%=Email2%>"> 
-										        <select name="select_email" id= "select_email" onchange="input_email();">
-										            <option value="daum.net">daum.net</option>
-										            <option value="naver.com">naver.com</option>
-										            <option value="google.com">google.com</option>
-										        </select>
-								 				</p>
-								 				<p class="user">주소:  
-								 				<input type="text"  id="sample4_postcode"     name="Post"        value="<%=Post%>" readonly><Br>
-								 				<input type="text"  id="sample4_roadAddress"  name="RodeAddress" value="<%=RodeAddress%>" style="width: 350px;" readonly><Br>
-								 				<input type="text"  id="sample4_jibunAddress" name="HouseAddress" value="<%=HouseAddress%>" style="width: 350px;" readonly><Br>
-								 				<input type="text"  id="DetailAddress_xxx" name="DetailAddress" value="<%=DetailAddress%>" style="width: 350px;" placeholder="상세주소를 입력해주세요.">
-								 				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="zipcode-button">
-								 				</p>
-							 					
-							 				<br>
-							 				<!-- ... -->
-										    <input type="hidden" name="UserID" value="<%= dto.getUserID() %>">
-										    <input type="hidden" name="Password" value="<%= dto.getPassword() %>">
-										    <input type="hidden" name="UserType" value="<%= dto.getUserType() %>">
-										    <input type="hidden" name="USERIMG" value="<%= dto.getUSERIMG() %>">
-										    <!-- ... -->
-								 				<p class="user">반려견 정보</p>
-								 				<p class="user">이름:<input type="text" id="dogname" name="DogName" value="<%=DogName%>" placeholder="직접 입력해주세요."></p>
-								 				<p class="user">품종:<input type="text" id="dogbreed" name="DogType" value="<%=DogType%>" placeholder="직접 입력해주세요."></p>
-								 				<input type="button" id="profil-img-change2" value="프로필 정보 변경">
-							 				</div>
-							 			</div>
-							 		</form>	
-							 		</div>
-							 	</div>
-							 </div>
-						</div>		 
+				<div class="userxx">
+					<div class="view_title">회원정보</div>
+					<div class="view_text">
+						이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+							id="name" value="<%=UserName%>" disabled><Br>
+						닉네임&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="nickname"
+							value="<%=UserAlias%>" disabled><Br> 전화번호&nbsp;<input
+							type="text" id="tel" value="<%=PhoneNumber%>" disabled><Br>
+						이메일&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email1"
+							value="<%=Email1%>" disabled>@<input type="text"
+							id="<%=Email2%>" value="naver.com" disabled><Br>
+						주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+							id="address" value="<%=RodeAddress%>" disabled><Br>
+					</div>
 				</div>
-		</div>
-	</div>
-	
- <!-- ======================= 프로필 변경 모달창 끝 ===========================================  -->
-	
-	<!-- 반나눠서 오른쪽 부분  -->
-	<div id="screenright">
-	
-		<div id="rightbox1" class="rightbox">
-		<jsp:include page = "../mypage/calendar.jsp" flush="true"/>
-		<!-- <span id="rightbox_title">
-  		</span> -->
-		<!-- <h1>MyCalendar</h1> -->
-  		 <div id='calendar'></div>
-	   		    <!-- 달력 끝 -->
+				<div class="dogxx">
+					<div class="view_title">반려견 정보</div>
+					<div class="view_text">
+						이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+							id="dogname" value="<%=DogName%>" disabled> <Br>
+						품종&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+							id="dogbreed" value="<%=DogType%>" disabled> <Br>
+					</div>
+				</div>
+					<!-- ======================= 프로필 변경 모달창 ===========================================  -->
+					<div id="userbutton">
+						<!-- <input type="button" value="수정"> -->
+						<button class="open" id="open">
+							<span id="open2">프로필 변경</span>
+						</button>
+						<div id="modal-box">
+							<div id="modal-contents">
+								<button id="close"
+									style="color: white-space; background-color: red;">닫기&times;</button>
+								<h1 id="title">my profile</h1>
+								<div id="profil">
+									<!-- 이미지 변경 폼 들어갈 부분 -->
+									<form id="profil-img-form" action="profil-img" method="post"
+										enctype="multipart/form-data">
+										<!-- enctype 안적으면 파일 안넘어감  -->
+										<div id="profil-img">
+											<!-- <img id="preview-img" src="resources/sun.png" alt="sun" style="width: 300px; height: 300px;"><br> -->
+											<%
+												if (userImgBytes == null) {
+											%>
+											<img id="preview-img" src="resources/<%=imageSrc%>.JPG"
+												alt="profile image" style="width: 300px; height: 300px;"><br>
+											<%
+												} else {
+											%>
+											<img id="preview-img" src="<%=imageSrc%>" height="350"
+												width="350" /><br>
+											<%
+												}
+											%>
+											<input type="file" id="file" value="파일찾기" name="file"><br>
+											<div id="button-group">
+												<input type="button" id="profil-img-change" value="이미지 변경">
+												<input type="button" id="profil-img-change3" value="이미지 삭제">
+											</div>
+										</div>
+									</form>
+									<!-- 회원정보  수정  -->
+									<form id="profil-text-form" action="profil-text" method="post">
+										<div id="desc">
+											<p class="user">회원정보</p>
+											<div id="aa">
+												<p class="user">
+													이름: <input type="text" id="name-2" name="UserName"
+														value="<%=UserName%>">
+												</p>
+												<p class="user">
+													닉네임:<input type="text" id="nickname-2" name="UserAlias"
+														value="<%=UserAlias%>">
+												</p>
+												<p class="user">
+													연락처:<input type="text" id="tel-2" name="PhoneNumber"
+														value="<%=PhoneNumber%>" placeholder="'-'을 포함하여 입력하세요.">
+												</p>
+												<p class="user">
+													이메일:<input type="text" id="Email1-2" name="Email1"
+														value="<%=Email1%>" placeholder="직접 입력해주세요.">@ <input
+														type="text" id="Email2-2" name="Email2"
+														value="<%=Email2%>"> <select name="select_email"
+														id="select_email" onchange="input_email();">
+														<option value="daum.net">daum.net</option>
+														<option value="naver.com">naver.com</option>
+														<option value="google.com">google.com</option>
+													</select>
+												</p>
+												<p class="user">
+													주소: <input type="text" id="sample4_postcode" name="Post"
+														value="<%=Post%>" readonly><Br> <input
+														type="text" id="sample4_roadAddress" name="RodeAddress"
+														value="<%=RodeAddress%>" style="width: 350px;" readonly><Br>
+													<input type="text" id="sample4_jibunAddress"
+														name="HouseAddress" value="<%=HouseAddress%>"
+														style="width: 350px;" readonly><Br> <input
+														type="text" id="DetailAddress_xxx" name="DetailAddress"
+														value="<%=DetailAddress%>" style="width: 350px;"
+														placeholder="상세주소를 입력해주세요."> <input type="button"
+														onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
+														id="zipcode-button">
+												</p>
 
-		</div>
-		
-		<div id="rightbox2" class="rightbox">
-		 <!-- 장바구니 시작 -->
-			 <span id="rightbox_title">장바구니</span>
-			 <input type="button" value="결제하러가기">
-			 <div id="shoppingbasket" >	
-				<% 
-					//장바구니  정보 가져와야함 
-					/*
-					CartDTO cDTO = (CartDTO)session.getAttribute("cDTO");
-					int CartNum = cDTO.getCartNum();
-					String UserID = cDTO.getUserID();
-					int ProductID = cDTO.getProductID();
-					String ProductName= cDTO.getProductName();
-					int Price = cDTO.getPrice();
-					String Psize = cDTO.getPsize();
-					int Amount = cDTO.getAmount();
-					String Color = cDTO.getColor();
-					String Image = cDTO.getImage();
-					*/
-					
-					List<CartDTO> list = (List<CartDTO>)request.getAttribute("list");
-						for(int i=0; i < list.size(); i++){
+												<br>
+												<!-- ... -->
+												<input type="hidden" name="UserID"
+													value="<%=dto.getUserID()%>"> <input
+													type="hidden" name="Password"
+													value="<%=dto.getPassword()%>"> <input
+													type="hidden" name="UserType"
+													value="<%=dto.getUserType()%>"> <input
+													type="hidden" name="USERIMG"
+													value="<%=dto.getUSERIMG()%>">
+												<!-- ... -->
+												<p class="user">반려견 정보</p>
+												<p class="user">
+													이름:<input type="text" id="dogname" name="DogName"
+														value="<%=DogName%>" placeholder="직접 입력해주세요.">
+												</p>
+												<p class="user">
+													품종:<input type="text" id="dogbreed" name="DogType"
+														value="<%=DogType%>" placeholder="직접 입력해주세요.">
+												</p>
+												<input type="button" id="profil-img-change2"
+													value="프로필 정보 변경">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 달력 산책일지 -->
+		<section id="portfolio" class="two">
+			<div class="container">
+
+				<header>
+					<h2>산책일지</h2>
+				</header>
+				<!-- 달력 부분 -->
+				<div id="Calendarxxx">
+					<table class="Calendar">
+						<thead>
+							<tr>
+								<td onClick="prevCalendar();" style="cursor: pointer;">&#60;</td>
+								<td colspan="5"><span id="calYear"></span>년 <span
+									id="calMonth"></span>월</td>
+								<td onClick="nextCalendar();" style="cursor: pointer;">&#62;</td>
+							</tr>
+							<tr>
+								<td>일</td>
+								<td>월</td>
+								<td>화</td>
+								<td>수</td>
+								<td>목</td>
+								<td>금</td>
+								<td>토</td>
+							</tr>
+						</thead>
+
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<!-- 달력 끝 -->
+			</div>
+		</section>
+
+		<!-- 장바구니 -->
+		<section id="about" class="three">
+			<div class="container">
+
+				<header>
+					<h2>장바구니</h2>
+				</header>
+				<!-- 장바구니 시작 -->
+				<div id="shoppingbasket">
+					<%
+						//장바구니  정보 가져와야함 
+
+						List<CartDTO> list = (List<CartDTO>) request.getAttribute("list");
+						for (int i = 0; i < list.size(); i++) {
 							int num = list.get(i).getCartNum();
 							String UserID = list.get(i).getUserID();
 							int ProductID = list.get(i).getProductID();
@@ -621,77 +884,138 @@
 							String Color = list.get(i).getColor();
 							int Amount = list.get(i).getAmount();
 							String Image = list.get(i).getImage();
-				%>
-				<div id="shoppingbasket2" >
-					<div>
-						<img src="resources/storeimages/<%= Image %>.jpg"border="0"  width="200px" height="200px;" style="float: left;" id="image<%=i%>"/>
+					%>
+					<div id="shoppingbasket2">
+						<div>
+							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
+								width="200px" height="200px;" style="float: left;"
+								id="image<%=i%>" />
+						</div>
+						<div class="shoppingbasket_info">
+							<table>
+								<colgroup>
+									<col style="width: 35%">
+									<col style="width: 65%">
+								</colgroup>
+
+								<tr>
+									<th>이름</th>
+									<td><%=ProductName%></td>
+								</tr>
+								<tr>
+									<th>사이즈</th>
+									<td><%=Psize%></td>
+								</tr>
+								<tr>
+									<th>색상</th>
+									<td><%=Color%></td>
+								</tr>
+								<tr>
+									<th>수량</th>
+									<td><%=Amount%></td>
+								</tr>
+								<tr>
+									<th>가격</th>
+									<td><%=Price%></td>
+								</tr>
+
+							</table>
+						</div>
+
+
+
+					</div>
+					<%
+						}
+					%>
+				</div>
+				<!-- 장바구니 끝 -->
+
+			</div>
+		</section>
+
+		<!-- 구매목록 -->
+		<section id="contact" class="four">
+			<div class="container">
+
+				<header>
+					<h2>구매목록</h2>
+				</header>
+				
+				<!-- 주문list 시작 -->
+				<div id="orderlist">
+					<%
+						List<CartDTO> orderlist_after = (List<CartDTO>) request.getAttribute("list");
+						for (int i = 0; i < list.size(); i++) {
+							CartDTO cart = list.get(i);
+							if ("after".equals(cart.getOrderState())) { // OrderState가 "after"인 경우에만 실행
+								int num = cart.getCartNum();
+								String UserID = cart.getUserID();
+								int ProductID = cart.getProductID();
+								String ProductName = cart.getProductName();
+								int Price = cart.getPrice();
+								String Psize = cart.getPsize();
+								String Color = cart.getColor();
+								int Amount = cart.getAmount();
+								String Image = cart.getImage();
+					%>
+				<div id="shoppingbasket2">
+					<div id="orderlist2">
+						<img src="resources/storeimages/<%=Image%>.jpg" border="0"
+							width="200px" height="200px;" 
+							id="image<%=i%>" />
 					</div>
 					<div class="shoppingbasket_info">
 						<table>
-				<colgroup>
-					<col style="width: 35%">
-					<col style="width: 65%">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>이름</th>
-						<td><%= ProductName %></td>
-					</tr>
-					<tr>
-						<th>사이즈</th>  
-						<td><%= Psize %></td>
-					</tr>
-					<tr>
-						<th>색상</th>  
-						<td><%= Color %></td>
-					</tr>
-					<tr>
-						<th>수량</th>  
-						<td><%= Amount %></td>
-					</tr>
-					<tr>
-						<th>가격</th>
-						<td><%= Price %></td>
-					</tr>
-				</tbody>
-			</table>
-					</div>	
-						
-				
-				
+							<colgroup>
+								<col style="width: 35%">
+								<col style="width: 65%">
+							</colgroup>
+
+							<tr>
+								<th>이름</th>
+								<td><%=ProductName%></td>
+							</tr>
+							<tr>
+								<th>사이즈</th>
+								<td><%=Psize%></td>
+							</tr>
+							<tr>
+								<th>색상</th>
+								<td><%=Color%></td>
+							</tr>
+							<tr>
+								<th>수량</th>
+								<td><%=Amount%></td>
+							</tr>
+							<tr>
+								<th>가격</th>
+								<td><%=Price%></td>
+							</tr>
+
+						</table>
+					</div>
 				</div>
-				<% } %>
-			</div>
-	     <!-- 장바구니 끝 -->	
-		</div>
-		
-		<div id="rightbox3" class="rightbox">
-		 <!-- 주문list 시작 -->
-			<span id="rightbox_title">주문List</span>
-			 <div id="orderlist" >	
-				<% 
-					int a2 = 10; // 대충 10개까지 임의 지정
-					//data-xxx= Num 
-					for(int i = 1; i <= a2; i++) { 
-				%>
-				<div id="orderlist2" >
-						<img src="resources/storeimages/간식11.jpg" border="0"  width="200px" height="200px;" style="float: left;" id="image<%=i%>"/>
-				
-				
-				
+					<%
+							}
+						}
+					%>
+
 				</div>
-				<% } %>
+				<!-- 주문list 끝 -->
+
 			</div>
-	     <!-- 주문list 끝 -->	
-		</div>
+		</section>
 		
-	
-	</div>
-</div>
-<div id="1"></div>
-<div id="2"></div>
-<!-- 하단 부분 시작 ( 내가 쓴글, 좋아요한 글?)  -->
-<div id="full2">
+		<!-- post 부분 -->
+		<section id="post" class="two">
+			<div class="container">
+
+				<header>
+					<h2>post</h2>
+				</header>
+				<!-- post 부분 -->
+				<div id="full2">
 	<form action="mypage">
 		<div  id="post-category">
 			<input type="submit" name="order" id="post-category1" value="내가 쓴 글">
@@ -739,14 +1063,29 @@
 <div class="page">
 <jsp:include page = "../common/page.jsp" flush="true"/><br>
 </div>
-</div> <!-- full2 끝 -->
-<jsp:include page = "../common/footer.jsp" flush="true"/><br>
+</div> <!-- full2 끝 --> 
+				<!-- post 끝 -->
+			</div>
+		</section>
+		
+		
 
+	</div>
 
+		<!-- Footer -->
+			<!-- <div id="footer"> -->
 
+			<!-- </div> -->
 
-
-
+<!-- Scripts -->
+			<script src="resources/assets/js/jquery.min.js"></script>
+			<script src="resources/assets/js/jquery.scrolly.min.js"></script>
+			<script src="resources/assets/js/jquery.scrollex.min.js"></script>
+			<script src="resources/assets/js/browser.min.js"></script>
+			<script src="resources/assets/js/breakpoints.min.js"></script>
+			<script src="resources/assets/js/util.js"></script>
+			<script src="resources/assets/js/main.js"></script>
+			
 <!-- 모달창 우편주소  -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>

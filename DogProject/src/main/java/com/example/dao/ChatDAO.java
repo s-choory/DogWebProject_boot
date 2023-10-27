@@ -54,6 +54,10 @@ public class ChatDAO {
 		session.delete("ChatMapper.delChatRoom",roomId);
 	}
 
+	public List<ChatMessageDTO> findChatMessage(int roomId) {
+		return session.selectList("ChatMapper.findChatMessage", roomId);
+	}
+
 	
 
 }
