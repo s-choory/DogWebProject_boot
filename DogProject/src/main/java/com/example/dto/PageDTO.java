@@ -71,9 +71,9 @@ public class PageDTO {
 				+ ", perBlock=" + perBlock + ", row=" + row + "]";
 	}
 	
-	public int getTotalCount(String userID) {
-		PageDAO dao = new PageDAO();
-		return totalCount = dao.selecTotalCount2(userID);
+	public int getTotalCount(String userID, String order) {
+	    PageDAO dao = new PageDAO();
+	    return totalCount = dao.selecTotalCount2(userID, order);
 	}
 	public List<PostsDTO> getList(String userID) {
 		PostsDAO dao = new PostsDAO();

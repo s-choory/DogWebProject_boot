@@ -6,6 +6,7 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
 
 

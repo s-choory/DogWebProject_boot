@@ -289,8 +289,6 @@
     	color: white;
     	font-weight: bold;
     }
-    
-    
 </style>
 </head>
 <body>
@@ -344,21 +342,9 @@
 	</form>
 <!-- <hr align="center" style="border: outset 5px orange; width: 90%;"> -->
 
-<!-- list !=null &&!list.isEmpty() -->
-<!-- if(list.isEmpty()){ -->
-<!-- 게시물 jsp로 반복문 돌리기 -->
  <% 
 	List<PostsDTO> list = pDTO.getList();
- 	/* if(list.isEmpty()){ */
- 	%>
- 	<!-- if(list.isEmpty()){
- 	<div class="no-data">
-    	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
-    	<div><p>검색 결과가 없습니다</p></div>
-	</div> -->
- 	<%/*  } else */
  	
-	
  	for(int i = 0; i<list.size(); i++){
  		
 	PostsDTO dto= list.get(i);
@@ -422,7 +408,7 @@
 
 	%>	
  	<div class="no-data">
-    	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
+    	<div><img src="../resources/img/dog/nodata.png" alt="No Results Found"></div><br>
     	<div><p>검색 결과가 없습니다</p></div>
 	</div>
 	

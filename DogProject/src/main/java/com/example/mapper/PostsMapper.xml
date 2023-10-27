@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- list 화면 출력 및 페이징 관련 SQL문 -->
  <select id="selectList" resultType="Posts">
-	select * from Posts where PostType = 'undeleted'
+	select * from Posts where PostType = 'undeleted' order by CreationTime desc
 </select>
 
 <!-- mypage list 화면 출력 및 페이징 관련 SQL문 -->
@@ -20,8 +20,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <!-- 특정 페이징 getTotalCount -->
-<select id="getTotalCount" parameterType="String" resultType="int">
- 	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+<select id="getTotalCount" parameterType="map" resultType="int">
+ 	<choose>
+    	<when test="order == '좋아요 누른 글'">
+        	SELECT COUNT(*) FROM Posts
+			INNER JOIN LIKES ON likes.categoryid = posts.postid AND likes.categories = 'posts'
+			WHERE likes.userid =  #{UserID}
+    	</when>
+    	<otherwise>
+        	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+    	</otherwise>
+    </choose>
 </select>
 
 <select id="selectgetList" parameterType="String" resultType="Posts">
@@ -33,10 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select count(*)
       from Posts
 		<!-- 카테고리 select -->
-			<if test="order == '전체' ">
+			<if test="order == 'All' ">
     			where posttype = 'undeleted' order by CreationTime desc
    			</if>
-    		<if test="order == '인기게시물' ">
+    		<if test="order == 'Popular' ">
     			where posttype = 'undeleted' order by Likes desc
     		</if>
     		<if test="order == 'QnA' ">
@@ -64,14 +73,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 카테고리 SelectAll -->
 <select id="selectOrder" parameterType="map" resultType="Posts">
 	  select *	from posts
-    	<if test="order == '전체' ">
-    		where posttype = 'undeleted' order by CreationTime desc
+    	<if test="order == 'All' ">
+    		where POSTTYPE = 'undeleted' order by CreationTime DESC
     	</if>
-    	<if test="order == '인기게시물' ">
-    		where posttype = 'undeleted' order by Likes desc
+    	<if test="order == 'Popular' ">
+    		where POSTTYPE = 'undeleted' order by Likes DESC
     	</if>
     	<if test="order == 'QnA'">
-    		 where posttype = 'undeleted' and Category = 'QnA' 
+    		 where POSTTYPE = 'undeleted' and Category = 'QnA' 
     	</if>
 </select>
 
@@ -83,6 +92,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		
     	</if>
 </select>
+
+
+<select id="selectOrder3" parameterType="hashmap" resultType="Posts">
+SELECT * FROM Posts
+			INNER JOIN LIKES ON likes.categoryid = posts.postid AND likes.categories = 'posts'
+			WHERE likes.userid =  #{userID}
+</select> 
 
 <!-- 검색조건 TotalCount -->
 <select id="selectTotalCount" parameterType="map" resultType="int">

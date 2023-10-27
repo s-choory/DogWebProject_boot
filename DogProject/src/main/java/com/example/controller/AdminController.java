@@ -9,14 +9,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.dto.ChatMessageDTO;
+import com.example.dto.ChatRoomDTO;
 import com.example.dto.RequestDTO;
+import com.example.service.ChatService;
 import com.example.service.RequestService;
 
 @Controller
 public class AdminController {
 
 	@Autowired
-	RequestService rService;
+	private RequestService rService;
+	
+	@Autowired
+	private ChatService cService;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -32,6 +38,8 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
+	
+	//Request=================================================================
 	//문의 목록(답변대기)
 	@GetMapping("/adminRequest")
 	public String adminRequest(Model model) {
@@ -60,6 +68,38 @@ public class AdminController {
 		rService.replyRecontent(rDTO);
 		return "admin/closeWindow";
 	}
+	//=================================================================
+	
+	
+	//Chat=================================================================
+	//모임 목록
+	@GetMapping("/adminGroup")
+	public String adminGroup(Model model) {
+		List<ChatRoomDTO> chatList = cService.findAllRoom();
+	    model.addAttribute("chatList", chatList);
+		return "admin/adminGroup";
+	}
+	
+	//채팅 내역 목록 보기
+	@GetMapping("/adminChatMessage")
+	public String adminChatMessage(int roomId, Model model) {
+		List<ChatMessageDTO> chatMessageList = cService.findChatMessage(roomId);
+		model.addAttribute("mList",chatMessageList);
+		return "admin/adminChatMessage";
+	}
+	
+	//채팅방 삭제
+	@GetMapping("/adminDeleteGroup")
+	public String adminDeleteGroup(Model model, int roomId) {
+		cService.delChatRoom(roomId);
+		return "redirect:/adminGroup";
+	}
+	//=================================================================
+	
+	
+	//Store=================================================================
+	
+	//=================================================================
 }
 
 

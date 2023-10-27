@@ -217,6 +217,9 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
     padding: 10px 0px;
     border-radius: 5px;
 }
+body {
+	margin: 0;
+}
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
