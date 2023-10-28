@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>모임 조회</title>
+<title>상품 목록</title>
 <style type="text/css">
 	
 	.table-container{
@@ -44,6 +44,15 @@ function deleteProduct(PRODUCTID) {
 	}
 }
 
+function openReviewList(PRODUCTID){
+	var w = 800;
+	var h = 600;
+	var xPos = (document.body.offsetWidth/2) - (w/2); // 가운데 정렬
+	var yPos = (document.body.offsetHeight/2) - (h/2);
+	
+ 	window.open("openReviewList?PRODUCTID="+PRODUCTID, "_blank", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
+}
+
 </script>
 <body>
     <header>
@@ -64,6 +73,7 @@ function deleteProduct(PRODUCTID) {
     		<td>가격</td>
     		<td>재고수량</td>
     		<td>action</td>
+    		<td>action</td>
     	</tr>
     	<% 
     	List<GoodsDTO> list = (List<GoodsDTO>)request.getAttribute("gList"); 
@@ -78,6 +88,7 @@ function deleteProduct(PRODUCTID) {
     		<td><%= gDTO.getContent() %></td>
     		<td><%= gDTO.getPrice() %></td>
     		<td><%= gDTO.getSTOCKQUANTITY() %></td>
+    		<td class="action2"><button class="btn btn-info" onclick="openReviewList(<%=gDTO.getPRODUCTID()%>)">리뷰</button></td>
     		<td class="action2"><button class="btn btn-danger" onclick="deleteProduct(<%=gDTO.getPRODUCTID()%>)">삭제</button></td>
     	</tr>
     	<%} %>

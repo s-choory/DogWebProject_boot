@@ -144,10 +144,10 @@ public class CommentsController {
 				replybean.setContent(Content);
 				replybean.setAuthorID(AuthorID);;
 				if(uDTO.getUserID().toString().equals(replybean.getAuthorID())){ //로그인 아이디와 작성자 아이디 일치여부
-
 					service.replyupdate(replybean);
-	
 					map.put("result", "success");
+				}else {
+					map.put("result", "null");
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -178,19 +178,10 @@ public class CommentsController {
 				if(uDTO.getUserID().toString().equals(replybean.getAuthorID())){ //로그인 아이디와 작성자 아이디 일치여부
 					service.replydelete(replybean);
 					map.put("result", "success");
-				
 				}else {
-					map.put("result", "error");
-					
+					map.put("result", "null");
 				}
-				
-//				CommentsDTO replybean = new CommentsDTO();
-//				replybean.setCommentID(CommentID);
-//				service.replydelete(replybean);
-//				System.out.println("sdsdsdsdd");
-//				
-//				map.put("result", "success");
-				
+		
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

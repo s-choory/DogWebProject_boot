@@ -95,4 +95,8 @@ public class GoodsDAO {
 		session.delete("GoodsMapper.delete",PRODUCTID);
 	}
 
+	public void addReviewComment(ReviewsDTO rDTO) {
+		session.update("ReviewsMapper.addReviewComment", rDTO);
+	}
+
 }

@@ -33,7 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM Likes WHERE categoryID = #{categoryID} and categories = #{categories}
 </select>
 	
-    
+<!--  <select id="likeUser_read" parameterType="int" resultType="Like">
+		SELECT userID
+		 FROM Likes 
+		 WHERE categoryID = #{categoryID} and categories = 'posts'
+	</select>   -->    
 
 	
 	
