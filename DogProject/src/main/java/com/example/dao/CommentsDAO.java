@@ -47,6 +47,10 @@ public class CommentsDAO {
 	public int replydelete(CommentsDTO dto) {
 		return session.update("CommentsMapper.replydelete_column", dto);
 	}
+
+	public List<CommentsDTO> selectList(int PostID) {
+		return session.selectList("CommentsMapper.selectList", PostID);
+	}
 	
 
 
