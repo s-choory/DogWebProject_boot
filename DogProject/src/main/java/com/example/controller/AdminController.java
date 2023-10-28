@@ -19,6 +19,7 @@ import com.example.dto.NoticeDTO;
 import com.example.dto.PageDTO;
 import com.example.dto.PostsDTO;
 import com.example.dto.RequestDTO;
+import com.example.dto.ReviewsDTO;
 import com.example.service.ChatService;
 import com.example.service.CommentsService;
 import com.example.service.GoodsService;
@@ -50,6 +51,7 @@ public class AdminController {
 	
 	@Autowired
 	private NoticeService nService;
+	
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -147,6 +149,22 @@ public class AdminController {
 	public String adminDeleteProduct(int PRODUCTID) {
 		gService.delete(PRODUCTID);
 		return "redirect:/adminGoodsList";
+	}
+	@GetMapping("/openReviewList")
+	public String openReviewList(String PRODUCTID, Model model) {
+		List<ReviewsDTO> rList = gService.selectReview(PRODUCTID);
+		model.addAttribute("rList",rList);
+		return "admin/adminReviewListForm";
+	}
+	
+	@GetMapping("/addReviewComment")
+	public String addReviewComment(int ReviewID) {
+		return "admin/addReviewComment";
+	}
+	@GetMapping("/adminAddReviewComment")
+	public String adminAddReviewComment(ReviewsDTO rDTO) {
+		gService.addReviewComment(rDTO);
+		return "admin/closeWindow";
 	}
 	//=================================================================
 

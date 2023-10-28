@@ -401,9 +401,9 @@
 	 	if(msg != null){
 	 		if(msg.equals("리뷰를 등록했습니다")){ %> 
 	 			Swal.fire('성공', '<%=msg%>', 'success');
-	 	<%  }else if(msg.equals("리뷰가 수정되었습니다")){ %> 
+	 	<%  }else if(msg.equals("리뷰가 수정되었습니다.")){ %> 
 	 			Swal.fire('성공', '<%=msg%>', 'success');
-	 	<%  }else if(msg.equals("리뷰가 삭제되었습니다")){ %>
+	 	<%  }else if(msg.equals("리뷰가 삭제되었습니다.")){ %>
 	 			Swal.fire('성공', '<%=msg%>', 'success');
 		<%	}else{ %>
 				Swal.fire('경고', '<%=msg%>', 'warning');
@@ -523,12 +523,24 @@
 	function reviewUpdate(str, ReviewID){
 		console.log(str+'\t'+ReviewID);
 		if(str == 'update'){
-			if(confirm("해당 리뷰를 수정하시겠습니까?"))
-				$("#reviewForm"+ReviewID).attr("action","");
-			else{
-				event.preventDefault();
-
-			}
+			Swal.fire({
+				   title: '해당 리뷰를 수정하시겠습니까?',
+				   text: '',
+				   icon: 'question',
+				   
+				   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+				   confirmButtonColor: '#006400', // confrim 버튼 색깔 지정
+				   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
+				   cancelButtonText: '아니오', // cancel 버튼 텍스트 지정
+				   confirmButtonText: '예', // confirm 버튼 텍스트 지정
+				   
+				   reverseButtons: true, // 버튼 순서 거꾸로
+				   
+				}).then(function (result) {
+				   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+					   $("#reviewForm"+ReviewID).attr("action","");
+					}
+				});
 		}		
 		if(str == 'del'){
 			if(confirm("해당 리뷰를 삭제하시겠습니까?"))
@@ -901,6 +913,8 @@
 			    	String base64Image = Base64.getEncoder().encodeToString(userImgBytes);
 			    	 imageSrc = "data:image/jpeg;base64," + base64Image;
 			    }
+			    String rComment = rList.get(i).getrComment();
+			    
 				 // 평점 합계
 				 double sum = 0;
 				 int n = 0;
@@ -940,7 +954,8 @@
 					<div class="modal" id="/app/imgUpload<%=rImgList[0]+rImgList[m] %>">
 						<span class="close">&times;</span> <img class="modal_content"
 							id="img01">
-					</div> <% }} %> <!-- 댓글 수정 폼-->
+					</div> <% }} %> 
+					<!-- 댓글 수정 폼-->
 					<form class="collapse multi-collapse-{{id}}">
 						                    
 						<div class="form-group">
@@ -951,6 +966,7 @@
 						<button type="button" id="btn-comment-update"
 							class="btn btn-outline-primary bi bi-pencil-square">수정</button>
 					</form>
+					
 <% UsersDTO user = (UsersDTO)session.getAttribute("User");
 	if(user != null){
 			if(user.getUserAlias().equals(UserAlias)) { %> 
@@ -1014,9 +1030,20 @@
 					</div>
 				</li>
 			</ul>
-			<hr>
+			<% if(rComment != null){ %>
+				<div class="goodsretrieve-review-content" style="margin-left: 2%;">
+					<div class="goodsretrieve-review-content2">
+						<img src="resources/리뷰아이콘.png" height="40" width="40"/> <img src="resources/로고아이콘.png" height="40" width="50"/>
+					</div>
+					<div>
+					<span class="review-useralias">판매자</span> 
+					<div><%= rComment %></div>
+					</div>
+				</div> 
 			<%
-				}
+			}%>
+			<hr>
+			<%}
 			%>
 			<!-- 리뷰 사진 등록 -->
 

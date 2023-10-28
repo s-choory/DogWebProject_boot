@@ -66,6 +66,13 @@ public class PostController {
 		String search= request.getParameter("search");
 		String order= request.getParameter("order");
 		
+		if("null".equals(search)) {
+			search = null;
+		}
+		if("null".equals(order)) {
+			order = null;
+		}
+		
 		pDTO = Pageservice.selectAll(Integer.parseInt(curPage), search, pDTO, order);
 		model.addAttribute("pDTO",pDTO);
 		model.addAttribute("search", search);

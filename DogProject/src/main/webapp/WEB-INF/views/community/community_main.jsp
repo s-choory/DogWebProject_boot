@@ -305,7 +305,7 @@
 <div class="Logo"><img src="${pageContext.request.contextPath}/resources/img/dog/Logo_Sample.png"></div>
 
 <div class="fixed-sidebar" style="top:450px;">
-   <button id="addpost-button" class="scroll-button" onclick="location.href='addPost'">글쓰기+</button>
+   <button id="addpost-button" class="scroll-button" onclick="location.href='/app/addPost'">글쓰기+</button>
 </div>
 
 <span class="addObject">

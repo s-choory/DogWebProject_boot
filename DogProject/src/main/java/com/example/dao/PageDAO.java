@@ -47,6 +47,8 @@ public class PageDAO {
 		int offset = (curPage - 1) * perPage;
 		List<PostsDTO> list =  session.selectList("PostsMapper.selectSearch" , map , new RowBounds(offset, perPage));
 		//레코드 시작 번호, 읽어올 갯수 
+		System.out.println("list이다~==========="+list);
+		System.out.println("list이다~==========="+list.size());
 		
 		pDTO.setCurPage(curPage);//현재 페이지번호
 		pDTO.setList(list);//페이지 에 해당 데이터
