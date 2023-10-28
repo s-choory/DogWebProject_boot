@@ -27,6 +27,20 @@ public class NoticeDAO {
 		session.update("NoticeMapper.Notice_hitadd", NoticeID);
 		
 	}
+
+	public void delete(int NoticeID) {
+		session.delete("NoticeMapper.delete",NoticeID);
+	}
+
+
+	public void update(NoticeDTO nDTO) {
+		session.update("NoticeMapper.update", nDTO);
+	}
+
+
+	public void insert(NoticeDTO nDTO) {
+		session.insert("NoticeMapper.insert",nDTO);
+	}
 	
 	
 	

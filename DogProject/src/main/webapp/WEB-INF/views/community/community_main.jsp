@@ -378,12 +378,12 @@
                 </a>
                 <div class="post-content">
                 		<div class="post_title">
-                		<a href="post?PostID=<%=postid%>">
+                		<a href="/app/post?PostID=<%=postid%>">
                     		<%=Title %><!-- 타이틀 -->
                     	</a>	
                 		</div>
                 		<div class="post_content">
-                		<a href="post?PostID=<%=postid%>">
+                		<a href="/app/post?PostID=<%=postid%>">
                     		<p><%=previewText %></p><!-- 내용 -->
                     	</a>	
                 		</div>
