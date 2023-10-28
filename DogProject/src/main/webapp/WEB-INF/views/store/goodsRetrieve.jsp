@@ -824,7 +824,7 @@
 						<%}else{ %>
 							 <div class="carousel-item">
 						<% } %>
-								<img src="<%= rImgList2[0]+rImgList2[n] %>" class="d-block w-100 h-50" data-xxx="<%=rImgList2[0]+rImgList2[n]%>">
+								<img src="/app/imgUpload<%= rImgList2[0]+rImgList2[n] %>" class="d-block w-100 h-50" data-xxx="<%=rImgList2[0]+rImgList2[n]%>">
 								
 							 </div>
 						<% }}} %> 
@@ -936,8 +936,8 @@
 					</div> 
 					<%if(ReviewContent != null){ %>
 					<p><%= ReviewContent %></p> <% } %> <%if(rThumbImgList != null){ for ( int m = 1; m < rThumbImgList.length; m++) {%> 
-					<img src="/app/imgUpload<%= rThumbImgList[0]+rThumbImgList[m] %>" class="img" data-xxx="/app/imgUpload/<%=rImgList[0]+rImgList[m]%>">
-					<div class="modal" id="/app/imgUpload/<%=rImgList[0]+rImgList[m] %>">
+					<img src="/app/imgUpload<%= rThumbImgList[0]+rThumbImgList[m] %>" class="img" data-xxx="/app/imgUpload<%=rImgList[0]+rImgList[m]%>">
+					<div class="modal" id="/app/imgUpload<%=rImgList[0]+rImgList[m] %>">
 						<span class="close">&times;</span> <img class="modal_content"
 							id="img01">
 					</div> <% }} %> <!-- 댓글 수정 폼-->
@@ -996,8 +996,8 @@
 								</div>
 								<div class="select_img" id="select_img">
 								<% if(rThumbImgList != null) { for ( int k = 1; k < rThumbImgList.length; k++) {%>
-								<img class="img" src="<%= rThumbImgList[0] + rThumbImgList[k] %>" data-xxx="<%=rImgList[0]+rImgList[k]%>" />
-								<div class="modal" id="<%=rImgList[0]+rImgList[k] %>">
+								<img class="img" src="/app/imgUpload<%= rThumbImgList[0] + rThumbImgList[k] %>" data-xxx="/app/imgUpload<%=rImgList[0]+rImgList[k]%>" />
+								<div class="modal" id="/app/imgUpload<%=rImgList[0]+rImgList[k] %>">
 									<span class="close">&times;</span> <img class="modal_content"
 										id="img01">
 								</div><% } } %>

@@ -19,7 +19,7 @@
 		width:150px;
 	}
 	.action2{
-		width:130px;
+		width:80px;
 	}
 
 </style>
@@ -57,7 +57,7 @@ function deleteProduct(PRODUCTID) {
     <table class="table">
     	<tr class="table-warning" style="font-weight: bolder;">
     		<td>상품 사진</td>
-    		<td>상품 ID</td>
+    		<td>ID</td>
     		<td>상품 이름</td>
     		<td>카테고리</td>
     		<td>상세설명</td>
@@ -74,11 +74,11 @@ function deleteProduct(PRODUCTID) {
     		<td><img src="resources/storeimages/<%=gDTO.getImage() %>.jpg" width="100" height="100"></td>
     		<td><%= gDTO.getPRODUCTID() %></td>
     		<td><%= gDTO.getPRODUCTNAME() %></td>
-    		<td style="width: 50px;"><%= gDTO.getCategory() %></td>
+    		<td style="width: 100px;"><%= gDTO.getCategory() %></td>
     		<td><%= gDTO.getContent() %></td>
     		<td><%= gDTO.getPrice() %></td>
     		<td><%= gDTO.getSTOCKQUANTITY() %></td>
-    		<td class="action2"><button class="btn btn-danger" onclick="deleteProduct(<%=gDTO.getPRODUCTID()%>)">상품 삭제</button></td>
+    		<td class="action2"><button class="btn btn-danger" onclick="deleteProduct(<%=gDTO.getPRODUCTID()%>)">삭제</button></td>
     	</tr>
     	<%} %>
     </table>

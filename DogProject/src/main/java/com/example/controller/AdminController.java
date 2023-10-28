@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.dto.ChatMessageDTO;
 import com.example.dto.ChatRoomDTO;
+import com.example.dto.CommentsDTO;
 import com.example.dto.GoodsDTO;
 import com.example.dto.PageDTO;
+import com.example.dto.PostsDTO;
 import com.example.dto.RequestDTO;
 import com.example.service.ChatService;
+import com.example.service.CommentsService;
 import com.example.service.GoodsService;
 import com.example.service.PageService;
 import com.example.service.PostsService;
@@ -39,6 +42,9 @@ public class AdminController {
 	
 	@Autowired 
 	private PageService Pageservice;
+	
+	@Autowired
+	private CommentsService coService;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -154,6 +160,27 @@ public class AdminController {
 		/* System.out.println("all 최신 내림차순 정렬"+ pDTO); */
 		return "admin/adminPostsList";
 	}
+	
+	@GetMapping("/adminCommentsList")
+	public String adminCommentsList(int PostID, Model model) {
+		List<CommentsDTO> coList = coService.selectList(PostID);
+		model.addAttribute("coList", coList);
+		return "admin/adminCommentsList";
+	}
+	
+	@GetMapping("/adminDeletePost")
+	public String adminDeletePost(PostsDTO DTO, Model model) {
+		System.out.println(DTO);
+		pService.delete_column(DTO);
+		return "redirect:/adminPostsList";
+	}
+	
+	@GetMapping("/adminDeleteComment")
+	public String adminDeleteComment(CommentsDTO DTO, int PostID) {
+		coService.replydelete(DTO);
+		return "redirect:/adminCommentsList?PostID="+PostID;
+	}
+	
 	
 	//=================================================================
 }
