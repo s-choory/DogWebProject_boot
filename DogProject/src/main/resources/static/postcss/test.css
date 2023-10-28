@@ -120,6 +120,7 @@ h3 {
   color:hsl(var(--clr-modblue));
   font-weight: 500;
       justify-self:right;
+      background-color: inherit; 
 }
 .red {
   color:hsl(var(--clr-softred));
@@ -142,6 +143,7 @@ h3 {
 }
 
 .grid-container {
+	border: 3px solid #b2c3d3;
   display: grid;
   margin:1rem;
   padding:1rem;
@@ -149,6 +151,7 @@ h3 {
   /* place-items:center; */
   background-color: hsl( var(--clr-white) );
   /* grid-gap: 1rem; */
+  
 }
 
 
@@ -159,6 +162,7 @@ h3 {
     "user name time time ."
     "comment comment comment comment"
     "vote vote . . reply"
+    
 }
 
 .grid-container--you {

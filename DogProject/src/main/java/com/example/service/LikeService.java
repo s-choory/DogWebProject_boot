@@ -34,5 +34,9 @@ public class LikeService {
 		return dao.selectLikeList();
 	}
 	
+	public List<LikeDTO> likeUser_read(int categoryID) {
+		return dao.likeUser_read(categoryID);
+	}
+	
 	
 }// end class

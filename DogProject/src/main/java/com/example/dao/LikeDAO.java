@@ -33,5 +33,9 @@ public class LikeDAO {
 		return session.selectList("LikeMapper.selectLikeList");
 	}
 	
+	public List<LikeDTO> likeUser_read(int categoryID) {
+		return session.selectList("LikeMapper.likeUser_read" , categoryID);
+	}
+	
 
 }
