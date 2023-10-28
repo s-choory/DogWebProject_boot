@@ -289,8 +289,6 @@
     	color: white;
     	font-weight: bold;
     }
-    
-    
 </style>
 </head>
 <body>

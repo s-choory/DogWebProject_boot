@@ -14,7 +14,7 @@ public class PageDTO {
 	private List<PostsDTO> list;
 	
 	private int curPage=1;	// 현재 페이지
-	private int perPage=5; //페이지당 10개씩
+	private int perPage=5; //페이지당 5개씩
 	private int totalCount; // 총 레코드 개수
 	
 	private int perBlock=5; // 블럭당 보여줄 페이지 개수

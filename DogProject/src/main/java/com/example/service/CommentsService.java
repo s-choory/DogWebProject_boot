@@ -48,6 +48,10 @@ public class CommentsService {
 		return dao.replydelete(dto);	
 	}
 
+	public List<CommentsDTO> selectList(int postID) {
+		return dao.selectList(postID);
+	}
+
 	
 
 	}

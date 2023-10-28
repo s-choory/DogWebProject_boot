@@ -1,3 +1,4 @@
+<%@page import="com.example.dto.CommentsDTO"%>
 <%@page import="com.example.dto.ChatMessageDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,39 +24,52 @@
 		width: 170px;
 	}
 	.content{
-		width:300px;
+		width:320px;
 	}
 
 </style>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script type="text/javascript">
+	function adminDeleteComment(CommentID, PostID){
+		if (confirm("정말 "+CommentID+"번 리뷰를 삭제하겠습니까?") == true) {
+			location.href="adminDeleteComment?CommentID="+CommentID+"&PostID="+PostID;
+		}
+	}
+</script>
 <body>
-<%List<ChatMessageDTO> list = (List<ChatMessageDTO>)request.getAttribute("mList");  %>
-<% if (list != null && !list.isEmpty()) { %>
-    <h1 style="margin-top:20px; text-align: center;"><%= list.get(0).getRoomId() %>번방 채팅 내역</h1>
+<%List<CommentsDTO> colist = (List<CommentsDTO>)request.getAttribute("coList");  %>
+<% if (colist != null && !colist.isEmpty()) { %>
+    <h1 style="margin-top:20px; text-align: center;"><%= colist.get(0).getPostID() %>번 게시물 댓글 내역</h1>
 <% } else { %>
-    <h1 style="margin-top:20px; text-align: center;">채팅 없음</h1>
+    <h1 style="margin-top:20px; text-align: center;">댓글 없음</h1>
 <% } %>
-
     <div class="table-container table-bordered">
     <table class="table">
     	<tr class="table-primary" style="font-weight: bolder;">
-    		<td>작성자</td>
+    		<td>부모댓글ID</td>
+    		<td>작성자ID</td>
     		<td>내용</td>
     		<td>시간</td>
+    		<td>삭제유무</td>
+    		<td>action</td>
     	</tr>
     	<% 
-    		for(int i = 0; i<list.size(); i++){
-   			ChatMessageDTO mDTO = list.get(i);
+    		for(int i = 0; i<colist.size(); i++){
+    			CommentsDTO coDTO = colist.get(i);
     	%>
     	<tr class="table-light">
-    		<td><%= mDTO.getSender() %></td>
-    		<td class="content"><%= mDTO.getMessage() %></td>
-    		<td class="time"><%= mDTO.getSendDate() %></td>
+    		<td><%= coDTO.getParentCommentID() %></td>
+    		<td><%= coDTO.getAuthorID() %></td>
+    		<td class="content"><%= coDTO.getContent() %></td>
+    		<td class="time"><%= coDTO.getCreationTime() %></td>
+    		<td><%= coDTO.getCommentType() %></td>
+    		<td style="width: 100px"><button class="btn btn-danger" onclick="adminDeleteComment(<%=coDTO.getCommentID()%>, <%=coDTO.getPostID()%>)">삭제</button></td>
     	</tr>
     	<%} %>
     </table>
     </div>
+
 </body>
 </html>

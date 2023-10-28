@@ -149,7 +149,6 @@ public class PostController {
 				LikeService.likeinsert(ldto); //좋아요 버튼 클릭 시  db 1개 추가
 				n = LikeService.like_likeTotalCount(ldto);
 				Postsservice.likeUpdate(Integer.toString(n), Integer.toString(PostID));
-				
 			}else if(LikeService.like_likeCount(ldto) != 0) {
 				LikeService.likedelete(ldto); //좋아요 버튼 클릭 시  db 1개 감소
 				n = LikeService.like_likeTotalCount(ldto);
