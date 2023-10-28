@@ -88,7 +88,9 @@ public class PostController {
 				HttpSession session, PageDTO ppDTO, CommentsDTO cdto) {
 				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 				
-				//ldto.setUserID(uDTO.getUserID());
+//				List<LikeDTO> Like_list = LikeService.selectLikeList();
+//				model.addAttribute("Like_list", Like_list);
+				
 				PostsDTO pdto = Postsservice.read(PostID);//게시글 상세보기
 			
 				FileDTO fdto = fservice.fileSelect(PostID);
@@ -165,29 +167,27 @@ public class PostController {
 		
 		
 		//컬럼타입만 'deleted'로 변경 update
-		@RequestMapping(value = "/delete")
-		//@ResponseBody
+		@RequestMapping(value = "/delete" )
+		@ResponseBody
 		public String delete_result(Locale locale, Model model, HttpSession session, 
 				PostsDTO dto){
 			
 			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 			if(uDTO == null) {
-				return "redirect:/login";
+				return "로그인이 필요합니다";
 			}
 			
 			if(uDTO.getUserID().toString().equals(dto.getAuthorID().toString())) { //로그인 아이디와 작성자 아이디 일치여부
 				int n = Postsservice.delete_column(dto);
-				return "redirect:/";
+				return "삭제되었습니다";
+			//	return "redirect:/";
 			}else {
-				return "error";
+				return "삭제할 수 없습니다";
 				
 			}
 			
-
 		}	
-		
-		
-		
+	
 	//등록화면
 	@RequestMapping(value = "/addPost", method = RequestMethod.GET)
 	public String addPost(Locale locale, Model model, HttpSession session) {
