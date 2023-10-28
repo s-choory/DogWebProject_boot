@@ -54,4 +54,5 @@
 	DELETE FROM PRODUCTS WHERE PRODUCTID=#{PRODUCTID}
 </delete>
 
+
 </mapper>                                              

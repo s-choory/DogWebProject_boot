@@ -279,6 +279,7 @@ CREATE TABLE Reviews (
     rThumbImg VARCHAR2(200),
     ReviewType VARCHAR2(10) CHECK(ReviewType IN ('undeleted', 'deleted')) NOT NULL,
     UserImg BLOB,
+    rComment VARCHAR2(255),
     FOREIGN KEY (OrderID) REFERENCES orders(OrderID),
     FOREIGN KEY (ProductID) REFERENCES products(ProductID)
 );

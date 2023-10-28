@@ -109,8 +109,9 @@ SELECT * FROM Posts
         <!-- 검색기능 -->
       	<where>
 			<if test="search != null">
-			posttype = 'undeleted' and title like '%'||#{search}||'%' or content like '%'||#{search}||'%'
+			 (title like '%'||#{search}||'%' or content like '%'||#{search}||'%') and
 			</if>
+			posttype = 'undeleted'
 		</where>
 </select>
 

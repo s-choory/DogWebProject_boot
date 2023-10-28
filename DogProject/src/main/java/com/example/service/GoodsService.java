@@ -105,5 +105,9 @@ public class GoodsService {
 	public void delete(int PRODUCTID) {
 		dao.delete(PRODUCTID);
 	}
+
+	public void addReviewComment(ReviewsDTO rDTO) {
+		dao.addReviewComment(rDTO);
+	}
 	
 }
