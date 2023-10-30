@@ -338,7 +338,7 @@ String search = (String)request.getAttribute("search");
 <jsp:include page = "common/top.jsp" flush="true"/><br>
 <jsp:include page = "common/side.jsp" flush="true"/><br>
 <div class="searchList_container">
-<input type="text" id="search" placeholder="검색어를 입력하세요" value="" />
+<input type="text" id="search" placeholder="검색어를 입력하세요" value="<%=search%>" />
 </div>
 <br>
 <br><br>
@@ -346,7 +346,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 	<div class="category">게시글(<%= post.size() %>)</div>
-	<div class="postOthers"><a id="postOthers" href="/app/?search=<%=search%>">더보기 +</a></div>
+	<div class="postOthers"><a id="postOthers" href="community/?search=<%=search%>">더보기 +</a></div>
 </div>
 </div>
     <div class="post_container">
