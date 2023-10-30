@@ -26,6 +26,18 @@ public class NoticeService {
 		dao.hitadd(NoticeID);
 		
 	}
+
+	public void delete(int NoticeID) {
+		dao.delete(NoticeID);
+	}
+
+	public void update(NoticeDTO nDTO) {
+		dao.update(nDTO);
+	}
+
+	public void insert(NoticeDTO nDTO) {
+		dao.insert(nDTO);
+	}
 	
 	
 //	public List<NoticeDTO> list(pageDTO cri){

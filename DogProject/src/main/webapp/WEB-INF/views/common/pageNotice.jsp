@@ -50,13 +50,13 @@
 
     out.print( "&nbsp;" );
 
-    // 2. 이전 페이지 블럭으로 이동
+/*     // 2. 이전 페이지 블럭으로 이동
     if ( startPage == 1 )
         out.print( "&lt;&lt;" );
     else
         out.print( "<a  href='?curPage=" + ( startPage - 1 )+ "&search=" + search + "&order="+ order +"'>&lt;&lt;</a>" );
 
-    out.print( "&nbsp;" );
+    out.print( "&nbsp;" ); */
 
     // 3. 이전 페이지로 이동
     if ( curPage == 1 )
@@ -92,13 +92,13 @@
         out.print( "<a  href='?curPage=" + ( curPage + 1 ) + "&search=" + search + "&order="+ order +"'>&gt;</a>" );
 
     // 2. 다음 페이지 블럭으로 이동
-    out.print( "&nbsp;" );
+  /*   out.print( "&nbsp;" );
 
     if ( endPage == totalNum )
         out.print( "&gt;&gt;" );
     else
         out.print( "<a  href='?curPage=" + ( endPage + 1 ) + "&search=" + search + "&order="+ order +"'>&gt;&gt;</a>" );
-
+ */
     // 1. 마지막 페이지로 바로 이동
     out.print( "&nbsp;" );
 

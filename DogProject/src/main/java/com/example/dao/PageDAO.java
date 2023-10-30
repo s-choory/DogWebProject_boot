@@ -43,10 +43,12 @@ public class PageDAO {
 	
 	// 검색조건 페이징 계산
 	public PageDTO selectSearch(HashMap<String, String> map, int curPage, PageDTO pDTO) {
-		int perPage = pDTO.getPerPage();   //한페이지 2개씩 
+		int perPage = pDTO.getPerPage();   //한페이지 5개씩 
 		int offset = (curPage - 1) * perPage;
 		List<PostsDTO> list =  session.selectList("PostsMapper.selectSearch" , map , new RowBounds(offset, perPage));
 		//레코드 시작 번호, 읽어올 갯수 
+		System.out.println("list이다~==========="+list);
+		System.out.println("list이다~==========="+list.size());
 		
 		pDTO.setCurPage(curPage);//현재 페이지번호
 		pDTO.setList(list);//페이지 에 해당 데이터

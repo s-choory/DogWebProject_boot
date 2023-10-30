@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>모임 조회</title>
+<title>상품 목록</title>
 <style type="text/css">
 	
 	.table-container{
@@ -19,7 +19,7 @@
 		width:150px;
 	}
 	.action2{
-		width:130px;
+		width:80px;
 	}
 
 </style>
@@ -44,6 +44,15 @@ function deleteProduct(PRODUCTID) {
 	}
 }
 
+function openReviewList(PRODUCTID){
+	var w = 800;
+	var h = 600;
+	var xPos = (document.body.offsetWidth/2) - (w/2); // 가운데 정렬
+	var yPos = (document.body.offsetHeight/2) - (h/2);
+	
+ 	window.open("openReviewList?PRODUCTID="+PRODUCTID, "_blank", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
+}
+
 </script>
 <body>
     <header>
@@ -57,12 +66,13 @@ function deleteProduct(PRODUCTID) {
     <table class="table">
     	<tr class="table-warning" style="font-weight: bolder;">
     		<td>상품 사진</td>
-    		<td>상품 ID</td>
+    		<td>ID</td>
     		<td>상품 이름</td>
     		<td>카테고리</td>
     		<td>상세설명</td>
     		<td>가격</td>
     		<td>재고수량</td>
+    		<td>action</td>
     		<td>action</td>
     	</tr>
     	<% 
@@ -74,11 +84,12 @@ function deleteProduct(PRODUCTID) {
     		<td><img src="resources/storeimages/<%=gDTO.getImage() %>.jpg" width="100" height="100"></td>
     		<td><%= gDTO.getPRODUCTID() %></td>
     		<td><%= gDTO.getPRODUCTNAME() %></td>
-    		<td style="width: 50px;"><%= gDTO.getCategory() %></td>
+    		<td style="width: 100px;"><%= gDTO.getCategory() %></td>
     		<td><%= gDTO.getContent() %></td>
     		<td><%= gDTO.getPrice() %></td>
     		<td><%= gDTO.getSTOCKQUANTITY() %></td>
-    		<td class="action2"><button class="btn btn-danger" onclick="deleteProduct(<%=gDTO.getPRODUCTID()%>)">상품 삭제</button></td>
+    		<td class="action2"><button class="btn btn-info" onclick="openReviewList(<%=gDTO.getPRODUCTID()%>)">리뷰</button></td>
+    		<td class="action2"><button class="btn btn-danger" onclick="deleteProduct(<%=gDTO.getPRODUCTID()%>)">삭제</button></td>
     	</tr>
     	<%} %>
     </table>

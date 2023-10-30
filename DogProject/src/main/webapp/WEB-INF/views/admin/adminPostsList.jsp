@@ -45,11 +45,31 @@
 	}
 </style>
 </head>
+<script type="text/javascript">
 
+function adminReviewList(PostID) {
+	var w = 700;
+	var h = 500;
+	var xPos = (document.body.offsetWidth/2) - (w/2); // 가운데 정렬
+	var yPos = (document.body.offsetHeight/2) - (h/2);
+	
+ 	window.open("adminCommentsList?PostID="+PostID, "_blank", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
+}
+
+function adminDeletePost(PostID) {
+	if (confirm("정말 "+PostID+"번 게시물을 삭제하겠습니까?") == true) {
+		location.href="adminDeletePost?PostID="+PostID;
+	}
+}
+
+</script>
 <body>
     <header>
         <h1 style="text-align: center; margin: 30px 0; ">게시물 목록 조회</h1>
     </header>
+    <div style="text-align: center; margin-bottom: 30px;">
+    	<a href="adminPage" >관리자페이지로 이동</a><br><br>
+	</div>
 <%
 	PageDTO pDTO= (PageDTO)request.getAttribute("pDTO");
 	String order= (String)request.getAttribute("order"); // 정렬에 필요한 변수

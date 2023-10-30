@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.dto.ChatMessageDTO;
 import com.example.dto.ChatRoomDTO;
+import com.example.dto.CommentsDTO;
 import com.example.dto.GoodsDTO;
+import com.example.dto.NoticeDTO;
 import com.example.dto.PageDTO;
+import com.example.dto.PostsDTO;
 import com.example.dto.RequestDTO;
+import com.example.dto.ReviewsDTO;
 import com.example.service.ChatService;
+import com.example.service.CommentsService;
 import com.example.service.GoodsService;
+import com.example.service.NoticeService;
 import com.example.service.PageService;
 import com.example.service.PostsService;
 import com.example.service.RequestService;
@@ -39,6 +45,13 @@ public class AdminController {
 	
 	@Autowired 
 	private PageService Pageservice;
+	
+	@Autowired
+	private CommentsService coService;
+	
+	@Autowired
+	private NoticeService nService;
+	
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -137,8 +150,24 @@ public class AdminController {
 		gService.delete(PRODUCTID);
 		return "redirect:/adminGoodsList";
 	}
-	//=================================================================
+	@GetMapping("/openReviewList")
+	public String openReviewList(String PRODUCTID, Model model) {
+		List<ReviewsDTO> rList = gService.selectReview(PRODUCTID);
+		model.addAttribute("rList",rList);
+		return "admin/adminReviewListForm";
+	}
 	
+	@GetMapping("/addReviewComment")
+	public String addReviewComment(int ReviewID) {
+		return "admin/addReviewComment";
+	}
+	@GetMapping("/adminAddReviewComment")
+	public String adminAddReviewComment(ReviewsDTO rDTO) {
+		gService.addReviewComment(rDTO);
+		return "admin/closeWindow";
+	}
+	//=================================================================
+
 	
 	//Posts============================================================
 	@GetMapping("/adminPostsList")
@@ -153,6 +182,62 @@ public class AdminController {
 		model.addAttribute("order", order);
 		/* System.out.println("all 최신 내림차순 정렬"+ pDTO); */
 		return "admin/adminPostsList";
+	}
+	
+	@GetMapping("/adminCommentsList")
+	public String adminCommentsList(int PostID, Model model) {
+		List<CommentsDTO> coList = coService.selectList(PostID);
+		model.addAttribute("coList", coList);
+		return "admin/adminCommentsList";
+	}
+	
+	@GetMapping("/adminDeletePost")
+	public String adminDeletePost(PostsDTO DTO, Model model) {
+		System.out.println(DTO);
+		pService.delete_column(DTO);
+		return "redirect:/adminPostsList";
+	}
+	
+	@GetMapping("/adminDeleteComment")
+	public String adminDeleteComment(CommentsDTO DTO, int PostID) {
+		coService.replydelete(DTO);
+		return "redirect:/adminCommentsList?PostID="+PostID;
+	}
+	
+	//=================================================================
+
+	//Notice============================================================
+	@GetMapping("/adminNoticeList")
+	public String adminNoticeList(Model model) {
+		List<NoticeDTO> nList = nService.selectList();
+		model.addAttribute("nList",nList);
+		return "admin/adminNoticeList";
+	}
+
+	@GetMapping("/adminDeleteNotice")
+	public String adminDeleteNotice(Model model, int NoticeID) {
+		nService.delete(NoticeID);
+		return "redirect:/adminNoticeList";
+	}
+
+	@GetMapping("/adminUpdateNoticeForm")
+	public String adminUpdateNoticeForm(Model model, int NoticeID) {
+		return "admin/adminUpdateNoticeForm";
+	}
+	@GetMapping("/adminUpdateNotice")
+	public String adminUpdateNotice(Model model, NoticeDTO nDTO) {
+		nService.update(nDTO);
+		return "admin/closeWindow";
+	}
+	
+	@GetMapping("/adminAddNoticeForm")
+	public String adminAddNoticeForm(NoticeDTO nDTO) {
+		return "admin/adminAddNoticeForm";
+	}
+	@GetMapping("/adminAddNotice")
+	public String adminAddNotice(NoticeDTO nDTO) {
+		nService.insert(nDTO);
+		return "admin/closeWindow";
 	}
 	
 	//=================================================================
