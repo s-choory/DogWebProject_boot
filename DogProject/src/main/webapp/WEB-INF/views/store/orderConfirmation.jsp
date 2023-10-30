@@ -290,11 +290,11 @@ if(odto.getPayMethod().equals("무통장입금")){ %>
 		<div class="order_middle_box2_goodstotal2">총 결제금액 : <%= odto.getTotalPrice() %>원</div>
 	</div>
 	<div class="order_middle_box3">
-		<div class="order_middle_box3_title">주문자 정보</div>
+		<div class="order_middle_box3_title">배송지 정보</div>
 		<div class="order_middle_box3_data2"><%= odto.getUserName() %>, <%= odto.getPhoneNumber() %></div>
 		<div class="order_middle_box3_data2">(<%= odto.getPostNumber() %>) <%= odto.getRodeAddress() %> <%= odto.getDetailAddress() %>,</div>
 		<div class="order_middle_box3_data2"><%= odto.getHouseAddress() %> <%= odto.getDetailAddress() %></div>
-		<div class="order_middle_box3_title" style="padding-top:20px;">결제수단</div>
+		<div class="order_middle_box3_title" style="padding-top:20px;">결제정보</div>
 		<% if(odto.getPayMethod().equals("무통장입금")){ %>
 		<div class="order_middle_box3_data2"><%=odto.getPayMethod() %>(<%=odto.getOrderState()%>)</div>
 			<% if(odto.getOrderState().equals("입금대기")){ %>

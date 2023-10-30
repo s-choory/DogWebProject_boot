@@ -313,6 +313,7 @@ body {
 							</div>
 						</div>
 						<hr class="mb-4">
+						<h4 class="mb-3">결제 수단</h4>
 						<input type="radio" name="PayMethod" class="payChoice" id="creditCard" value="신용카드" checked> 신용카드
 						<input type="radio" name="PayMethod" class="payChoice" id="kakaoPay" value="토스페이"> 토스페이
 						<input type="radio" name="PayMethod" class="payChoice" id="bankTransfer" value="무통장입금"> 무통장입금
