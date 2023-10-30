@@ -26,4 +26,15 @@ public class RequestService {
 		return dao.UserAllSelectList(rdto);
 	}
 	
+	public List<RequestDTO> adminSelectList() {
+		return dao.adminSelectList();
+	}
+	public List<RequestDTO> adminSelectList2() {
+		return dao.adminSelectList2();
+	}
+
+	public void replyRecontent(RequestDTO rDTO) {
+		dao.replyRecontent(rDTO);
+	}
+	
 }
