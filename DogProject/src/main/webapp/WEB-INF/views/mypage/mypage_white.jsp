@@ -28,8 +28,9 @@
 		position: relative;
 		top: 50px;
 		left: 50px;
+		margin-left:17%;
 		
-		padding-left: 15%;
+		padding-left: 5%;
 		padding-right: 15%;
 		border: 1px solid #ccc; /* 테두리 추가 */
 		border-radius: 5px;
@@ -342,9 +343,10 @@ td {
     color: #fff; /* 호버 시 텍스트 색상을 #fff(흰색)으로 변경 */
 }
 	.userxx{
-		padding:0 30px 30px 30px;
+		padding:0 0 30px 30px;
 	}
 	.dogxx{
+		margin-top:20px;
 		padding:30px 30px 0 30px;
 	}
 	
@@ -699,7 +701,7 @@ td {
 						이메일&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email1"
 							value="<%=Email1%>" disabled>@<input type="text"
 							id="<%=Email2%>" value="naver.com" disabled><Br>
-						주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+						주소 &nbsp;&nbsp; <input type="text"
 							id="address" value="<%=RodeAddress%>" disabled><Br>
 					</div>
 				</div>
