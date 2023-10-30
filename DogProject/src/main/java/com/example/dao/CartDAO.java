@@ -22,6 +22,10 @@ public class CartDAO {
 	public List<CartDTO> cartList(String UserID) {
 		return session.selectList("CartMapper.cartList",UserID);
 	}
+	
+	public List<CartDTO> cartListAfter(String UserID) {
+		return session.selectList("CartMapper.cartListAfter",UserID);
+	}
 
 	public void delCart(String CartNum) {
 		session.delete("CartMapper.delCart", CartNum);

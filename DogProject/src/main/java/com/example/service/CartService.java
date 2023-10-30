@@ -23,6 +23,10 @@ public class CartService {
 	public List<CartDTO> cartList(String UserID){
 		return dao.cartList(UserID);
 	}
+	
+	public List<CartDTO> cartListAfter(String UserID){
+		return dao.cartListAfter(UserID);
+	}
 
 	public void delCart(String CartNum) {
 		dao.delCart(CartNum);

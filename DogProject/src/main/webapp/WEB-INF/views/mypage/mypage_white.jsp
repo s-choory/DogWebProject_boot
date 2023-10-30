@@ -97,7 +97,7 @@
 	}
 	
 	#address {
-		 width: 250px; /* 주소 입력란 너비 */
+		 width: 300px; /* 주소 입력란 너비 */
 		 border: none;
 		 background-color: transparent;
 	}
@@ -177,7 +177,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	width: 45%;
+	width: 70%;
 	display: flex;
 	margin-right: 4%;
 	margin-bottom: 20px; /* 각각의 div 간격 띄우기 */
@@ -201,7 +201,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	width: 45%;
+	width: 400px;
 	display: inline-block;
 	margin-right: 4%;
 }
@@ -347,6 +347,7 @@ td {
 	.dogxx{
 		padding:30px 30px 0 30px;
 	}
+	
 /* post 부분 끝 */
 
 
@@ -721,7 +722,7 @@ td {
 							<div id="modal-contents">
 								<button id="close"
 									style="color: white-space; background-color: red;">닫기&times;</button>
-								<h1 id="title">my profile</h1>
+								<h1 id="title" style="font-weight: bold;">내 정보</h1>
 								<div id="profil">
 									<!-- 이미지 변경 폼 들어갈 부분 -->
 									<form id="profil-img-form" action="profil-img" method="post"
@@ -770,12 +771,12 @@ td {
 													이메일:<input type="text" id="Email1-2" name="Email1"
 														value="<%=Email1%>" placeholder="직접 입력해주세요.">@ <input
 														type="text" id="Email2-2" name="Email2"
-														value="<%=Email2%>"> <select name="select_email"
-														id="select_email" onchange="input_email();">
-														<option value="daum.net">daum.net</option>
-														<option value="naver.com">naver.com</option>
-														<option value="google.com">google.com</option>
-													</select>
+														value="<%=Email2%>"> <select name="select_email" id= "select_email" onchange="input_email();">
+											            <option value="daum.net">daum.net</option>
+											            <option value="naver.com">naver.com</option>
+											            <option value="google.com">google.com</option>
+											        </select>
+
 												</p>
 												<p class="user">
 													주소: <input type="text" id="sample4_postcode" name="Post"
@@ -888,14 +889,14 @@ td {
 					<div id="shoppingbasket2">
 						<div>
 							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
-								width="200px" height="200px;" style="float: left;"
+								width="400px" height="400px;" style="float: left;"
 								id="image<%=i%>" />
 						</div>
 						<div class="shoppingbasket_info">
-							<table>
+							<table style="width: 35%; height: 400px;">
 								<colgroup>
-									<col style="width: 35%">
-									<col style="width: 65%">
+									<col style="width: 35%; height: 400px;">
+									<col style="width: 65%; height: 400px;">
 								</colgroup>
 
 								<tr>
@@ -945,9 +946,9 @@ td {
 				<!-- 주문list 시작 -->
 				<div id="orderlist">
 					<%
-						List<CartDTO> orderlist_after = (List<CartDTO>) request.getAttribute("list");
-						for (int i = 0; i < list.size(); i++) {
-							CartDTO cart = list.get(i);
+						List<CartDTO> orderlist_after = (List<CartDTO>) request.getAttribute("list3");
+						for (int i = 0; i < orderlist_after.size(); i++) {
+							CartDTO cart = orderlist_after.get(i);
 							if ("after".equals(cart.getOrderState())) { // OrderState가 "after"인 경우에만 실행
 								int num = cart.getCartNum();
 								String UserID = cart.getUserID();
@@ -1164,8 +1165,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
  // 모달창 이메일 부분 
 	function input_email(){
-    	document.getElementById("Email2").value=document.getElementById("select_email").value; 
-    }
+        	document.getElementById("Email2-2").value=document.getElementById("select_email").value; 
+        }
 </script>
 </body>
 </html>

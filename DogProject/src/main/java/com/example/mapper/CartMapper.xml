@@ -24,6 +24,10 @@
 	SELECT * FROM CART WHERE UserID = #{UserID} and OrderState = 'before'
 </select>
 
+<select id="cartListAfter" parameterType="string" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderState = 'after'
+</select>
+
 <delete id="delCart" parameterType="string">
 	DELETE FROM CART WHERE CartNum = #{CartNum}
 </delete>
