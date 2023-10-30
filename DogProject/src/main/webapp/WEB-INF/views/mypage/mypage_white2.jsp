@@ -1,6 +1,3 @@
-<%@page import="java.util.regex.Pattern"%>
-<%@page import="java.util.regex.Matcher"%>
-<%@page import="java.time.LocalDateTime"%>
 <%@page import="com.example.dto.PageDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.example.dto.PostsDTO"%>
@@ -1031,44 +1028,28 @@ td {
 	String order= (String)request.getAttribute("order"); // 정렬에 필요한 변수	%>
 	
 <!-- 게시물 jsp로 반복문 돌리기 -->	
- <%
-    LocalDateTime sysdate = LocalDateTime.now();
-    List<PostsDTO> post = pDTO.getList();
-    if (post != null && !post.isEmpty()) {
-    for(int i=1;i<=post.size();i++){ 
-    	/* 만약 메인에서 포스트가 안불러와진다면 PostMapper.popular에서 INTERVAL 옵션이 있는데, 몇일 전 올린 게시물만 띄울 지 조정가능*/
-    	PostsDTO dto2 = post.get(i-1);
-    	int postid=dto2.getPostID();
-    	String authorid=dto2.getAuthorID();
-    	String title=dto2.getTitle();
-    	String post_content=dto2.getContent();
-    	String textOnly =  post_content.replaceAll("<[^>]+>", "");
-    	String previewText = textOnly.substring(0, Math.min(textOnly.length(), 50)) + (textOnly.length() > 50 ? "..." : "");
-    	int likes = dto2.getLikes();
-   		String category= dto2.getCategory();
-   		String postimage=dto2.getImage();
-   		String CreationTime = dto2.getCreationTime();
-   		String defaultimage="resources/default.png";
-   	/* 	LocalDateTime creationtime = dto.getCreationtime();
-   		Duration durationtime = Duration.between(creationtime,sysdate);
-   		long differenceInHours=durationtime.toHours(); */
-   		Pattern pattern = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
-        Matcher matcher = pattern.matcher(post_content);
-        if (matcher.find()) {
-            postimage = matcher.group(1);
-     }
-   		if (postimage==null) postimage=defaultimage;
- %>
+ <% 
+	List<PostsDTO> list2 = pDTO.getList();
+
+ 	for(int i = 0; i<list2.size(); i++){
+ 		
+	PostsDTO pdto= list2.get(i);
+	String Title= pdto.getTitle();
+	String Content= pdto.getContent();
+	String Category= pdto.getCategory();
+	int Likes= pdto.getLikes();
+	String CreationTime= pdto.getCreationTime();
+	%> 
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
             <div class="post">
-                <img src="<%=postimage%>" id="게시물 1" class="post-img">
+                <img src="resources/a.jpg" id="게시물 1" class="post-img">
                 <div class="post-content">
-                    <h3><%=title %></h3><!-- 타이틀 -->
-                    <p><%=previewText %></p><!-- 내용 -->
+                    <h3><%=Title %></h3><!-- 타이틀 -->
+                    <p><%=Content %></p><!-- 내용 -->
                     <div class="post-info">
                         <div class="post-meta">
-                            <span class="like">좋아요❤️<%=likes%><span id="Like"></span></span>
+                            <span class="like">좋아요❤️<%=Likes %><span id="Like"></span></span>
                             <span class="comment">댓글<span id="Comment"></span></span>
                         </div>
                         <span class="post-time"><%=CreationTime %></span> <!-- 시간 표시 태그 -->
@@ -1077,7 +1058,7 @@ td {
             </div>
         </section>
     </div>
-<% } }%>
+<%} %>
     <br>
 
 <div class="page">
