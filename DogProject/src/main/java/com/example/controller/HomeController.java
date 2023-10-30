@@ -64,7 +64,6 @@ public class HomeController {
 	//마이페이지
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model, String curPage, PageDTO pDTO, PageDAO dao ,HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("mypage 호출됨");
 
 		UsersDTO user = (UsersDTO)session.getAttribute("User");
 		if(user == null) {
@@ -189,26 +188,6 @@ public class HomeController {
 		return "redirect:/mypage";
 	}
 		
-		
-	
-	
-	/* group */
-	//모임생성
-	@RequestMapping(value = "/meeting_create", method = RequestMethod.GET)
-	public String meeting_create(Locale locale, Model model) {
-		return "group/meeting_create";
-	}
-	//모임목록
-	@RequestMapping(value = "/MoIm", method = RequestMethod.GET)
-	public String MoIm(Locale locale, Model model) {
-		return "group/MoIm";
-	}
-	//모임상세화면
-	@RequestMapping(value = "/MoIm2", method = RequestMethod.GET)
-	public String MoIm2(Locale locale, Model model) {
-		return "group/MoIm2";
-	}
-	
 	
 //	/* customer_center*/
 //	//고객센터QnA
@@ -223,7 +202,7 @@ public class HomeController {
 //	}
 	
 	
-	//인덱스페이지
+	//메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 		List<GoodsDTO> random=gservice.random();

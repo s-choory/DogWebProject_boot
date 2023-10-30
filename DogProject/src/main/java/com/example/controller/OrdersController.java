@@ -135,7 +135,6 @@ public class OrdersController {
 			
 			@RequestMapping(value = "/requestSave")
 			public String requestSave(HttpSession session, RequestDTO dto) {
-				System.out.println("requestSave 호출 : "+ dto);
 				rService.AddRequest(dto);
 				RequestDTO rdto = new RequestDTO();
 				rdto.setUserid(dto.getUserid());

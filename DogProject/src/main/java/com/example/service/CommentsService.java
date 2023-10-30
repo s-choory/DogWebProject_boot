@@ -36,7 +36,6 @@ public class CommentsService {
 	
 	
 	public void replyinsert(CommentsDTO dto) {
-		System.out.println("ss");
 		dao.replyinsert(dto);
 	}
 	
