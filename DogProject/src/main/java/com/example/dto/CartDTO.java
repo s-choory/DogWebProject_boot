@@ -1,9 +1,11 @@
 package com.example.dto;
 
+import java.io.Serializable;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("Cart")
-public class CartDTO {
+public class CartDTO implements Serializable{
 
 	private int CartNum;
 	private String UserID;

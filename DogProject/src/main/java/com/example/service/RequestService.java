@@ -22,6 +22,7 @@ public class RequestService {
 		return dao.UserOrderSelectList(rdto);
 	}
 
+<<<<<<< HEAD
 	public List<RequestDTO> adminSelectList() {
 		return dao.adminSelectList();
 	}
@@ -32,5 +33,11 @@ public class RequestService {
 	public void replyRecontent(RequestDTO rDTO) {
 		dao.replyRecontent(rDTO);
 	}
+=======
+	public List<RequestDTO> UserAllSelectList(RequestDTO rdto) {
+		return dao.UserAllSelectList(rdto);
+	}
+
+>>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 	
 }
