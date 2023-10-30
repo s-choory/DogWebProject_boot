@@ -69,7 +69,6 @@ public class CkeditorFileUploadController {
 						json.addProperty("uploaded", 1);
 						json.addProperty("fileName", fileId);
 						json.addProperty("url", ckfileUrl);
-						System.out.println("json이요~"+json);
 						printWriter.println(json);
 					} catch (IOException e) {
 						e.printStackTrace();

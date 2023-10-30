@@ -37,7 +37,6 @@ public class PostsService {
 	}
 	
 	public PostsDTO read(int PostID) {
-		System.out.println("ss");
 		return dao.read(PostID);
 	}
 	

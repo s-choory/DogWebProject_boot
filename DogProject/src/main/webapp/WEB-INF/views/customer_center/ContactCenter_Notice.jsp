@@ -10,6 +10,7 @@
 <html>
 <head>
 <title>고객센터/문의하기</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <!-- <link rel="stylesheet" href="resources/css2/CC.css"> -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"

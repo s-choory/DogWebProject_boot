@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
 	body {

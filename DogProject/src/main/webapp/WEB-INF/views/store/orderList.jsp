@@ -14,6 +14,7 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <style>
 body {
 	    margin: 0;
@@ -221,11 +222,9 @@ body {
     padding: 10px 0px;
     border-radius: 5px;
 }
-<<<<<<< HEAD
 body {
 	margin: 0;
 }
-=======
  .no-data{
     	display: flex;
     	justify-content: center;
@@ -237,7 +236,6 @@ body {
     	font-family: 'Hi-melody', sans-serif;
     	font-weight: bolder;
     }
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

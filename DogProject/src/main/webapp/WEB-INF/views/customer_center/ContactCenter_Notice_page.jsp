@@ -8,6 +8,7 @@
 <html>
 <head>
 <title>고객센터/문의하기</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <!-- <link rel="stylesheet" href="resources/css2/CC.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

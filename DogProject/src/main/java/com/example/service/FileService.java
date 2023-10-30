@@ -23,7 +23,6 @@ public class FileService {
 	}
 	
 	public void update(FileDTO fileDto) {
-		System.out.println("업데이터 됨");
 		dao.update(fileDto);
 		
 	}

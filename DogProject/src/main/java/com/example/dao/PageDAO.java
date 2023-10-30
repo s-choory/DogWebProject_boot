@@ -47,8 +47,6 @@ public class PageDAO {
 		int offset = (curPage - 1) * perPage;
 		List<PostsDTO> list =  session.selectList("PostsMapper.selectSearch" , map , new RowBounds(offset, perPage));
 		//레코드 시작 번호, 읽어올 갯수 
-		System.out.println("list이다~==========="+list);
-		System.out.println("list이다~==========="+list.size());
 		
 		pDTO.setCurPage(curPage);//현재 페이지번호
 		pDTO.setList(list);//페이지 에 해당 데이터
@@ -81,13 +79,13 @@ public class PageDAO {
 			int offset = (curPage - 1) * perPage;
 			
 			String order = map.get("order");
-			System.out.println("================================\n 좋아요누른글 이어야 함:"+order);
+//			System.out.println("================================\n 좋아요누른글 이어야 함:"+order);
 		    List<PostsDTO> list;
 		    if (order.equals("내가 쓴 글")) {
-		    	System.out.println("PAGEDAO부분>> 내가 쓴  글, ORDER2 실행 ");
+//		    	System.out.println("PAGEDAO부분>> 내가 쓴  글, ORDER2 실행 ");
 		        list = session.selectList("PostsMapper.selectOrder2", map, new RowBounds(offset, perPage));
 		    } else if (order.equals("좋아요 누른 글")) {
-		    	System.out.println("PAGEDAO부분>> 좋아요 누른 글, ORDER3 실행 ");
+//		    	System.out.println("PAGEDAO부분>> 좋아요 누른 글, ORDER3 실행 ");
 		    	list = session.selectList("PostsMapper.selectOrder3", map, new RowBounds(offset, perPage));
 		    } else {
 		        // 기본적으로 어떤 쿼리를 실행할지 정의해야 합니다.

@@ -33,14 +33,6 @@
     int endPage = startPage + perBlock - 1;
     if ( endPage > totalNum ) endPage = totalNum;
     
-/*     System.out.println("curBlock"+curBlock);
-    System.out.println("startPage"+startPage);
-    System.out.println("endPage"+endPage);
-    System.out.println("curPage"+curPage);
-    System.out.println("perPage"+perPage);
-    System.out.println("totalNum"+totalNum); */
-    
- // 페이지번호 출력 시작
 
     // 1. 첫 페이지로 바로 이동
     if ( curPage == 1 )

@@ -12,6 +12,7 @@ List<RequestDTO> rlist = (List<RequestDTO>)session.getAttribute("request_SelectL
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <style>
 body {

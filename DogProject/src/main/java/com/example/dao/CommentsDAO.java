@@ -27,7 +27,6 @@ public class CommentsDAO {
 	}
 	
 	public List<CommentsDTO> replylist(int PostID){
-		System.out.println("=====");
 		return session.selectList("CommentsMapper.replylist", PostID);
 	}
 	

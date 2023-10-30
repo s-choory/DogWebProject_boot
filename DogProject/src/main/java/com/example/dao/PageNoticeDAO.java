@@ -19,7 +19,7 @@ public class PageNoticeDAO {
 	
 	// 카테고리 total값 계산
 	public int totalCount(HashMap<String, String> map) {
-		System.out.println("NoticeDAO totalCount>>>>>>"+ map.toString());	
+//		System.out.println("NoticeDAO totalCount>>>>>>"+ map.toString());	
 		return session.selectOne("NoticeMapper.totalCount", map);
 	}
 	
@@ -33,13 +33,13 @@ public class PageNoticeDAO {
 		pnDTO.setCurPage(curPage);//현재 페이지번호
 		pnDTO.setNlist(nlist);//페이지 에 해당 데이터
 		pnDTO.setTotalCount(totalCount(map));//전체 레코드 갯수 저장
-		System.out.println("pagedao에서 넘어옴+++"+pnDTO);
+//		System.out.println("pagedao에서 넘어옴+++"+pnDTO);
 		return pnDTO;
 	}
 	
 	// 검색조건 total값 계산
 	public int selectTotalCount(HashMap<String, String> map) {
-		System.out.println("NoticeDAO selecttotalCount>>>>>>"+ map.toString());	
+//		System.out.println("NoticeDAO selecttotalCount>>>>>>"+ map.toString());	
 		return session.selectOne("NoticeMapper.selectTotalCount", map);
 	}
 	
@@ -53,7 +53,7 @@ public class PageNoticeDAO {
 		pnDTO.setCurPage(curPage);//현재 페이지번호
 		pnDTO.setNlist(nlist);//페이지 에 해당 데이터
 		pnDTO.setTotalCount(selectTotalCount(map));//전체 레코드 갯수 저장
-		System.out.println("selectSearch에서 넘어옴"+pnDTO);
+//		System.out.println("selectSearch에서 넘어옴"+pnDTO);
 		return pnDTO;
 	}
 	
