@@ -3,7 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<style type="text/css">
+	body{
+		margin:0;
+	}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type=text/javascript charset=utf-8 src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -118,7 +122,7 @@ $(function () {
 
 <br>
 </body>
-<jsp:include page = "../common/footer.jsp" flush="true"/><br>
+<jsp:include page = "../common/footer.jsp" flush="true"/>
 
 
 </html>

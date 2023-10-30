@@ -14,8 +14,8 @@
 	String search=(String)request.getAttribute("search");
 	String order= (String)request.getAttribute("order");
 	
-	/* if(search==null){search="";} */
-	/* if(order==null){order="";} */
+	if(search==null){search="";}
+    if(order==null){order="";}
 	
 	
 	int perBlock = pdto.getPerBlock();

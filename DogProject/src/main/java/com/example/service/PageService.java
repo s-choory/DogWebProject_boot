@@ -17,14 +17,17 @@ public class PageService {
 	public PageDTO selectAll(int curPage, String search, PageDTO pDTO, String order) {
 		HashMap<String, String> map = new HashMap<>();
 		if (search != null) {
-		map.put("search", search);
+			map.put("search", search);
+			System.out.println("1거친다");
 		}
 		if (order != null) {
-		map.put("order", order);
-		// 카테고리별 정렬 함수
-		return dao.selectOrder(map, curPage, pDTO);
+			map.put("order", order);
+			// 카테고리별 정렬 함수
+			System.out.println("2거친다");
+			return dao.selectOrder(map, curPage, pDTO);
 		}
 		// 검색조건별 정렬함수
+
 		return dao.selectSearch(map, curPage, pDTO);
 	}
 	

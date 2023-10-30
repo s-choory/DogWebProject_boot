@@ -1,6 +1,8 @@
 package com.example.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +58,14 @@ public class PostsDAO {
 		return session.update("PostsMapper.Posts_delete", DTO);
 			
 	}
-}
+
+	public void likeUpdate(String Likes, String postID) {
+		Map<String, String> map = new HashMap<>();
+		map.put("Likes", Likes);
+		map.put("PostID", postID);
+		System.out.println(map);
+		int n = session.update("PostsMapper.likeUpdate",map);
+		System.out.println("찍혀라"+n);
+	}
+	
+} // end

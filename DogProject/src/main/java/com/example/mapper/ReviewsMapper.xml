@@ -35,7 +35,7 @@
         null
       </otherwise>
     </choose>
-    , 'undeleted', null
+    , 'undeleted', null, null
   )
 </insert>
 
@@ -50,4 +50,9 @@
 <select id="reviewUserImg" resultType="Users">
 	select * from users where UserAlias = #{UserAlias}
 </select>
+
+<update id="addReviewComment" parameterType="Reviews">
+	UPDATE REVIEWS SET rComment = #{rComment} where ReviewID = #{ReviewID}
+</update>
+
 </mapper>                

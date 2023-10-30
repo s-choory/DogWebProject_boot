@@ -76,5 +76,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<!--  관리자 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM notices where NoticeID=#{NoticeID}
+	</delete>
+	
+	<update id="update" parameterType="Notice">
+		Update notices set Title=#{Title}, Content=#{Content} where NoticeID=#{NoticeID}
+	</update>
+	
+	<insert id="insert" parameterType="Notice">
+		INSERT INTO notices values(NOTICES_NOTICEID_SEQ.nextval, #{Title}, #{Content}, sysdate, 0)
+	</insert>
+	<!--  end. 관리자 -->
 	
 </mapper>

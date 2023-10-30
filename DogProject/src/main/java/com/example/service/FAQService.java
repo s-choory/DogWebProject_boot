@@ -16,6 +16,17 @@ public class FAQService {
 	public List<FAQDTO> list(){
 		return dao.list();
 	}
-	
+
+	public void insert(FAQDTO fDTO) {
+		dao.insert(fDTO);
+	}
+
+	public void update(FAQDTO fDTO) {
+		dao.update(fDTO);
+	}
+
+	public void delete(int FaqID) {
+		dao.delete(FaqID);
+	}
 
 }

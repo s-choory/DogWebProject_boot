@@ -305,7 +305,7 @@
 <div class="Logo"><img src="${pageContext.request.contextPath}/resources/img/dog/Logo_Sample.png"></div>
 
 <div class="fixed-sidebar" style="top:450px;">
-   <button id="addpost-button" class="scroll-button" onclick="location.href='addPost'">글쓰기+</button>
+   <button id="addpost-button" class="scroll-button" onclick="location.href='/app/addPost'">글쓰기+</button>
 </div>
 
 <span class="addObject">
@@ -325,7 +325,7 @@
 </span><br>
 
 	<!-- 카테고리별 select 기능구현  -->
-	<form action="/app/community/">
+	<form action="/app/community">
 <div class = "categories" >
 	<div id= "cButtin">
 	<input type="submit" name = "order" value="All"> &nbsp;&nbsp;
@@ -367,8 +367,11 @@
 	String Category= dto.getCategory();
 	int Likes= dto.getLikes();
 	String CreationTime= dto.getCreationTime();
+	String PostType = dto.getPostType();
 	
 	%> 
+	
+	<%if (PostType.equals("undeleted")) {%>  <!-- 컬럼명이 'undeleted'인 경우 출력 -->
 	<div class="t-container">
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
@@ -377,13 +380,18 @@
                 <img src="<%=postimage%>" id="게시물 1">
                 </a>
                 <div class="post-content">
-                		<div class="post_title">
-                		<a href="post?PostID=<%=postid%>">
-                    		<%=Title %><!-- 타이틀 -->
-                    	</a>	
-                		</div>
+                <%if (PostType.equals("deleted")) {%>
+                <div class="post_title">
+				<a href="/app/post?PostID=<%= postid %>&curPage=${pDTO.curPage}">삭제된 게시물입니다.</a>
+				<!-- 타이틀 -->
+				</div>	
+				 <%} else if (PostType.equals("undeleted")){%>
+				 <div class="post_title">
+				<a href="/app/post?PostID=<%= postid %>&curPage=${pDTO.curPage}"><%= Title %></a><!-- 타이틀 -->
+				</div>	
+				<% } %>	
                 		<div class="post_content">
-                		<a href="post?PostID=<%=postid%>">
+                		<a href="/app/post?PostID=<%=postid%>">
                     		<p><%=previewText %></p><!-- 내용 -->
                     	</a>	
                 		</div>
@@ -399,16 +407,15 @@
         </section>
     </div>
  </div>
-<%
- 	}
- 		%>
- 	
+<%}%>
+<%}%>
+
 <br>
 <% if(list.isEmpty()){
 
 	%>	
  	<div class="no-data">
-    	<div><img src="../resources/img/dog/nodata.png" alt="No Results Found"></div><br>
+    	<div><img src="${pageContext.request.contextPath}/resources/img/dog/nodata.png" alt="No Results Found"></div><br>
     	<div><p>검색 결과가 없습니다</p></div>
 	</div>
 	

@@ -97,5 +97,17 @@ public class GoodsService {
 	public int CartCount(String userID) {
 		return dao.CartCount(userID);
 	}
+
+	public void insert(GoodsDTO gDTO) {
+		dao.insert(gDTO);
+	}
+
+	public void delete(int PRODUCTID) {
+		dao.delete(PRODUCTID);
+	}
+
+	public void addReviewComment(ReviewsDTO rDTO) {
+		dao.addReviewComment(rDTO);
+	}
 	
 }

@@ -19,10 +19,24 @@ public class ReviewsDTO {
 	
 	private String ReviewType;
 	private byte[] USERIMG;
+	private String rComment;
 	
 	
+	public String getrComment() {
+		return rComment;
+	}
+	public void setrComment(String rComment) {
+		this.rComment = rComment;
+	}
+	@Override
+	public String toString() {
+		return "ReviewsDTO [ReviewID=" + ReviewID + ", OrderID=" + OrderID + ", ProductID=" + ProductID + ", UserAlias="
+				+ UserAlias + ", CreationTime=" + CreationTime + ", Rating=" + Rating + ", ReviewContent="
+				+ ReviewContent + ", rImg=" + rImg + ", rThumbImg=" + rThumbImg + ", ReviewType=" + ReviewType
+				+ ", USERIMG=" + Arrays.toString(USERIMG) + ", rComment=" + rComment + "]";
+	}
 	public ReviewsDTO(int reviewID, int orderID, int productID, String userAlias, String creationTime, double rating,
-			String reviewContent, String rImg, String rThumbImg, String reviewType, byte[] uSERIMG) {
+			String reviewContent, String rImg, String rThumbImg, String reviewType, byte[] uSERIMG, String rComment) {
 		super();
 		ReviewID = reviewID;
 		OrderID = orderID;
@@ -35,13 +49,7 @@ public class ReviewsDTO {
 		this.rThumbImg = rThumbImg;
 		ReviewType = reviewType;
 		USERIMG = uSERIMG;
-	}
-	@Override
-	public String toString() {
-		return "ReviewsDTO [ReviewID=" + ReviewID + ", OrderID=" + OrderID + ", ProductID=" + ProductID + ", UserAlias="
-				+ UserAlias + ", CreationTime=" + CreationTime + ", Rating=" + Rating + ", ReviewContent="
-				+ ReviewContent + ", rImg=" + rImg + ", rThumbImg=" + rThumbImg + ", ReviewType=" + ReviewType
-				+ ", USERIMG=" + Arrays.toString(USERIMG) + "]";
+		this.rComment = rComment;
 	}
 	public byte[] getUSERIMG() {
 		return USERIMG;
@@ -114,4 +122,5 @@ public class ReviewsDTO {
 	public void setReviewContent(String reviewContent) {
 		ReviewContent = reviewContent;
 	}
+
 }

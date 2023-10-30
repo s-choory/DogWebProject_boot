@@ -137,7 +137,29 @@
     	padding: 10px;
     	width: 1100px;
     	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: auto; /* 스크롤 가능하도록 오버플로 속성 설정 */
 	}
+	.product_container::-webkit-scrollbar {
+   	 width: 18px; /* 스크롤 바의 너비 */
+	}
+	
+	.product_container::-webkit-scrollbar-thumb {
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+	    border-radius: 5px; /* 스크롤 바의 둥근 모서리 */
+	}
+
+	.product_container::-webkit-scrollbar-track {
+   	 	border-radius: 5px;
+		background-color: #f7f8fa
+	}   
+ 
+	.link-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 50px;
+    }
+	
 	.productList {
         display: inline-block;	/*한줄로 나열*/
         width: 15%;
@@ -317,7 +339,7 @@
 </div>
 
 <div class="pro-big">
-<div class="product_container" style="margin-left: 5%; margin-right: 5%; white-space: nowrap; overflow: auto;  ">
+<div class="product_container" style="margin-left: 5%; margin-right: 5%; white-space: nowrap; ">
     <section class="product">
     <%
     List<GoodsDTO> list = (List<GoodsDTO>)request.getAttribute("random");

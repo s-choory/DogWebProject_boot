@@ -48,4 +48,8 @@ public class PostsService {
 	public int delete_column(PostsDTO DTO) {
 		return dao.delete_column(DTO);
 	}
+
+	public void likeUpdate(String n, String postID) {
+		dao.likeUpdate(n, postID);
+	}
 }// end class

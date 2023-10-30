@@ -70,5 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM COMMENTS WHERE COMMENTID = #{COMMENTID} AND AUTHORID = #{AUTHORID} AND POSTID = #{POSTID}
 	</delete>  -->
 	
+	<select id="selectList" parameterType="int" resultType="Comments">
+		select * from comments where PostID = #{PostID}
+	</select>
     
 </mapper>

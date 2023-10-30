@@ -207,13 +207,13 @@
  
         });
     </script>
-     <style>
+     <!-- <style>
     #calendar {
             max-width: 1100px;
             margin: 40px auto;
             padding: 0 10px;
         }
-    </style> 
+    </style> -->
     
 <title>MyCalendar</title>
 </head>

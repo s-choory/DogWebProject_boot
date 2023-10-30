@@ -32,7 +32,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <body>
 <%List<ChatMessageDTO> list = (List<ChatMessageDTO>)request.getAttribute("mList");  %>
-<h1 style="margin-top:20px; text-align: center;"> <%= list.get(0).getRoomId() %>번방 채팅 내역</h1>
+<% if (list != null && !list.isEmpty()) { %>
+    <h1 style="margin-top:20px; text-align: center;"><%= list.get(0).getRoomId() %>번방 채팅 내역</h1>
+<% } else { %>
+    <h1 style="margin-top:20px; text-align: center;">채팅 없음</h1>
+<% } %>
 
     <div class="table-container table-bordered">
     <table class="table">

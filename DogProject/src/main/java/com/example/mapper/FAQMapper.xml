@@ -7,5 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   select * from FAQs order by 1
 	</select>
 	
-
+	<insert id="insert" parameterType="FAQ">
+		insert into FAQs values(FAQS_FAQID_SEQ.nextval,#{Title}, #{Content})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM FAQs where FaqID=#{FaqID}
+	</delete>
+	
+	<update id="update" parameterType="FAQ">
+		Update FAQs set Title=#{Title}, Content=#{Content} where FaqID=#{FaqID}
+	</update>
+	
 </mapper>
