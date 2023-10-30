@@ -71,6 +71,8 @@ public class HomeController {
 		}
 		List<CartDTO> list = cartservice.cartList(user.getUserID());
 		model.addAttribute("list",list);
+		List<CartDTO> list3 = cartservice.cartListAfter(user.getUserID());
+		model.addAttribute("list3",list3);
 		
 		// 글쓰기 정보들도 jsp로 같이 넘겨줌 + 페이징 
 		String UserID = user.getUserID(); //로그인한 유저의 ID 
