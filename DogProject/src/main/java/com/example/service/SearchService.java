@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.SearchDAO;
 import com.example.dto.AccompanyingFacilitiesDTO;
+import com.example.dto.CommentsDTO;
 import com.example.dto.GoodsDTO;
 import com.example.dto.LikeDTO;
 import com.example.dto.NoticeDTO;
@@ -47,6 +48,11 @@ public class SearchService {
 
 	public List<ReviewsDTO> Review_search() {
 		return dao.Review_search();
+	}
+
+
+	public List<CommentsDTO> Comments_search() {
+		return dao.Comments_search();
 	}
 	
 	

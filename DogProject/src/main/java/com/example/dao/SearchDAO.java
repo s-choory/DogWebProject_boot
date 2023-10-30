@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.AccompanyingFacilitiesDTO;
+import com.example.dto.CommentsDTO;
 import com.example.dto.GoodsDTO;
 import com.example.dto.LikeDTO;
 import com.example.dto.NoticeDTO;
@@ -41,6 +42,10 @@ public class SearchDAO {
 
 	public List<ReviewsDTO> Review_search() {
 		return session.selectList("SearchMapper.Review_search");
+	}
+
+	public List<CommentsDTO> Comments_search() {
+		return session.selectList("SearchMapper.Comments_search");
 	}
 
 	

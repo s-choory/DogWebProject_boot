@@ -112,8 +112,8 @@ public class UsersController {
 		
 		//암호화
 		String password = user.getPassword();
-//		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
-//		user.setPassword(encodePW);
+		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
+		user.setPassword(encodePW);
 		
 		int n = service.memberAdd(user);
 		

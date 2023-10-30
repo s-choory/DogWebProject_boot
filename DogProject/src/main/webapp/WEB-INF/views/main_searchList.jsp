@@ -1,3 +1,4 @@
+<%@page import="com.example.dto.CommentsDTO"%>
 <%@page import="com.example.dto.ReviewsDTO"%>
 <%@page import="com.example.dto.LikeDTO"%>
 <%@page import="com.example.dto.PostsDTO"%>
@@ -5,17 +6,10 @@
 <%@page import="com.example.dto.AccompanyingFacilitiesDTO"%>
 <%@page import="com.example.dto.GoodsDTO"%>
 <%@page import="java.util.Arrays"%>
-<%@page import="com.dto.ReviewsDTO"%>
-<%@page import="com.dto.LikeDTO"%>
-<%@page import="com.dto.ProductsDTO"%>
-<%@page import="com.dto.NoticeDTO"%>
-<%@page import="com.dto.AccompanyingFacilitiesDTO"%>
-<%@page import="com.dto.PostsDTO"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
 <%@page import="java.time.Duration"%>
 <%@page import="java.time.LocalDateTime"%>
-<%@page import="com.dto.GoodsDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -319,7 +313,7 @@
         if (event.which === 13) { 
           event.preventDefault(); 
           var searchValue = $(this).val();
-          window.location.href = '/test/main_searchList?search='+ encodeURIComponent(searchValue);
+          window.location.href = '/app/main_searchList?search='+ encodeURIComponent(searchValue);
         }
       });
       
@@ -336,6 +330,7 @@ List<PostsDTO> post = (List<PostsDTO>) request.getAttribute("Posts_list");
 List<GoodsDTO> product = (List<GoodsDTO>) request.getAttribute("Products_list");
 List<LikeDTO> Like_list = (List<LikeDTO>) request.getAttribute("Like_list");
 List<ReviewsDTO> Review_list = (List<ReviewsDTO>) request.getAttribute("Review_list");
+List<CommentsDTO> Comments_list = (List<CommentsDTO>) request.getAttribute("Comments_list");
 String search = (String)request.getAttribute("search");
  %>
 </head>
@@ -351,7 +346,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 	<div class="category">게시글(<%= post.size() %>)</div>
-	<div class="postOthers"><a id="postOthers" href="/test/?search=<%=search%>">더보기 +</a></div>
+	<div class="postOthers"><a id="postOthers" href="/app/?search=<%=search%>">더보기 +</a></div>
 </div>
 </div>
     <div class="post_container">
@@ -393,15 +388,22 @@ String search = (String)request.getAttribute("search");
                     <div class="post_content"><p><%=previewText %></p></div>
                     <div class="post-info">
                         <div class="post-meta">
-                            <span class="like">좋아요❤️ (<%
-                        		int count = 0;
-                        		for(int i2 = 0; i2< Like_list.size(); i2++){
-                        			if(post.get(i2).getPostID() == Like_list.get(i2).getCategoryID()) {
-                        				count++;
-                        			}
-                        		}
-                        		%><%= count %>)<span id="Like"></span></span>
-                            <span class="comment">댓글💬(추가예정)<span id="Comment"></span></span>
+                            <span class="like">좋아요❤️ (<% 
+                            		int Like_count = 0;
+                            		for(int i2 = 0; i2 < Like_list.size(); i2++ ) {
+                            			if(post.get(i).getPostID() == Like_list.get(i2).getCategoryID()) {
+                            				Like_count++;
+                            			}
+                            	
+                            }%><%= Like_count %>)<span id="Like"></span></span>
+                            <span class="comment">댓글💬(<% 
+                            		int Comments_count = 0;
+                            		for(int i2 = 0; i2 < Comments_list.size(); i2++ ) {
+                            			if(post.get(i).getPostID() == Comments_list.get(i2).getPostID()) {
+                            				Comments_count++;
+                            			}
+                            	
+                            }%><%= Comments_count %>)<span id="Comment"></span></span>
                             <span class="post-time"><%=post.get(i).getCreationTime() %></span>
                         </div>
                         
@@ -410,8 +412,9 @@ String search = (String)request.getAttribute("search");
                 </div>
             </div>
             </a>
-            <%}
-    }%>
+            <% if(i == 2){
+            	break;
+            }}}%>
     </section>
     </div>
 <br>
@@ -419,7 +422,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 <div class="category">스토어(<%= product.size() %>)</div>
-<div><a class="postOthers" href="/test/search?SearchName=<%= search %>">더보기 +</a></div>
+<div><a class="postOthers" href="/app/search?SearchName=<%= search %>">더보기 +</a></div>
 </div>
 </div>
 <div class="pro-big">
@@ -467,7 +470,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 <div class="category">장소(<%= accompanyingFacilitie.size() %>)</div>
-<div><a class="postOthers" href="/test/map?RodeAddress=<%=search%>">더보기 +</a></div>
+<div><a class="postOthers" href="/app/map?RodeAddress=<%=search%>">더보기 +</a></div>
 </div>
 </div>
 <div class="pro-big">
@@ -500,7 +503,7 @@ String search = (String)request.getAttribute("search");
 			String Sparking = accompanyingFacilitie.get(i).getParking();
 			String SRestrictions = accompanyingFacilitie.get(i).getRestrictions();
  %>
-		<a href="/test/map?RodeAddress=<%=Sname%>">
+		<a href="/app/map?RodeAddress=<%=Sname%>">
 		<div class = "AFList">
         <div class = "text-result">
 			<div class = "place-container">
@@ -529,7 +532,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 <div class="category">공지사항(<%= Notices_list.size() %>)</div>
-<div><a class="postOthers" href="/test/ContactCenter_Notice">더보기 +</a></div>
+<div><a class="postOthers" href="/app/ContactCenter_Notice">더보기 +</a></div>
 </div>
 </div>
 <div class="pro-big">

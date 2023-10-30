@@ -21,6 +21,9 @@ public class RequestDAO {
 		// TODO Auto-generated method stub
 		return session.selectList("RequestMapper.UserOrderSelectList",rdto);
 	}
+	public List<RequestDTO> UserAllSelectList(RequestDTO rdto) {
+		return session.selectList("RequestMapper.UserAllSelectList",rdto);
+	}
 	
 	
 }

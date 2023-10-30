@@ -8,6 +8,9 @@
 	VALUES(#{userid}, #{requeststate}, #{requestid}, #{tag}, #{content}, #{category}, REQUEST_COUNT_SEQ.nextval, null, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'))
 </insert>
 <select id="UserOrderSelectList" parameterType="Request" resultType="Request">
-	SELECT * FROM REQUEST WHERE userid=#{userid} AND requestid=#{requestid} order by count asc
+	SELECT * FROM REQUEST WHERE userid=#{userid} AND requestid=#{requestid} and category=#{category} order by count asc
+</select>
+<select id="UserAllSelectList" parameterType="Request" resultType="Request">
+	SELECT * FROM REQUEST WHERE userid=#{userid} order by count asc
 </select>
 </mapper>                
