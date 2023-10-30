@@ -21,20 +21,8 @@ public class RequestDAO {
 		// TODO Auto-generated method stub
 		return session.selectList("RequestMapper.UserOrderSelectList",rdto);
 	}
-<<<<<<< HEAD
-	public List<RequestDTO> adminSelectList() {
-		return session.selectList("RequestMapper.adminSelectList");
-	}
-	public List<RequestDTO> adminSelectList2() {
-		return session.selectList("RequestMapper.adminSelectList2");
-	}
-	
-	public void replyRecontent(RequestDTO rDTO) {
-		session.update("RequestMapper.replyRecontent", rDTO);
-=======
 	public List<RequestDTO> UserAllSelectList(RequestDTO rdto) {
 		return session.selectList("RequestMapper.UserAllSelectList",rdto);
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 	}
 	
 	

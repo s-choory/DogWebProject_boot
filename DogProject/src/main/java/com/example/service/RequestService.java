@@ -22,22 +22,8 @@ public class RequestService {
 		return dao.UserOrderSelectList(rdto);
 	}
 
-<<<<<<< HEAD
-	public List<RequestDTO> adminSelectList() {
-		return dao.adminSelectList();
-	}
-	public List<RequestDTO> adminSelectList2() {
-		return dao.adminSelectList2();
-	}
-
-	public void replyRecontent(RequestDTO rDTO) {
-		dao.replyRecontent(rDTO);
-	}
-=======
 	public List<RequestDTO> UserAllSelectList(RequestDTO rdto) {
 		return dao.UserAllSelectList(rdto);
 	}
-
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 	
 }

@@ -30,13 +30,6 @@ public class OrdersController {
 	@Autowired
 	RequestService rService;
 			
-	@RequestMapping("/test")
-	@ResponseBody
-		public String test() {
-		OrdersDTO ordersdto = new OrdersDTO(2, null,null,null,null,0,null,null,null,null,null,null,0,null,null,null,null);
-		oService.orderInsert(ordersdto);
-			return "";
-		}
 	//주문확인 페이지
 			@RequestMapping(value = "/orderConfirmation", method = RequestMethod.POST)
 		    public String orderConfirmation(String cardname, String cardnumber, OrdersDTO ordersdto, HttpSession session) {
@@ -51,15 +44,10 @@ public class OrdersController {
 				String OrderName = "";
 		        int total = 0;
 		        for (int i = 0; i < CartDTO_list.size(); i++) { 
-<<<<<<< HEAD
 		        	CartDTO cDTO = new CartDTO();
 		        	cDTO.setCartNum(CartDTO_list.get(i).getCartNum());
 		        	cDTO.setOrderNumber(OrderID);
 		        	int n = service.addAfterList(cDTO);
-=======
-		        	int n = service.addAfterList(CartDTO_list.get(i), UserID, OrderID);
-		        	System.out.println(n);
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 					total += n;
 					OrderName = CartDTO_list.get(0).getProductName();
 				}
@@ -155,17 +143,12 @@ public class OrdersController {
 				rdto.setCategory(dto.getCategory());
 				if(dto.getCategory().equals("상품주문")) {
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
-<<<<<<< HEAD
-				session.setAttribute("request_UserOrderSelectList", rlist);
-				return "redirect:/requestPage?userid="+dto.getUserid()+"&orderid="+dto.getRequestid();
-=======
 				session.setAttribute("request_SelectList", rlist);
 				} else {
 				List<RequestDTO> rlist = rService.UserAllSelectList(rdto);	
 				session.setAttribute("request_SelectList", rlist);
 				}
 				return "redirect:/requestPageChange?num=1";
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 			}
 			
 //			<a href="requestPost?requestid=<%= rlistSee.get(i).getRequestid() %>&userid=<%=userid%>&count=<%=rlistSee.get(i).getCount() %>">
