@@ -67,4 +67,5 @@ public class PostsDAO {
 		int n = session.update("PostsMapper.likeUpdate",map);
 		System.out.println("찍혀라"+n);
 	}
-}
+	
+} // end

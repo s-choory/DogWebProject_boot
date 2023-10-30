@@ -1,3 +1,4 @@
+<%@page import="com.example.dto.CommentsDTO"%>
 <%@page import="com.example.dto.ReviewsDTO"%>
 <%@page import="com.example.dto.LikeDTO"%>
 <%@page import="com.example.dto.PostsDTO"%>
@@ -329,6 +330,7 @@ List<PostsDTO> post = (List<PostsDTO>) request.getAttribute("Posts_list");
 List<GoodsDTO> product = (List<GoodsDTO>) request.getAttribute("Products_list");
 List<LikeDTO> Like_list = (List<LikeDTO>) request.getAttribute("Like_list");
 List<ReviewsDTO> Review_list = (List<ReviewsDTO>) request.getAttribute("Review_list");
+List<CommentsDTO> Comments_list = (List<CommentsDTO>) request.getAttribute("Comments_list");
 String search = (String)request.getAttribute("search");
  %>
 </head>
@@ -336,7 +338,7 @@ String search = (String)request.getAttribute("search");
 <jsp:include page = "common/top.jsp" flush="true"/><br>
 <jsp:include page = "common/side.jsp" flush="true"/><br>
 <div class="searchList_container">
-<input type="text" id="search" placeholder="검색어를 입력하세요" value="" />
+<input type="text" id="search" placeholder="검색어를 입력하세요" value="<%=search%>" />
 </div>
 <br>
 <br><br>
@@ -344,7 +346,11 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 	<div class="category">게시글(<%= post.size() %>)</div>
+<<<<<<< HEAD
 	<div class="postOthers"><a id="postOthers" href="/app/?search=<%=search%>">더보기 +</a></div>
+=======
+	<div class="postOthers"><a id="postOthers" href="community/?search=<%=search%>">더보기 +</a></div>
+>>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 </div>
 </div>
     <div class="post_container">
@@ -386,15 +392,22 @@ String search = (String)request.getAttribute("search");
                     <div class="post_content"><p><%=previewText %></p></div>
                     <div class="post-info">
                         <div class="post-meta">
-                            <span class="like">좋아요❤️ (<%
-                        		int count = 0;
-                        		for(int i2 = 0; i2< Like_list.size(); i2++){
-                        			if(post.get(i2).getPostID() == Like_list.get(i2).getCategoryID()) {
-                        				count++;
-                        			}
-                        		}
-                        		%><%= count %>)<span id="Like"></span></span>
-                            <span class="comment">댓글💬(추가예정)<span id="Comment"></span></span>
+                            <span class="like">좋아요❤️ (<% 
+                            		int Like_count = 0;
+                            		for(int i2 = 0; i2 < Like_list.size(); i2++ ) {
+                            			if(post.get(i).getPostID() == Like_list.get(i2).getCategoryID()) {
+                            				Like_count++;
+                            			}
+                            	
+                            }%><%= Like_count %>)<span id="Like"></span></span>
+                            <span class="comment">댓글💬(<% 
+                            		int Comments_count = 0;
+                            		for(int i2 = 0; i2 < Comments_list.size(); i2++ ) {
+                            			if(post.get(i).getPostID() == Comments_list.get(i2).getPostID()) {
+                            				Comments_count++;
+                            			}
+                            	
+                            }%><%= Comments_count %>)<span id="Comment"></span></span>
                             <span class="post-time"><%=post.get(i).getCreationTime() %></span>
                         </div>
                         
@@ -405,7 +418,11 @@ String search = (String)request.getAttribute("search");
             </a>
             <% if(i == 2){
             	break;
+<<<<<<< HEAD
             }}} %>
+=======
+            }}}%>
+>>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
     </section>
     </div>
 <br>

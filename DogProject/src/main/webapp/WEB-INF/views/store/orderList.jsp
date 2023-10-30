@@ -15,6 +15,10 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body {
+	    margin: 0;
+	    font-family: Arial, sans-serif;
+	}
 .order_top_main{
 	padding-top: 30px;
 	font-size: 40px;
@@ -77,8 +81,8 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .order_middle_more {
-	margin-left: 15%;
-    margin-right: 15%;
+	width: 70%;
+	margin: 0px 15% 10px 15%;
     padding: 10px 0px;
     border: 1px solid #ccc; /* 테두리 추가 */
     border-radius: 5px;
@@ -98,7 +102,7 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
 	justify-content: center;  
 }
 .order_middle_box1 {
-	width: calc(15% - (5px + (10% /3))); 
+	width:11%; 
 	border-right: 1px solid #ccc;
 	display: flex;
 	flex-direction: column;
@@ -136,7 +140,7 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
 		width:100%;
 }
 .order_middle_box2 {
-	width: calc(70% - (5px + (10% /3))); 
+	width: 70%; 
 	border-right: 1px solid #ccc;
 }
 .order_middle_box2_title {
@@ -217,10 +221,27 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
     padding: 10px 0px;
     border-radius: 5px;
 }
+<<<<<<< HEAD
 body {
 	margin: 0;
 }
+=======
+ .no-data{
+    	display: flex;
+    	justify-content: center;
+    	padding: 100px 0;
+    	flex-direction: column;
+    	color: #707070;
+    	text-align: center;
+    	font-size: 30px;
+    	font-family: 'Hi-melody', sans-serif;
+    	font-weight: bolder;
+    }
+>>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 </style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -228,10 +249,11 @@ $(document).ready(function(){
 	var ordersCount = 5; //초기 출력 갯수.
 	var ordersSee = 5; //더보기 클릭시 출력될 갯수.
 	var clickCount = 1;
-	$("#olistHideSize").text(clickCount*5);
-	
+
 	$(".order_middle_box").slice(ordersCount).hide();
 	
+	var showlength= $(".order_middle_box").length-$(".order_middle_box:hidden").length;
+	$("#olistHideSize").text(showlength);
 	$("#orderMore").on("click", function(e){
 		e.preventDefault();
 		var hiddenOrders = $(".order_middle_box:hidden");
@@ -250,7 +272,7 @@ $(document).ready(function(){
 	})
 });
 function openRequestForm(orderid, userid) {
- 	window.open("requestPage?userid="+userid+"&orderid="+orderid,"_blank","width=500,height=400,resizable=no,scrollbars=no");
+ 	window.open("requestPage?userid="+userid+"&requestid="+orderid+"&category=상품주문","_blank","width=500,height=400,resizable=no,scrollbars=no");
 }
 </script>
 </head>
@@ -264,8 +286,12 @@ function openRequestForm(orderid, userid) {
 	<div class="order_top_sub2" style="font-weight: bold; f">소중한 내 강아지를 위한 쇼핑!</div>
 </div>
 </div>
+
+<%
+if(olist.size() != 0) {%>
 <div class="order_middle_name">주문내역 </div>
-<% for(int i = 0; i<olist.size(); i++ ) { %>
+<%
+for(int i = 0; i<olist.size(); i++ ) { %>
 <div class="order_middle_box">
 	<div class="order_middle_box1">
 		<div class="order_middle_box1_top" >
@@ -282,7 +308,7 @@ function openRequestForm(orderid, userid) {
 		<div class="order_middle_box2_title">주문상품</div>
 			<%for(int StoreItems = 0; StoreItems<clist.size(); StoreItems++){ %>
 			<% if(olist.get(i).getOrderID() == clist.get(StoreItems).getOrderNumber()) { %>
-			<table style="padding-left: 20px; padding-right: 20px;">
+			<table style="margin: 0px 20px">
 				<tr>
 					<td rowspan="3"><img src="resources/storeimages/<%= clist.get(StoreItems).getImage() %>.jpg" width="100px" height="100px"></td>
 					<td class="order_middle_box2_goodsname" colspan="2"><%= clist.get(StoreItems).getProductName() %></td>
@@ -322,11 +348,19 @@ function openRequestForm(orderid, userid) {
 			<div class="order_middle_box3_data1"><%=olist.get(i).getPayMethod() %><% if(olist.get(i).getPaymethodcard() != null ){ %>(<%=olist.get(i).getPaymethodcard()%>)<% } else { %>(카카오머니)<% } %></div>
 			<% } %>
 		<% } %>
-			<a class="order_middle_request" onclick="openRequestForm(<%= olist.get(i).getOrderID() %>, '<%= udto.getUserID() %>')"> 문의하기</a>
+			<a class="order_middle_request btn btn-outline-secondary" onclick="openRequestForm(<%= olist.get(i).getOrderID() %>, '<%= udto.getUserID() %>')"> 문의하기</a>
 		</div> <!-- box3 end -->
 </div>  <!-- box end -->
-<% } //전체 for문 end%>
-<div class="order_middle_more" id="orderMore" >더보기 (<a id="olistHideSize"></a>/<%=olist.size()%>)</div>
-
+<% } %>
+<% if(olist.size() > 5) { %>
+<a class="btn btn-outline-secondary order_middle_more" id="orderMore" >더보기 (<span id="olistHideSize"></span>/<%=olist.size()%>)</a>
+<%}} else {%>
+<div class="no-data">
+    	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
+    	<div><p>검색 결과가 없습니다</p></div>
+	</div>
+	<% } %>
+	<br>
+<jsp:include page = "../common/footer.jsp" flush="true"/>
 </body>
 </html>

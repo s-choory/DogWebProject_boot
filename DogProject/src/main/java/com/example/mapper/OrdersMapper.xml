@@ -18,4 +18,20 @@
 	VALUES
 	(#{OrderID}, #{UserID}, #{OrderName}, #{UserName}, #{Email}, #{RodeAddress}, #{HouseAddress}, #{DetailAddress}, #{PhoneNumber}, #{PayMethod}, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'), #{TotalPrice}, #{Requested}, #{OrderState}, #{paymethodcard}, #{paymethodnumber}, #{PostNumber})
  </insert>
+ 
+ <select id="selectBeforeList" resultType="Orders">
+ 	select * from orders where orderstate='입금대기'
+ </select>
+ 
+ <select id="selectAfterList" resultType="Orders">
+ 	select * from orders where orderstate='결제완료' or orderstate='배송완료'
+ </select>
+ 
+ <update id="adminUpdateOrderState" parameterType="int">
+ 	update orders set orderstate='결제완료' where OrderID=#{OrderID}
+ </update>
+ 
+ <update id="adminUpdateOrderState2" parameterType="int">
+ 	update orders set orderstate='배송완료' where OrderID=#{OrderID}
+ </update>
 </mapper>

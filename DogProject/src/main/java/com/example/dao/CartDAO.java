@@ -22,6 +22,10 @@ public class CartDAO {
 	public List<CartDTO> cartList(String UserID) {
 		return session.selectList("CartMapper.cartList",UserID);
 	}
+	
+	public List<CartDTO> cartListAfter(String UserID) {
+		return session.selectList("CartMapper.cartListAfter",UserID);
+	}
 
 	public void delCart(String CartNum) {
 		session.delete("CartMapper.delCart", CartNum);
@@ -55,8 +59,8 @@ public class CartDAO {
 		return session.update("CartMapper.dupleUpdate",map);
 	}
 
-	public int addAfterList(CartDTO CartDTO) {
-		return session.insert("CartMapper.addAfterList", CartDTO);
+	public int addAfterList(CartDTO cDTO) {
+		return session.update("CartMapper.addAfterList", cDTO);
 	}
 
 	public List<CartDTO> selectAfterList(CartDTO cdto) {

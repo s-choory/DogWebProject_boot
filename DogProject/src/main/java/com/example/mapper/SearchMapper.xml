@@ -23,4 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="Review_search" resultType="Reviews">
     	select * from Reviews
     </select>
+    <select id="Comments_search" resultType="Comments">
+    	SELECT * FROM comments
+    </select>
+    
 </mapper>

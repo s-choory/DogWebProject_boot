@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.dto.ChatMessageDTO;
 import com.example.dto.ChatRoomDTO;
 import com.example.dto.CommentsDTO;
+import com.example.dto.FAQDTO;
 import com.example.dto.GoodsDTO;
 import com.example.dto.NoticeDTO;
 import com.example.dto.PageDTO;
@@ -22,8 +23,10 @@ import com.example.dto.RequestDTO;
 import com.example.dto.ReviewsDTO;
 import com.example.service.ChatService;
 import com.example.service.CommentsService;
+import com.example.service.FAQService;
 import com.example.service.GoodsService;
 import com.example.service.NoticeService;
+import com.example.service.OrdersService;
 import com.example.service.PageService;
 import com.example.service.PostsService;
 import com.example.service.RequestService;
@@ -52,6 +55,11 @@ public class AdminController {
 	@Autowired
 	private NoticeService nService;
 	
+	@Autowired
+	private FAQService fService;
+	
+	@Autowired
+	private OrdersService oService;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -239,7 +247,64 @@ public class AdminController {
 		nService.insert(nDTO);
 		return "admin/closeWindow";
 	}
+	//=================================================================
+
+	//문의============================================================	
+	@GetMapping("/adminFAQList")
+	public String adminFAQList(Model model) {
+		List<FAQDTO> nList = fService.list();
+		model.addAttribute("nList",nList);
+		return "admin/adminFAQList";
+	}
 	
+	@GetMapping("/adminAddFAQForm")
+	public String adminAddFAQForm() {
+		return "admin/adminAddFAQForm";
+	}
+	@GetMapping("/adminAddFAQ")
+	public String adminAddFAQ(FAQDTO fDTO) {
+		fService.insert(fDTO);
+		return "admin/closeWindow";
+	}
+	@GetMapping("/adminUpdateFAQForm")
+	public String adminUpdateFAQForm(int FaqID) {
+		return "admin/adminUpdateFAQForm";
+	}
+	@GetMapping("/adminUpdateFAQ")
+	public String adminUpdateFAQ(FAQDTO fDTO) {
+		fService.update(fDTO);
+		return "admin/closeWindow";
+	}
+	@GetMapping("/adminDeleteFAQ")
+	public String adminDeleteFAQ(int FaqID) {
+		fService.delete(FaqID);
+		return "admin/closeWindow";
+	}
+	//=================================================================
+	
+	//주문==============================================================
+	@GetMapping("/adminOrderList")
+	public String adminOrderList(Model model) {
+		List<OrdersService> oList = oService.selectbeforeList();
+		model.addAttribute("oList", oList);
+		return "admin/adminOrderList";
+	}
+	@GetMapping("/adminUpdateOrderState")
+	public String adminUpdateOrderState(int OrderID) {
+		oService.adminUpdateOrderState(OrderID);
+		return "redirect:/adminOrderList";
+	}
+	@GetMapping("/adminOrderListConfirm")
+	public String adminOrderListConfirm(Model model) {
+		List<OrdersService> oList = oService.selectAfterList();
+		model.addAttribute("oList", oList);
+		return "admin/adminOrderListConfirm";
+	}
+	@GetMapping("/adminUpdateOrderState2")
+	public String adminUpdateOrderState2(int OrderID) {
+		oService.adminUpdateOrderStat2e(OrderID);
+		return "redirect:/adminOrderListConfirm";
+	}
 	//=================================================================
 }
 

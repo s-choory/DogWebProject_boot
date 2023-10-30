@@ -25,6 +25,22 @@ public class OrdersService {
 	public OrdersDTO orderSelect(int OrderID) {
 		return dao.orderSelect(OrderID);
 	}
+
+	public List<OrdersService> selectbeforeList() {
+		return dao.selectbeforeList();
+	}
+
+	public void adminUpdateOrderState(int orderID) {
+		dao.adminUpdateOrderState(orderID);
+	}
+
+	public List<OrdersService> selectAfterList() {
+		return dao.selectAfterList();
+	}
+
+	public void adminUpdateOrderStat2e(int orderID) {
+		dao.adminUpdateOrderState2(orderID);
+	}
 	
 	
 }

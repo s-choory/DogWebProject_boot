@@ -16,6 +16,18 @@ public class FAQDAO {
 	public List<FAQDTO> list(){
 		return session.selectList("FAQMapper.list");
 	}
+
+	public Object insert(FAQDTO fDTO) {
+		return session.insert("FAQMapper.insert", fDTO);
+	}
+
+	public void update(FAQDTO fDTO) {
+		session.update("FAQMapper.update", fDTO);
+	}
+
+	public void delete(int FaqID) {
+		session.delete("FAQMapper.delete",FaqID);
+	}
 	
 
 }

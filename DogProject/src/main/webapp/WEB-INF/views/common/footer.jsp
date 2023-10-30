@@ -1,5 +1,13 @@
+<%@page import="com.example.dto.UsersDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+function openRequestForm2() {
+	var requestUserid = $("#userid").val()
+ 	window.open("requestPage2?userid="+requestUserid+"&requestid=0&category=운영문의","_blank","width=500,height=400,resizable=no,scrollbars=no");
+}
+</script>
 <style type="text/css">
 
 	a{
@@ -61,6 +69,13 @@
 		justify-content: flex-end;
 	}
 </style>
+<%
+UsersDTO User = (UsersDTO)session.getAttribute("User");
+String userID = "";
+if(User != null){
+    userID = User.getUserID();
+}
+%>
 <footer class="footer">
 
 <div class="footer-topcontainer">
@@ -72,6 +87,11 @@
 		이용약관	&nbsp; 개인정보처리방침	&nbsp;	사업자정보확인	&nbsp;   
 		</div>
 		공지/문의
+		<%
+		if(User != null){
+		%>
+		<a href="javascript:openRequestForm2()">문의하기</a><br>
+		<%}%>
 	</div>
 	<div class="footer-container2">
 		<img src="${pageContext.request.contextPath}/resources/로고아이콘.png" width=140 height=115>
@@ -98,5 +118,6 @@
 	<div class="footer-container4">
 		© 2023 All Rights Reserved 
 	</div>
+	<input type="hidden" id="userid" value="<%=userID%>">
 </div>
 </footer>

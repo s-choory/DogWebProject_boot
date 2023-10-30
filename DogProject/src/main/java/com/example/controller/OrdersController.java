@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.CartDTO;
 import com.example.dto.OrdersDTO;
@@ -43,7 +44,10 @@ public class OrdersController {
 				String OrderName = "";
 		        int total = 0;
 		        for (int i = 0; i < CartDTO_list.size(); i++) { 
-		        	int n = service.addAfterList(CartDTO_list.get(i), UserID, OrderID);
+		        	CartDTO cDTO = new CartDTO();
+		        	cDTO.setCartNum(CartDTO_list.get(i).getCartNum());
+		        	cDTO.setOrderNumber(OrderID);
+		        	int n = service.addAfterList(cDTO);
 					total += n;
 					OrderName = CartDTO_list.get(0).getProductName();
 				}
@@ -96,44 +100,63 @@ public class OrdersController {
 				return "store/orderList";
 			}
 			
-	//고객센터 문의하기  구분
-			@RequestMapping(value = "/requestPage", method = RequestMethod.GET)
-			public String requestPage(HttpSession session, String userid, @RequestParam("orderid") int requestid) {
+			@RequestMapping(value = {"/requestPage", "/requestPage2"})
+			public String requestPage3(HttpSession session, String userid, int requestid, String category) {
 				RequestDTO rdto = new RequestDTO();
-				if(userid == null) {
-					userid = (String) session.getAttribute("request_userid");
-				}
-				if(requestid == 0) {
-					requestid = (int) session.getAttribute("request_requestid");
-				}
 				rdto.setUserid(userid);
 				rdto.setRequestid(requestid);
+				rdto.setCategory(category);
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
 				session.setAttribute("request_userid", userid);
 				session.setAttribute("request_requestid", requestid);
-				session.setAttribute("request_category", "상품주문");
-				session.setAttribute("request_UserOrderSelectList", rlist);
+				session.setAttribute("request_category", category);
+				session.setAttribute("request_SelectList", rlist);
 				session.setAttribute("request_PageSee", rlist);
-				session.setAttribute("request_num", 1);
 				if(rlist.size() == 0) {
 					return "request/requestForm";
 				} else {
-					int num = 1;
-				return "redirect:/requestPageChange?num=1";
+					return "redirect:/requestPageChange?num=1";
 				}
 			}
+			
+			@RequestMapping(value = "/requestPageChange")
+			public String requestRerequest(HttpSession session, int num) {
+				List<RequestDTO> pageChangList = new ArrayList<RequestDTO>();
+ 				List<RequestDTO> rlist = (List<RequestDTO>)session.getAttribute("request_SelectList");
+				int rlistMax = rlist.size();
+ 				for (int i = rlistMax-(num*7); i < rlistMax-((num-1)*7); i++) {
+ 					if(i >= 0) {
+ 					pageChangList.add(rlist.get(i));
+ 					}
+				}
+				session.setAttribute("request_PageSee", pageChangList);
+				return "request/requestList";
+			}
+			
 			@RequestMapping(value = "/requestSave")
 			public String requestSave(HttpSession session, RequestDTO dto) {
+				System.out.println("requestSave 호출 : "+ dto);
 				rService.AddRequest(dto);
 				RequestDTO rdto = new RequestDTO();
 				rdto.setUserid(dto.getUserid());
 				rdto.setRequestid(dto.getRequestid());
+				rdto.setCategory(dto.getCategory());
+				if(dto.getCategory().equals("상품주문")) {
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
-				session.setAttribute("request_UserOrderSelectList", rlist);
-				return "redirect:/requestPage?userid="+dto.getUserid()+"&orderid="+dto.getRequestid();
+				session.setAttribute("request_SelectList", rlist);
+				} else {
+				List<RequestDTO> rlist = rService.UserAllSelectList(rdto);	
+				session.setAttribute("request_SelectList", rlist);
+				}
+				return "redirect:/requestPageChange?num=1";
 			}
+			
+//			<a href="requestPost?requestid=<%= rlistSee.get(i).getRequestid() %>&userid=<%=userid%>&count=<%=rlistSee.get(i).getCount() %>">
+//			<%= rlistSee.get(i).getCategory() %> > <%= rlistSee.get(i).getTag() %> > <%= rlistSee.get(i).getRequestid() %>
+//			</a>
+			
 			@RequestMapping(value = "/requestPost")
-			public String requestPost(HttpSession session, String userid, int requestid, int count) {
+			public String requestPost(HttpSession session, int requestid, String userid, int count) {
 				RequestDTO rdto = new RequestDTO();
 				rdto.setUserid(userid);
 				rdto.setRequestid(requestid);
@@ -143,27 +166,36 @@ public class OrdersController {
 			}
 			@RequestMapping(value = "/requestList")
 			public String requestList(HttpSession session) {
-				return "request/requestForm";
+				return "redirect:/requestPageChange?num=1";
 			}
 			@RequestMapping(value = "/requestRerequest")
 			public String requestRerequest(HttpSession session) {
 				return "request/requestForm";
 			}
-			@RequestMapping(value = "/requestPageChange")
-			public String requestRerequest(HttpSession session, int num) {
-				System.out.println("requestRerequest" + num);
-				List<RequestDTO> pageChangList = new ArrayList<RequestDTO>();
- 				List<RequestDTO> rlist = (List<RequestDTO>)session.getAttribute("request_UserOrderSelectList");
-				int rlistMax = rlist.size();
- 				for (int i = rlistMax-(num*9); i < rlistMax-((num-1)*9); i++) {
- 					if(i >= 0) {
- 					pageChangList.add(rlist.get(i));
- 					System.out.println(rlist.get(i));
- 					}
-				}
-				session.setAttribute("request_PageSee", pageChangList);
-				session.setAttribute("request_num", num);
-				return "request/requestList";
-			}
+			
+//			@RequestMapping(value = "/requestSave2")
+//			@ResponseBody
+//			public String requestSave2(HttpSession session, RequestDTO dto) {
+//				dto.setRequestid(9999);
+//		rService.AddRequest(dto);
+//		 /* RequestDTO rdto = new RequestDTO(); rdto.setUserid(dto.getUserid());
+//		 * rdto.setRequestid(dto.getRequestid()); String category = (String)
+//		 * session.getAttribute("request_category"); List<RequestDTO> rlist = new
+//		 * ArrayList<RequestDTO>(); if(category == "상품문의") { rlist =
+//		 * rService.UserOrderSelectList(rdto); } else { rlist =
+//		 * rService.UserAllSelectList(rdto); }
+//		 * session.setAttribute("request_UserOrderSelectList", rlist);
+//		 */
+//				return "redirect:/requestPageChange?num=1";
+//			}
+//			@RequestMapping(value = "/requestPost")
+//			public String requestPost(HttpSession session, String userid, int requestid, int count) {
+//				RequestDTO rdto = new RequestDTO();
+//				rdto.setUserid(userid);
+//				rdto.setRequestid(requestid);
+//				rdto.setCount(count);
+//				session.setAttribute("request_selectone", rdto);
+//				return "request/requestPost";
+//			}
 			
 }

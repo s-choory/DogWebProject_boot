@@ -500,19 +500,12 @@
 							   text: '',
 							   icon: 'success',
 							   
-							   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
 							   confirmButtonColor: '#006400', // confrim 버튼 색깔 지정
-							   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
-							   cancelButtonText: '쇼핑 계속하기', // cancel 버튼 텍스트 지정
 							   confirmButtonText: '장바구니 이동', // confirm 버튼 텍스트 지정
 							   
-							   reverseButtons: true, // 버튼 순서 거꾸로
-							   
 							}).then(function (result) {
-							   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
 		 							$("#myForm").attr("action","addCartList");
 		 							$("#myForm").submit();
-								}
 							});
 						}
 					}

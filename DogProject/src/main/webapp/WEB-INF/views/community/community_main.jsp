@@ -325,7 +325,7 @@
 </span><br>
 
 	<!-- 카테고리별 select 기능구현  -->
-	<form action="/app/community/">
+	<form action="/app/community">
 <div class = "categories" >
 	<div id= "cButtin">
 	<input type="submit" name = "order" value="All"> &nbsp;&nbsp;

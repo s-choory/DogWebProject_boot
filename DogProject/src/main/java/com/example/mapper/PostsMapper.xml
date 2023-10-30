@@ -82,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		where POSTTYPE = 'undeleted' order by Likes DESC
     	</if>
     	<if test="order == 'QnA'">
-    		 where POSTTYPE = 'undeleted' and Category = 'QnA' 
+    		 where POSTTYPE = 'undeleted' and Category = 'QnA'
     	</if>
 </select>
 

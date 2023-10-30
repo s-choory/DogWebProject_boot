@@ -23,6 +23,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.example.dao.PageDAO;
 import com.example.dto.AccompanyingFacilitiesDTO;
 import com.example.dto.CartDTO;
+import com.example.dto.CommentsDTO;
 import com.example.dto.GoodsDTO;
 import com.example.dto.LikeDTO;
 import com.example.dto.NoticeDTO;
@@ -71,6 +72,8 @@ public class HomeController {
 		}
 		List<CartDTO> list = cartservice.cartList(user.getUserID());
 		model.addAttribute("list",list);
+		List<CartDTO> list3 = cartservice.cartListAfter(user.getUserID());
+		model.addAttribute("list3",list3);
 		
 		// 글쓰기 정보들도 jsp로 같이 넘겨줌 + 페이징 
 		String UserID = user.getUserID(); //로그인한 유저의 ID 
@@ -239,6 +242,7 @@ public class HomeController {
 			List<GoodsDTO> Products_list = searchService.Products_search(search);
 			List<LikeDTO> Like_list = searchService.Like_search();
 			List<ReviewsDTO> Review_list = searchService.Review_search();
+			List<CommentsDTO> Comments_list = searchService.Comments_search();
 			//댓글 관련으로 list 필요
 			m.addAttribute("search",search);
 			m.addAttribute("AccompanyingFacilities_list",AccompanyingFacilities_list);
@@ -247,6 +251,7 @@ public class HomeController {
 			m.addAttribute("Products_list",Products_list);
 			m.addAttribute("Like_list",Like_list);
 			m.addAttribute("Review_list",Review_list);
+			m.addAttribute("Comments_list",Comments_list);
 			
 			return "main_searchList";
 		}

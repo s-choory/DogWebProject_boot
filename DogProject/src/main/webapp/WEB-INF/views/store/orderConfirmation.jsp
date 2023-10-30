@@ -15,6 +15,10 @@ UsersDTO user = (UsersDTO)session.getAttribute("User");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body {
+	    margin: 0;
+	    font-family: Arial, sans-serif;
+	}
 .order_top_main{
 	padding-top: 30px;
 	font-size: 40px;
@@ -53,7 +57,6 @@ UsersDTO user = (UsersDTO)session.getAttribute("User");
 }
 .order_top_sub2{
 	font-size: 14px;
-	padding-bottom: 100px;
 }
 .order_middle_top{
 	width: 80%;
@@ -202,8 +205,14 @@ UsersDTO user = (UsersDTO)session.getAttribute("User");
     border-radius: 5px;
 }
 </style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+function pageMove(){
+	window.location.href = "/app/orderList";
+}
 </script>
 </head>
 <body>
@@ -244,6 +253,9 @@ if(odto.getPayMethod().equals("무통장입금")){ %>
 </div>
 <% } %>
 </div>
+<div class="order_middle_unbox">
+<input class="btn btn-outline-secondary" type="button" style="margin: 50px 0px; padding: 20px;" onclick="pageMove()" value="주문리스트 보기">
+</div>
 <div class="order_middle_name">주문내역 <div></div></div>
 <div class="order_middle_box">
 	<div class="order_middle_box1">
@@ -278,11 +290,11 @@ if(odto.getPayMethod().equals("무통장입금")){ %>
 		<div class="order_middle_box2_goodstotal2">총 결제금액 : <%= odto.getTotalPrice() %>원</div>
 	</div>
 	<div class="order_middle_box3">
-		<div class="order_middle_box3_title">주문자 정보</div>
+		<div class="order_middle_box3_title">배송지 정보</div>
 		<div class="order_middle_box3_data2"><%= odto.getUserName() %>, <%= odto.getPhoneNumber() %></div>
 		<div class="order_middle_box3_data2">(<%= odto.getPostNumber() %>) <%= odto.getRodeAddress() %> <%= odto.getDetailAddress() %>,</div>
 		<div class="order_middle_box3_data2"><%= odto.getHouseAddress() %> <%= odto.getDetailAddress() %></div>
-		<div class="order_middle_box3_title" style="padding-top:20px;">결제수단</div>
+		<div class="order_middle_box3_title" style="padding-top:20px;">결제정보</div>
 		<% if(odto.getPayMethod().equals("무통장입금")){ %>
 		<div class="order_middle_box3_data2"><%=odto.getPayMethod() %>(<%=odto.getOrderState()%>)</div>
 			<% if(odto.getOrderState().equals("입금대기")){ %>
@@ -299,5 +311,8 @@ if(odto.getPayMethod().equals("무통장입금")){ %>
 			<% } %>
 		<% } %>
 </div>
+</div>
+<br>
+<jsp:include page = "../common/footer.jsp" flush="true"/>
 </body>
 </html>
