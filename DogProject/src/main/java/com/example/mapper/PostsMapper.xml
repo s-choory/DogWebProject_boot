@@ -22,8 +22,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <!-- 특정 페이징 getTotalCount -->
-<select id="getTotalCount" parameterType="String" resultType="int">
- 	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+<select id="getTotalCount" parameterType="map" resultType="int">
+ 	<choose>
+    	<when test="order == '좋아요 누른 글'">
+        	SELECT COUNT(*) FROM Posts
+			INNER JOIN LIKES ON likes.categoryid = posts.postid AND likes.categories = 'posts'
+			WHERE likes.userid =  #{UserID}
+    	</when>
+    	<otherwise>
+        	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+    	</otherwise>
+    </choose>
 </select>
 
 <select id="selectgetList" parameterType="String" resultType="Posts">
@@ -85,6 +94,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		
     	</if>
 </select>
+
+
+<select id="selectOrder3" parameterType="hashmap" resultType="Posts">
+SELECT * FROM Posts
+			INNER JOIN LIKES ON likes.categoryid = posts.postid AND likes.categories = 'posts'
+			WHERE likes.userid =  #{userID}
+</select> 
 
 <!-- 검색조건 TotalCount -->
 <select id="selectTotalCount" parameterType="map" resultType="int">

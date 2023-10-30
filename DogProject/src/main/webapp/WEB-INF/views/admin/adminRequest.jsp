@@ -40,7 +40,7 @@ function openRequest(requestid) {
         <h1 style="text-align: center; margin: 30px 0; ">문의 답변 대기 목록</h1>
     </header>
     <div style="text-align: center; margin-bottom: 30px;">
-    	<a href="adminPage" >관리자페이지</a><br>
+    	<a href="adminPage" >관리자페이지로 이동</a><br><br>
     	<a href="adminRequest2" >문의 답변 완료 목록</a>
 	</div>
     <div class="table-container">
@@ -65,7 +65,7 @@ function openRequest(requestid) {
     		<td><%= rDTO.getUserid() %></td>
     		<td class="content"><%= rDTO.getContent() %></td>
     		<td><%= rDTO.getRequeststate() %></td>
-    		<td><button class="btn btn-primary" onclick="openRequest(<%=rDTO.getRequestid()%>)">답변</button></td>
+    		<td><button class="btn btn-success" onclick="openRequest(<%=rDTO.getRequestid()%>)">답변</button></td>
     	</tr>
     	<%} %>
     </table>

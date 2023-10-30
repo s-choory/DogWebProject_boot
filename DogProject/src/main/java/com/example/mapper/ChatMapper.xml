@@ -54,6 +54,9 @@
 		values (#{roomId}, #{sender}, #{message}, SYSDATE)
 	</insert>
 	
+	<select id="findChatMessage" parameterType="int" resultType="ChatMessage">
+		select * from ChatMessage where roomId = #{roomId} order by senddate desc
+	</select>
 	
 
 </mapper>

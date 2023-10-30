@@ -26,9 +26,9 @@
             <a href="/app/">홈페이지 메인 이동</a> <br><br><br>
             <a href="adminRequest">문의/신고 조회</a> <br><br>
             <a href="#">공지사항/FAQ 목록 조회</a> <br><br>
-            <a href="#">전체 게시물 목록 조회</a> <br><br>
-            <a href="#">상품 목록 조회</a> <br><br>
-            <a href="#">모임 목록 조회</a>
+            <a href="adminPostsList">전체 게시물 목록 조회</a> <br><br>
+            <a href="adminGoodsList">상품 목록 조회</a> <br><br>
+            <a href="adminGroup">모임 목록 조회</a>
 	</nav>
 
 </body>

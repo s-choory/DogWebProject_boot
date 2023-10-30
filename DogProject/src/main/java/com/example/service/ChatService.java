@@ -54,6 +54,10 @@ public class ChatService {
 		chatDao.delChatRoom(roomId);
 	}
 
+	public List<ChatMessageDTO> findChatMessage(int roomId) {
+		return chatDao.findChatMessage(roomId);
+	}
+
 
 
 

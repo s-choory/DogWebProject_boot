@@ -63,7 +63,8 @@ public class HomeController {
 	//마이페이지
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model, String curPage, PageDTO pDTO, PageDAO dao ,HttpServletRequest request, HttpServletResponse response) {
-	
+		System.out.println("mypage 호출됨");
+
 		UsersDTO user = (UsersDTO)session.getAttribute("User");
 		if(user == null) {
 			return "redirect:/login";
@@ -79,13 +80,12 @@ public class HomeController {
 		String order= request.getParameter("order");
 		
 		//pdto의 total은 전체 total이라 특정userid의 total로 바꿔줘야함
-		int totalCountByUser = Pageservice.selecTotalCount2(UserID);
+		int totalCountByUser = Pageservice.selecTotalCount2(UserID,order);
 		pDTO.setTotalCount(totalCountByUser);
 		model.addAttribute("pDTO",pDTO);
 		//pdto부분 수정해야함 현재 모든 글쓰기 정보가 나옴 
 		PageDTO pDTO2;
 		pDTO2 = Pageservice.selectAll2(Integer.parseInt(curPage), pDTO, order, UserID);
-		
 		model.addAttribute("order", order);
 		
 		return "mypage/mypage_white";

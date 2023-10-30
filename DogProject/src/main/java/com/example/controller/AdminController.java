@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.dto.ChatMessageDTO;
+import com.example.dto.ChatRoomDTO;
+import com.example.dto.GoodsDTO;
+import com.example.dto.PageDTO;
 import com.example.dto.RequestDTO;
+import com.example.service.ChatService;
+import com.example.service.GoodsService;
+import com.example.service.PageService;
+import com.example.service.PostsService;
 import com.example.service.RequestService;
 
 @Controller
 public class AdminController {
 
 	@Autowired
-	RequestService rService;
+	private RequestService rService;
+	
+	@Autowired
+	private ChatService cService;
+	
+	@Autowired
+	private GoodsService gService;
+	
+	@Autowired
+	private PostsService pService;
+	
+	@Autowired 
+	private PageService Pageservice;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(HttpSession session) {
@@ -32,6 +54,8 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
+	
+	//Request===========================================================
 	//문의 목록(답변대기)
 	@GetMapping("/adminRequest")
 	public String adminRequest(Model model) {
@@ -60,6 +84,78 @@ public class AdminController {
 		rService.replyRecontent(rDTO);
 		return "admin/closeWindow";
 	}
+	//=================================================================
+	
+	
+	//Chat=============================================================
+	//모임 목록
+	@GetMapping("/adminGroup")
+	public String adminGroup(Model model) {
+		List<ChatRoomDTO> chatList = cService.findAllRoom();
+	    model.addAttribute("chatList", chatList);
+		return "admin/adminGroup";
+	}
+	
+	//채팅 내역 목록 보기
+	@GetMapping("/adminChatMessage")
+	public String adminChatMessage(int roomId, Model model) {
+		List<ChatMessageDTO> chatMessageList = cService.findChatMessage(roomId);
+		model.addAttribute("mList",chatMessageList);
+		return "admin/adminChatMessage";
+	}
+	
+	//채팅방 삭제
+	@GetMapping("/adminDeleteGroup")
+	public String adminDeleteGroup(Model model, int roomId) {
+		cService.delChatRoom(roomId);
+		return "redirect:/adminGroup";
+	}
+	//=================================================================
+	
+	
+	//Store============================================================
+	@GetMapping("/adminGoodsList")
+	public String adminGoodsList(Model model) {
+		List<GoodsDTO> gList = gService.select();
+		model.addAttribute("gList", gList);
+		return "admin/adminGoodsList";
+	}
+	
+	@GetMapping("/adminAddProductForm")
+	public String adminAddProductForm() {
+		return "admin/adminAddProductForm";
+	}
+	
+	@GetMapping("/adminAddProduct")
+	public String adminAddProduct(GoodsDTO gDTO) {
+		gService.insert(gDTO);
+		return "admin/closeWindow";
+	}
+	
+	@GetMapping("/adminDeleteProduct")
+	public String adminDeleteProduct(int PRODUCTID) {
+		gService.delete(PRODUCTID);
+		return "redirect:/adminGoodsList";
+	}
+	//=================================================================
+	
+	
+	//Posts============================================================
+	@GetMapping("/adminPostsList")
+	public String adminPostsList(String curPage, Model model, PageDTO pDTO ,HttpServletRequest request, HttpServletResponse response) {
+		if(curPage == null) curPage = "1";
+		String search= request.getParameter("search");
+		String order= request.getParameter("order");
+		
+		pDTO = Pageservice.selectAll(Integer.parseInt(curPage), search, pDTO, order);
+		model.addAttribute("pDTO",pDTO);
+		model.addAttribute("search", search);
+		model.addAttribute("order", order);
+		/* System.out.println("all 최신 내림차순 정렬"+ pDTO); */
+		return "admin/adminPostsList";
+	}
+	
+	//=================================================================
 }
 
 
