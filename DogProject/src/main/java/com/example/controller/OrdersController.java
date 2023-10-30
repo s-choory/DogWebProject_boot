@@ -43,7 +43,10 @@ public class OrdersController {
 				String OrderName = "";
 		        int total = 0;
 		        for (int i = 0; i < CartDTO_list.size(); i++) { 
-		        	int n = service.addAfterList(CartDTO_list.get(i), UserID, OrderID);
+		        	CartDTO cDTO = new CartDTO();
+		        	cDTO.setCartNum(CartDTO_list.get(i).getCartNum());
+		        	cDTO.setOrderNumber(OrderID);
+		        	int n = service.addAfterList(cDTO);
 					total += n;
 					OrderName = CartDTO_list.get(0).getProductName();
 				}

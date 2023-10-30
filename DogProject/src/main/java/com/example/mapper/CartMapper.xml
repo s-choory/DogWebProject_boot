@@ -9,7 +9,7 @@
 </insert>
 
 <insert id="addAfterList" parameterType="Cart">
-	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, #{OrderNumber}, #{OrderState}, 'true')
+	UPDATE CART SET OrderState = 'after', OrderNumber = #{OrderNumber} where CartNum = #{CartNum}
 </insert>
 
 <select id="findCartOrder" parameterType="hashmap" resultType="Cart">
@@ -55,7 +55,7 @@
 </delete>
 
 <select id="dupleSelect" parameterType="Cart" resultType="Cart">
-	select * from cart where UserID=#{UserID} and ProductID=#{ProductID} and Psize = #{Psize} and Color = #{Color}
+	select * from cart where UserID=#{UserID} and ProductID=#{ProductID} and Psize = #{Psize} and Color = #{Color} and OrderState = 'before'
 </select>
 
 <update id="dupleUpdate" parameterType="map">

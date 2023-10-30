@@ -55,8 +55,8 @@ public class CartDAO {
 		return session.update("CartMapper.dupleUpdate",map);
 	}
 
-	public int addAfterList(CartDTO CartDTO) {
-		return session.insert("CartMapper.addAfterList", CartDTO);
+	public int addAfterList(CartDTO cDTO) {
+		return session.update("CartMapper.addAfterList", cDTO);
 	}
 
 	public List<CartDTO> selectAfterList(CartDTO cdto) {
