@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>Login</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

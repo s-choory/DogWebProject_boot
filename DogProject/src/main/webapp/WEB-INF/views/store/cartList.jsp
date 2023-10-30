@@ -137,6 +137,7 @@
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
 <!-- <div style="margin-left: 10%"> -->
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <style type="text/css">
 
 	#button {

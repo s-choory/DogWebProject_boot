@@ -21,6 +21,7 @@ String email = user.getEmail1() + "@" + user.getEmail2();
 <link rel="stylesheet" type="text/css" href="resources/resource/styles/cart.css">
 <link rel="stylesheet" type="text/css" href="resources/resource/styles/cart_responsive.css">
 <title>상품주문</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <!-- 포트원 결제 -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>

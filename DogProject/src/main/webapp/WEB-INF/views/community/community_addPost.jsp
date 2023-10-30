@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <style type="text/css">
 	body{
 		margin:0;

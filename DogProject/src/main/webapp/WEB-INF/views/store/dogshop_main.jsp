@@ -10,6 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Shop Homepage - Start Bootstrap Template</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
         <link rel="stylesheet" href="#">  
         <!--1. bootstrap css넣기  -->
 

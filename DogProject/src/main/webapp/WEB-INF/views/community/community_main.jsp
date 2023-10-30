@@ -13,6 +13,7 @@
 
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <meta charset="UTF-8">
 <title>커뮤니티-메인화면</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -346,11 +346,7 @@ String search = (String)request.getAttribute("search");
 <div class="posttitle2">
 <div class="posttitle">
 	<div class="category">게시글(<%= post.size() %>)</div>
-<<<<<<< HEAD
-	<div class="postOthers"><a id="postOthers" href="/app/?search=<%=search%>">더보기 +</a></div>
-=======
 	<div class="postOthers"><a id="postOthers" href="community/?search=<%=search%>">더보기 +</a></div>
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
 </div>
 </div>
     <div class="post_container">
@@ -418,11 +414,7 @@ String search = (String)request.getAttribute("search");
             </a>
             <% if(i == 2){
             	break;
-<<<<<<< HEAD
-            }}} %>
-=======
             }}}%>
->>>>>>> branch 'yong' of https://github.com/s-choory/DogWebProject_boot.git
     </section>
     </div>
 <br>
