@@ -30,6 +30,7 @@
 		left: 50px;
 		margin-left:17%;
 		
+		padding-top: 7%;
 		padding-left: 5%;
 		padding-right: 15%;
 		border: 1px solid #ccc; /* 테두리 추가 */
@@ -37,7 +38,6 @@
 		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		display: flex; /* 플렉스 컨테이너로 설정 */
 	    flex-direction: row; /* 가로로 나열 */
-	    align-items: center; /* 수직 정렬 가운데로 조정 */
 	}
 	
 	#userbutton {
@@ -377,6 +377,13 @@
 		padding:30px 30px 0 30px;
 	}
 	
+	.modal-input-text{
+		border: 0;
+		border-radius: 10px;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+		height:50px;
+		padding:5px 5px 5px 10px;
+	} 
 /* post 부분 끝 */
 
 
@@ -703,22 +710,22 @@
 											<p class="user">회원정보</p>
 											<div id="aa">
 												<p class="user">
-													이름: <input type="text" id="name-2" name="UserName"
+													이름: <input class="modal-input-text" type="text" id="name-2" name="UserName"
 														value="<%=UserName%>">
 												</p>
 												<p class="user">
-													닉네임:<input type="text" id="nickname-2" name="UserAlias"
+													닉네임:<input class="modal-input-text" type="text" id="nickname-2" name="UserAlias"
 														value="<%=UserAlias%>">
 												</p>
 												<p class="user">
-													연락처:<input type="text" id="tel-2" name="PhoneNumber"
+													연락처:<input class="modal-input-text" type="text" id="tel-2" name="PhoneNumber"
 														value="<%=PhoneNumber%>" placeholder="'-'을 포함하여 입력하세요.">
 												</p>
 												<p class="user">
-													이메일:<input type="text" id="Email1-2" name="Email1"
-														value="<%=Email1%>" placeholder="직접 입력해주세요.">@ <input
+													이메일:<input class="modal-input-text" type="text" id="Email1-2" name="Email1"
+														value="<%=Email1%>" placeholder="직접 입력해주세요.">@ <input class="modal-input-text"
 														type="text" id="Email2-2" name="Email2"
-														value="<%=Email2%>"> <select name="select_email" id= "select_email" onchange="input_email();">
+														value="<%=Email2%>"> <select class="modal-input-text" name="select_email" id= "select_email" onchange="input_email();">
 											            <option value="daum.net">daum.net</option>
 											            <option value="naver.com">naver.com</option>
 											            <option value="google.com">google.com</option>
@@ -726,13 +733,13 @@
 
 												</p>
 												<p class="user">
-													주소: <input type="text" id="sample4_postcode" name="Post"
-														value="<%=Post%>" readonly><Br> <input
+													주소: <input class="modal-input-text" type="text" id="sample4_postcode" name="Post"
+														value="<%=Post%>" readonly><Br> <input class="modal-input-text"
 														type="text" id="sample4_roadAddress" name="RodeAddress"
 														value="<%=RodeAddress%>" style="width: 350px;" readonly><Br>
-													<input type="text" id="sample4_jibunAddress"
+													<input class="modal-input-text" type="text" id="sample4_jibunAddress"
 														name="HouseAddress" value="<%=HouseAddress%>"
-														style="width: 350px;" readonly><Br> <input
+														style="width: 350px;" readonly><Br> <input class="modal-input-text"
 														type="text" id="DetailAddress_xxx" name="DetailAddress"
 														value="<%=DetailAddress%>" style="width: 350px;"
 														placeholder="상세주소를 입력해주세요."> <input type="button"
@@ -753,11 +760,11 @@
 												<!-- ... -->
 												<p class="user">반려견 정보</p>
 												<p class="user">
-													이름:<input type="text" id="dogname" name="DogName"
+													이름:<input class="modal-input-text" type="text" id="dogname" name="DogName"
 														value="<%=DogName%>" placeholder="직접 입력해주세요.">
 												</p>
 												<p class="user">
-													품종:<input type="text" id="dogbreed" name="DogType"
+													품종:<input class="modal-input-text" type="text" id="dogbreed" name="DogType"
 														value="<%=DogType%>" placeholder="직접 입력해주세요.">
 												</p>
 												<input type="button" id="profil-img-change2"
