@@ -8,6 +8,10 @@
 	SELECT count(*) FROM ORDERS order by OrderID desc
 </select>
 
+<select id="ordersAllList2" parameterType="string" resultType="Orders">
+	SELECT * FROM ORDERS where UserID=#{UserID} order by OrderID desc
+</select>
+
 <select id="orderSelect" parameterType="int" resultType="Orders">
 	SELECT * FROM ORDERS WHERE OrderID=#{OrderID}
 </select>

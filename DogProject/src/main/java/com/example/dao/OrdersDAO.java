@@ -42,6 +42,10 @@ public class OrdersDAO {
 	public void adminUpdateOrderState2(int OrderID) {
 		session.update("OrdersMapper.adminUpdateOrderState2", OrderID);
 	}
+
+	public List<OrdersDTO> ordersAllList2(String UserID) {
+		return  session.selectList("OrdersMapper.ordersAllList2", UserID);
+	}
 	
 
 

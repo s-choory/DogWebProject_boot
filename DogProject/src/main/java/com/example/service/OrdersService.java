@@ -41,6 +41,10 @@ public class OrdersService {
 	public void adminUpdateOrderStat2e(int orderID) {
 		dao.adminUpdateOrderState2(orderID);
 	}
+
+	public List<OrdersDTO> ordersAllList2(String UserID) {
+		return dao.ordersAllList2(UserID);
+	}
 	
 	
 }

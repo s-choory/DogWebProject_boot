@@ -103,8 +103,9 @@ public class OrdersController {
 			        return "redirect:/login";
 			        }
 				String userid = udto.getUserID();
-				List<OrdersDTO> olist = oService.ordersAllList(userid);
+				List<OrdersDTO> olist = oService.ordersAllList2(userid);
 				List<CartDTO> clist = service.selectOrderAllList(userid);
+				System.out.println("olist이다!!"+olist);
 				session.setAttribute("olist", olist);
 				session.setAttribute("clist", clist);
 				return "store/orderList";
