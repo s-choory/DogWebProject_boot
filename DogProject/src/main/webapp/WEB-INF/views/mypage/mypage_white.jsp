@@ -106,7 +106,6 @@
 		 background-color: transparent;
 	}
 
-
 /* 내 정보 부분 스타일 끝  */
 
 /*  구매목록 부분 스타일 */
