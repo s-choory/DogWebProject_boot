@@ -1348,19 +1348,19 @@ h3 {
                    
 					<c:choose>
 						<c:when test="${uDTO.userID == null}">
-							<button type="button" id="likelike" value="좋아요${n2222}">
+							<button type="button" id="likelike" value="좋아요${n2222}" style="border: 0; background-color: transparent;">
 								<img id="heartImg" src="resources/postcss/dots.png"
 									alt="좋아요사진" width="45" height="45">
 							</button>
 						</c:when>
 						<c:when test="${uDTO.userID ne ldto.userID}">
-							<button type="button" id="likelike" value="좋아요${n2222}">
+							<button type="button" id="likelike" value="좋아요${n2222}" style="border: 0; background-color: transparent;">
 								<img id="heartImg" src="resources/postcss/emptyheart.png"
-									alt="좋아요사진" width="45" height="45">
+									alt="좋아요사진" width="45" height="45" >
 							</button>
 						</c:when>
 						<c:when test="${uDTO.userID eq ldto.userID}"> 
-							<button type="button" id="likelike" value="좋아요${n2222}">
+							<button type="button" id="likelike" value="좋아요${n2222}" style="border: 0; background-color: transparent;">
 								<img id="heartImg" src="resources/postcss/heart.png"
 									alt="좋아요사진" width="45" height="45">
 							</button>
