@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from Posts where posttype = 'undeleted'
 </select> -->
 
+<select id="POSTUSERIMG" resultType="Users">
+SELECT * FROM users
+			INNER JOIN posts ON posts.AUTHORID = users.userID
+            where posts.PostID=#{PostID}
+</select>
+
 <!-- list 화면 출력 및 페이징 관련 SQL문 -->
  <select id="selectList" resultType="Posts">
 	select * from Posts

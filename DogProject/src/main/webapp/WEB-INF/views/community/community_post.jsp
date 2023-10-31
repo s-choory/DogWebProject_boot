@@ -1279,7 +1279,7 @@ h3 {
 			<div id="div6">
 			<div id="NoticeWriter">${read.authorID}</div>
 			<div id="NoticeHit">조회수 ${read.hit}</div>
-			<div id="NoticePicture"><img src="resources/postcss/dogread.png" alt="운영자 사진" width="45" height="45"></div>
+			<div id="NoticePicture"><img src="${uuu}" alt="운영자 사진" width="45" height="45" style="border-radius: 15%;"></div>
 			<div id="NoticeTime" class="ContactCenter_Notice_Top_Uploaddate">${read.creationTime}</div>
 	
 			                   <div id="card" class="card" style="cursor: pointer; ">

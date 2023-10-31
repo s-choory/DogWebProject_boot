@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.PostsDTO;
+import com.example.dto.UsersDTO;
 
 @Repository
 public class PostsDAO {
@@ -62,6 +63,10 @@ public class PostsDAO {
 		map.put("Likes", Likes);
 		map.put("PostID", postID);
 		int n = session.update("PostsMapper.likeUpdate",map);
+	}
+
+	public UsersDTO POSTUSERIMG(int PostID) {
+		return session.selectOne("PostsMapper.POSTUSERIMG", PostID);
 	}
 	
 } // end

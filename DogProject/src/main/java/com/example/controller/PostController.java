@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -92,6 +93,16 @@ public class PostController {
 					model.addAttribute("uDTO", uDTO); //게시글 수정 관련 model
 				}
 				
+				UsersDTO uuu = Postsservice.POSTUSERIMG(PostID);
+				byte[] userPOSTImgBytes = uuu.getUSERIMG();
+				String imagePOSTSrc = null;
+				if(uuu.getUSERIMG() ==null) {
+					imagePOSTSrc = "resources/postcss/dogread.png";
+				}else {
+					String basePOST64Image = Base64.getEncoder().encodeToString(userPOSTImgBytes);
+					imagePOSTSrc = "data:image/jpeg;base64," + basePOST64Image;
+				}
+				model.addAttribute("uuu", imagePOSTSrc);
 //				List<LikeDTO> Like_list = LikeService.selectLikeList();
 //				model.addAttribute("Like_list", Like_list);
 				

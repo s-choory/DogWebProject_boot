@@ -368,8 +368,14 @@
 		padding:5px 5px 5px 10px;
 	} 
 /* post 부분 끝 */
-
-
+	.OrderList {
+	    position: absolute;
+	    top: 100;
+	    right: 0;
+	    margin-right: 10px;
+	    margin-top: 10px;
+	}
+	
 
 </style>
 	
@@ -785,6 +791,7 @@
 
 				<header>
 					<h2>장바구니</h2>
+					<a href="/app/cartList"><button class="OrderList" style="background-color: #A0FA78;">상세보기</button></a>
 				</header>
 				<!-- 장바구니 시작 -->
 				<div id="shoppingbasket">
@@ -858,6 +865,7 @@
 
 				<header>
 					<h2>구매목록</h2>
+					<a href="/app/orderList"><button class="OrderList" style="background-color: #A0FA78;">상세보기</button></a>
 				</header>
 				
 				<!-- 주문list 시작 -->

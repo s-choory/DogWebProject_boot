@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.PostsDAO;
 import com.example.dto.PostsDTO;
+import com.example.dto.UsersDTO;
 
 @Service("Postservice")
 public class PostsService {
@@ -50,5 +51,9 @@ public class PostsService {
 
 	public void likeUpdate(String n, String postID) {
 		dao.likeUpdate(n, postID);
+	}
+
+	public UsersDTO POSTUSERIMG(int PostID) {
+		return dao.POSTUSERIMG(PostID);
 	}
 }// end class
