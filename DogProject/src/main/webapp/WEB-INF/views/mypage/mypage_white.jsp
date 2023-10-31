@@ -110,6 +110,7 @@
 /* 내 정보 부분 스타일 끝  */
 
 /*  구매목록 부분 스타일 */
+/* 상세보기 버튼 */
 .OrderList {
     position: absolute;
     top: 100;
