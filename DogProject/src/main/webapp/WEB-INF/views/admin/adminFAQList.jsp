@@ -51,7 +51,7 @@ function openAddFAQ() {
 
 
 function deleteFAQ(FaqID) {
-	if (confirm("정말 "+NoticeID+"번 공지를 삭제하겠습니까?") == true) {
+	if (confirm("정말 "+FaqID+"번 공지를 삭제하겠습니까?") == true) {
 		location.href="adminDeleteFAQ?FaqID="+FaqID;
 	}
 }

@@ -576,7 +576,7 @@ public class AdminController {
 		
 		
 		fService.delete(FaqID);
-		return "admin/closeWindow";
+		return "redirect:/adminFAQList";
 	}
 	//=================================================================
 	
