@@ -29,13 +29,8 @@
     // 마지막페이지번호 구하기
     int endPage = startPage + perBlock - 1;
     if ( endPage > totalNum ) endPage = totalNum;
-<<<<<<< HEAD
-    
-
-=======
  // 페이지번호 출력 시작
 	if(totalCount != 0){
->>>>>>> branch 'dae' of https://github.com/s-choory/DogWebProject_boot.git
     // 1. 첫 페이지로 바로 이동
     if ( curPage == 1 )
         out.print( "<div class='pageon'>처음</div>" );
