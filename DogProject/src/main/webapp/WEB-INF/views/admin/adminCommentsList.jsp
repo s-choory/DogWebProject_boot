@@ -33,7 +33,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script type="text/javascript">
 	function adminDeleteComment(CommentID, PostID){
-		if (confirm("정말 "+CommentID+"번 리뷰를 삭제하겠습니까?") == true) {
+		if (confirm("정말 "+CommentID+"번 댓글을 삭제하겠습니까?") == true) {
 			location.href="adminDeleteComment?CommentID="+CommentID+"&PostID="+PostID;
 		}
 	}

@@ -34,7 +34,7 @@
 
 
 function UpdateOrderState2(OrderID) {
-	if (confirm("정말 "+OrderID+"번 주문을 입금 확인 하겠습니까?") == true) {
+	if (confirm("정말 "+OrderID+"번 주문을 배송 완료 처리 하시겠습니까?") == true) {
 		location.href="adminUpdateOrderState2?OrderID="+OrderID;
 	}
 }

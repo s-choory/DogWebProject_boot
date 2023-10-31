@@ -42,7 +42,7 @@ function UpdateOrderState(OrderID) {
 </script>
 <body>
     <header>
-        <h1 style="text-align: center; margin: 30px 0; ">주문 입급대기 목록</h1>
+        <h1 style="text-align: center; margin: 30px 0; ">주문 입금대기 목록</h1>
     </header>
     <div style="text-align: center; margin-bottom: 30px;">
     	<a href="adminPage" >관리자페이지로 이동</a><br><br>
