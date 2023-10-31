@@ -107,41 +107,9 @@
 		 background-color: transparent;
 	}
 
-
 /* 내 정보 부분 스타일 끝  */
 
 /*  구매목록 부분 스타일 */
-#orderlist {
-	position: relative;
-	top: 25px;
-	left: 25px;
-	bottom: 25px;
-	width: 1200px;
-	height: 520px;
-	white-space: nowrap; /* 세로 스크롤 삭제 */
-	overflow-x: scroll; /* 가로 스크롤만 생성 */
-	padding: 5%;
-	border: 1px solid #ccc; /* 테두리 추가 */
-	border-radius: 5px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-#orderlist2 {
-
-	swiper-theme-color: #007aff;
-	swiper-navigation-size: 44px;
-	font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic,
-		AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
-	font-size: 1.5rem;
-	line-height: 1.4;
-	color: #555555;
-	letter-spacing: -1px;
-	text-align: left;
-	box-sizing: border-box;
-	width: 600px;
-	height: 400px;
-	display: flex;
-}
 /*  구매목록 부분 스타일 끝 */
 
 /*  장바구니 부분 스타일 */
@@ -156,12 +124,28 @@
 	overflow-x: scroll; /* 가로 스크롤만 생성 */
 	padding-left: 5%;
 	padding-right: 5%;
-	padding-top: 5px;
+	padding-top: 30px;
 	padding-bottom: 5px;
 	border: 1px solid #ccc; /* 테두리 추가 */
 	border-radius: 5px;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	background-color: white;
 }
+
+#shoppingbasket::-webkit-scrollbar {
+   	 width: 18px; /* 스크롤 바의 너비 */
+	}
+#shoppingbasket::-webkit-scrollbar-thumb {
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+	    border-radius: 5px; /* 스크롤 바의 둥근 모서리 */
+	}
+
+#shoppingbasket::-webkit-scrollbar-track {
+   	 	border-radius: 5px;
+		background-color: #f7f8fa
+	}   
+
+
 
 #shoppingbasket2 {
 	swiper-theme-color: #007aff;
@@ -210,6 +194,7 @@
 /*  달력 부분 스타일 */
 	.fc-toolbar-title{
 		color: black;
+		font-weight: bolder;
 	}
 	.fc .fc-daygrid-day-number {
     position: relative;
@@ -357,7 +342,7 @@
 	    font-weight: 600;
 	    transition: 0.25s;
 		
-		background-color: aliceblue;
+		background-color: #A0FA78; 
     	color: #1e6b7b;
 	
         margin-right: 10px;      /* 오른쪽 여백 설정 */ 
@@ -821,7 +806,7 @@
 					<div id="shoppingbasket2">
 						<div>
 							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
-								width="400px" height="400px;" style="float: left;"
+								width="400px" height="400px;" style="float: left; border-radius: 10px;"
 								id="image<%=i%>" />
 						</div>
 						<div class="shoppingbasket_info">
@@ -876,7 +861,7 @@
 				</header>
 				
 				<!-- 주문list 시작 -->
-				<div id="orderlist">
+				<div id="shoppingbasket">
 					<%
 						List<CartDTO> orderlist_after = (List<CartDTO>) request.getAttribute("list3");
 						for (int i = 0; i < orderlist_after.size(); i++) {
@@ -893,42 +878,45 @@
 								String Image = cart.getImage();
 					%>
 				<div id="shoppingbasket2">
-					<div id="orderlist2">
-						<img src="resources/storeimages/<%=Image%>.jpg" border="0"
-							width="200px" height="200px;" 
-							id="image<%=i%>" />
-					</div>
-					<div class="shoppingbasket_info">
-						<table>
-							<colgroup>
-								<col style="width: 35%">
-								<col style="width: 65%">
-							</colgroup>
+						<div>
+							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
+								width="400px" height="400px;" style="float: left; border-radius: 10px;"
+								id="image<%=i%>" />
+						</div>
+						<div class="shoppingbasket_info">
+							<table style="width: 35%; height: 400px;" >
+								<colgroup>
+									<col style="width: 35%; height: 400px;">
+									<col style="width: 65%; height: 400px;">
+								</colgroup>
 
-							<tr>
-								<th>이름</th>
-								<td><%=ProductName%></td>
-							</tr>
-							<tr>
-								<th>사이즈</th>
-								<td><%=Psize%></td>
-							</tr>
-							<tr>
-								<th>색상</th>
-								<td><%=Color%></td>
-							</tr>
-							<tr>
-								<th>수량</th>
-								<td><%=Amount%></td>
-							</tr>
-							<tr>
-								<th>가격</th>
-								<td><%=Price%></td>
-							</tr>
+								<tr>
+									<th>이름</th>
+									<td><%=ProductName%></td>
+								</tr>
+								<tr>
+									<th>사이즈</th>
+									<td><%=Psize%></td>
+								</tr>
+								<tr>
+									<th>색상</th>
+									<td><%=Color%></td>
+								</tr>
+								<tr>
+									<th>수량</th>
+									<td><%=Amount%></td>
+								</tr>
+								<tr>
+									<th>가격</th>
+									<td><%=Price%></td>
+								</tr>
 
-						</table>
+							</table>
+						</div>
+
+
+
 					</div>
-				</div>
 					<%
 							}
 						}

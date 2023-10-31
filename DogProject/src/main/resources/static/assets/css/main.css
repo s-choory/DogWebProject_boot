@@ -1851,10 +1851,11 @@ input, select, textarea {
 		}
 
 		table th {
-			text-align: left;
-			padding: 0.5em 1em 0.5em 1em;
+			text-align: center;
+			padding: 15px 10px 0 10px;
 			color: #fff;
-			background: #222729 url("images/overlay.png");
+			font-weight:bolder;
+			background: linear-gradient(135deg, #7AFF7A, #429F6B); /* 그라데이션 색상 지정 */
 		}
 
 		table thead {
@@ -1878,7 +1879,7 @@ input, select, textarea {
 		border-radius: 0.35em;
 		color: #fff !important;
 		text-decoration: none;
-		padding: 0.5em 2em 0.5em 2em;
+		padding: 0.2em 0.5em 0.2em 0.5em;
 		background-color: #06f; /* #8ebebc */
 		border: 0;
 		cursor: pointer;
