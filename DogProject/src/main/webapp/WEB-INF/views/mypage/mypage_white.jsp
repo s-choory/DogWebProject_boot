@@ -13,7 +13,8 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Prologue by HTML5 UP</title>
+		<title>MyPage</title>
+		<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/main.css" />
