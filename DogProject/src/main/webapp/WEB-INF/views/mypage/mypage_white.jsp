@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
-=======
-<%@page import="java.util.regex.Pattern"%>
-<%@page import="java.util.regex.Matcher"%>
-<%@page import="java.time.LocalDateTime"%>
->>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
 <%@page import="com.example.dto.PageDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.example.dto.PostsDTO"%>
@@ -116,43 +110,6 @@
 /* 내 정보 부분 스타일 끝  */
 
 /*  구매목록 부분 스타일 */
-<<<<<<< HEAD
-#orderlist {
-	position: relative;
-	top: 25px;
-	left: 25px;
-	bottom: 25px;
-	width: 1200px;
-	height: 520px;
-	white-space: nowrap; /* 세로 스크롤 삭제 */
-	overflow-x: scroll; /* 가로 스크롤만 생성 */
-	padding: 5%;
-	border: 1px solid #ccc; /* 테두리 추가 */
-	border-radius: 5px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-=======
->>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
-
-<<<<<<< HEAD
-#orderlist2 {
-
-	swiper-theme-color: #007aff;
-	swiper-navigation-size: 44px;
-	font-family: '맑은 고딕', 'Malgun Gothic', Microsoft NeoGothic,
-		AppleGothicNeoSD, 'Apple SD 산돌고딕 Neo', Droid sans, sans-serif;
-	font-size: 1.5rem;
-	line-height: 1.4;
-	color: #555555;
-	letter-spacing: -1px;
-	text-align: left;
-	box-sizing: border-box;
-	width: 600px;
-	height: 400px;
-	display: flex;
-}
-=======
->>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
 /*  구매목록 부분 스타일 끝 */
 
 /*  장바구니 부분 스타일 */
@@ -167,11 +124,12 @@
 	overflow-x: scroll; /* 가로 스크롤만 생성 */
 	padding-left: 5%;
 	padding-right: 5%;
-	padding-top: 5px;
+	padding-top: 30px;
 	padding-bottom: 5px;
 	border: 1px solid #ccc; /* 테두리 추가 */
 	border-radius: 5px;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	background-color: white;
 }
 
 #shoppingbasket::-webkit-scrollbar {
@@ -236,6 +194,7 @@
 /*  달력 부분 스타일 */
 	.fc-toolbar-title{
 		color: black;
+		font-weight: bolder;
 	}
 	.fc .fc-daygrid-day-number {
     position: relative;
@@ -383,7 +342,7 @@
 	    font-weight: 600;
 	    transition: 0.25s;
 		
-		background-color: aliceblue;
+		background-color: #A0FA78; 
     	color: #1e6b7b;
 	
         margin-right: 10px;      /* 오른쪽 여백 설정 */ 
@@ -847,7 +806,7 @@
 					<div id="shoppingbasket2">
 						<div>
 							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
-								width="400px" height="400px;" style="float: left;"
+								width="400px" height="400px;" style="float: left; border-radius: 10px;"
 								id="image<%=i%>" />
 						</div>
 						<div class="shoppingbasket_info">
@@ -921,11 +880,11 @@
 				<div id="shoppingbasket2">
 						<div>
 							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
-								width="400px" height="400px;" style="float: left;"
+								width="400px" height="400px;" style="float: left; border-radius: 10px;"
 								id="image<%=i%>" />
 						</div>
 						<div class="shoppingbasket_info">
-							<table style="width: 35%; height: 400px;">
+							<table style="width: 35%; height: 400px;" >
 								<colgroup>
 									<col style="width: 35%; height: 400px;">
 									<col style="width: 65%; height: 400px;">
