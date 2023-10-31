@@ -155,7 +155,7 @@
 
 .menu{
  		margin: 20px 20px 25px 20px; /* 가운데 정렬 */
- 	/* 	text-align: center; */
+ 		text-align: center;
  
  	}
     .menu #Notice{
@@ -179,7 +179,15 @@
 	   	box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.2);
     }
     
+.col-lg-12{
+	padding-left: 100px;
+}
 
+.page-title::after {
+
+    width: 960px;
+   
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -222,27 +230,27 @@ $("#dropdown"+num).show();
 
 <div class="Logo"><img src="${pageContext.request.contextPath}/resources/main-icon/FAQ.png"></div>
 
- <form action="/app/community/">
+<!-- <form action="/app/community/">-->
  <div class="menu">
     <span class="ContactCenter_Choice_Yes" id="Notice"><a href="/app/ContactCenter_Notice">공지사항</a></span>
 		<span class="ContactCenter_Choice_No" id="FAQ"><a href="/app/ContactCenter_FAQ">FAQ</a></span>
 		</div>
  
- 	<input type="text" id="search" placeholder="찾는 게시물을 검색해주세요." name="search" value="" >
-    </form>
+ 	<!-- <input type="text" id="search" placeholder="찾는 게시물을 검색해주세요." name="search" value="" >
+    </form> -->
 	
 
 <div class="container-lg">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-title">자주묻는질문</h1>
+			<h1 class="page-title">자주 묻는 질문</h1>
 			<div class="accordion" id="accordionExample">
 				<%
 				List<FAQDTO> list= (List)request.getAttribute("list");
 					
 				%>
 		
-				<%for(int i = 1; i <= list.size(); i++) { 
+				<%for(int i = 1; i <= list.size(); i++) {
 					FAQDTO dto = list.get(i-1);
 			 		int FaqID = dto.getFaqID();
 			 	    String Title = dto.getTitle();
@@ -252,7 +260,7 @@ $("#dropdown"+num).show();
 			 	<div class="card">
 					<div class="card-header" id="heading<%=FaqID %>">
 						<h2 class="clearfix mb-0">
-							<a class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-chevron-circle-down"></i><%=FaqID %>번<%=Title%></a>									
+							<a class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-chevron-circle-down"></i><%=Title%></a>									
 						</h2>
 					</div>
 					<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -265,7 +273,7 @@ $("#dropdown"+num).show();
 				 <div class="card">
 					<div class="card-header" id="headingTwo">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-chevron-circle-down"></i><%=FaqID %>번<%=Title%></a>
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-chevron-circle-down"></i><%=Title%></a>
 						</h2>
 					</div>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -277,7 +285,29 @@ $("#dropdown"+num).show();
 				<div class="card">
 					<div class="card-header" id="headingThree">
 						<h2 class="mb-0">
-							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-chevron-circle-down"></i> <%=FaqID %>번<%=Title%></a>                     
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-chevron-circle-down"></i><%=Title%></a>                     
+						</h2>
+					</div>
+					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						<div class="card-body"><%=Content%></div>
+					</div>
+				</div> 
+				 <%}else if (i==4){%>
+				<div class="card">
+					<div class="card-header" id="headingThree">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-chevron-circle-down"></i><%=Title%></a>                     
+						</h2>
+					</div>
+					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						<div class="card-body"><%=Content%></div>
+					</div>
+				</div> 
+				 <%}else if (i==5){%>
+				<div class="card">
+					<div class="card-header" id="headingThree">
+						<h2 class="mb-0">
+							<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-chevron-circle-down"></i><%=Title%></a>                     
 						</h2>
 					</div>
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">

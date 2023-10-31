@@ -29,6 +29,14 @@ public class CommentsController {
 			
 			List<CommentsDTO> replylist = service.replylist(PostID);
 			
+			return replylist;
+		}
+		
+		@PostMapping("/replyut/{PostID}")
+		@ResponseBody
+		public List<CommentsDTO> replylisttt(@PathVariable int PostID) {
+			
+			List<CommentsDTO> replylist = service.replylisttt(PostID);
 			
 			return replylist;
 		}
@@ -66,10 +74,11 @@ public class CommentsController {
 		}
 		
 		//대댓글 작성
-		@PostMapping("/replywritewrite/{PostID}/{Content}/{ParentCommentID}")
+		@PostMapping("/replywritewrite/{PostID}/{Content}/{ParentCommentID}/{ParentAuthorID}")
 		@ResponseBody
 		public Map<String, Object> replywritewrite(
-				@PathVariable String Content,@PathVariable int ParentCommentID, CommentsDTO DTO, HttpSession session) {
+				@PathVariable String Content,@PathVariable int ParentCommentID, 
+				@PathVariable String ParentAuthorID, CommentsDTO DTO, HttpSession session) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			//service.makeReply(DTO);
 			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");

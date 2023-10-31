@@ -299,7 +299,7 @@
  
  	.menu{
  		margin: 20px 20px 25px 20px; /* 가운데 정렬 */
- 	/* 	text-align: center; */
+ 		text-align: center;
  
  	}
     .menu #Notice{

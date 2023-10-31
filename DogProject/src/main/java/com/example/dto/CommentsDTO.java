@@ -8,6 +8,7 @@ public class CommentsDTO {
 	private int CommentID;  //댓글 고유번호
 	private int PostID;  //게시글 번호 (Posts PostID 참조)
 	private String AuthorID; //댓글 작성자 번호
+	private String ParentAuthorID; //댓글 작성자 번호
 	private String Content;  //댓글 내용
 	private String CreationTime; //댓글 작성시간
 	private int ParentCommentID; //부모댓글(댓글 고유번호)(대댓글 작성 시 기준필요)
@@ -16,12 +17,13 @@ public class CommentsDTO {
 	
 	public CommentsDTO() {}
 
-	public CommentsDTO(int commentID, int postID, String authorID, String content, String creationTime,
-			int parentCommentID, int repIndent, String commentType) {
+	public CommentsDTO(int commentID, int postID, String authorID, String parentAuthorID, String content,
+			String creationTime, int parentCommentID, int repIndent, String commentType) {
 		super();
 		CommentID = commentID;
 		PostID = postID;
 		AuthorID = authorID;
+		ParentAuthorID = parentAuthorID;
 		Content = content;
 		CreationTime = creationTime;
 		ParentCommentID = parentCommentID;
@@ -51,6 +53,14 @@ public class CommentsDTO {
 
 	public void setAuthorID(String authorID) {
 		AuthorID = authorID;
+	}
+
+	public String getParentAuthorID() {
+		return ParentAuthorID;
+	}
+
+	public void setParentAuthorID(String parentAuthorID) {
+		ParentAuthorID = parentAuthorID;
 	}
 
 	public String getContent() {
@@ -95,10 +105,13 @@ public class CommentsDTO {
 
 	@Override
 	public String toString() {
-		return "CommentsDTO [CommentID=" + CommentID + ", PostID=" + PostID + ", AuthorID=" + AuthorID + ", Content="
-				+ Content + ", CreationTime=" + CreationTime + ", ParentCommentID=" + ParentCommentID + ", repIndent="
-				+ repIndent + ", CommentType=" + CommentType + "]";
+		return "CommentsDTO [CommentID=" + CommentID + ", PostID=" + PostID + ", AuthorID=" + AuthorID
+				+ ", ParentAuthorID=" + ParentAuthorID + ", Content=" + Content + ", CreationTime=" + CreationTime
+				+ ", ParentCommentID=" + ParentCommentID + ", repIndent=" + repIndent + ", CommentType=" + CommentType
+				+ "]";
 	}
+
+	
 
 
 	

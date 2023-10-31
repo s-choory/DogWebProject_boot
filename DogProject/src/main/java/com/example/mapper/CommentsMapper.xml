@@ -15,24 +15,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			start with PARENTCOMMENTID is null
 			connect by prior COMMENTID = PARENTCOMMENTID
 			order siblings by COMMENTID asc
+			
 	</select>
 	
+    <select id="replylisttt" parameterType="hashmap" resultType="Comments">
+			<!-- select level, COMMENTS.* 
+			from COMMENTS
+		    where PostID = #{PostID}
+			start with PARENTCOMMENTID is null
+			connect by prior COMMENTID = PARENTCOMMENTID
+			order siblings by COMMENTID desc -->
+			
+			
+			SELECT level, COMMENTS.*
+			FROM COMMENTS
+			WHERE PostID = #{PostID}
+			START WITH PARENTCOMMENTID IS NULL
+			CONNECT BY PRIOR COMMENTID = PARENTCOMMENTID
+			ORDER SIBLINGS BY CASE WHEN PARENTCOMMENTID IS NULL THEN COMMENTID END DESC
+			
+	</select>
+	
+
 	<select id="replyCount" resultType="int" parameterType="Comments">
 		SELECT COUNT(*) FROM COMMENTS WHERE PostID = #{PostID}
 	</select>
 	
     
-   <insert id="replyinsert" parameterType="Comments">
+ <insert id="replyinsert" parameterType="Comments">
 	INSERT INTO COMMENTS ( 
           		CommentID , 
           		PostID, 
           		AuthorID, 
+          		ParentAuthorID,
           		Content, 
           		CreationTime, 
           		CommentType,
           		ParentCommentID, 
           		repIndent ) 
-    	values ( COMMENTS_COMMENTID_SEQ.nextval , #{PostID},  #{AuthorID}, #{Content}, SYSDATE ,
+    	values ( COMMENTS_COMMENTID_SEQ.nextval , #{PostID},  #{AuthorID}, null, #{Content}, SYSDATE ,
     	'undeleted', null,  1 )
 	</insert> 
     
@@ -45,12 +66,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           		CommentID , 
           		PostID, 
           		AuthorID, 
+          		ParentAuthorID,
           		Content, 
           		CreationTime, 
           		CommentType,
           		ParentCommentID, 
           		repIndent) 
-    	values ( COMMENTS_COMMENTID_SEQ.nextval , #{PostID},  #{AuthorID}, #{Content}, SYSDATE ,
+    	values ( COMMENTS_COMMENTID_SEQ.nextval , #{PostID},  #{AuthorID},#{ParentAuthorID},  #{Content}, SYSDATE ,
     	'undeleted', #{ParentCommentID},  #{repIndent})
     	
     </insert>

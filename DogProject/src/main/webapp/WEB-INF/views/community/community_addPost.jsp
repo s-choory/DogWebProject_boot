@@ -79,14 +79,17 @@ $(function () {
 
 
 .submitButton{
-	background-color: transparent;
+	background-color: #eaeaea;
 	border-style:solid;
-	border-radius:1px;
-	font-size: 25px;
+	border-radius:7px;
+	font-size: 18px;
 	position: absolute;
+	border-color:transparent;
     right: 0;
     bottom: 0;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
 }
+
 
 .container{
 	position: relative;
