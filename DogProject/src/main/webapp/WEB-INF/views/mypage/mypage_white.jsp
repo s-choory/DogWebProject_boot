@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
+=======
+<%@page import="java.util.regex.Pattern"%>
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.time.LocalDateTime"%>
+>>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
 <%@page import="com.example.dto.PageDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.example.dto.PostsDTO"%>
@@ -107,10 +113,10 @@
 		 background-color: transparent;
 	}
 
-
 /* 내 정보 부분 스타일 끝  */
 
 /*  구매목록 부분 스타일 */
+<<<<<<< HEAD
 #orderlist {
 	position: relative;
 	top: 25px;
@@ -125,7 +131,10 @@
 	border-radius: 5px;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
+=======
+>>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
 
+<<<<<<< HEAD
 #orderlist2 {
 
 	swiper-theme-color: #007aff;
@@ -142,6 +151,8 @@
 	height: 400px;
 	display: flex;
 }
+=======
+>>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
 /*  구매목록 부분 스타일 끝 */
 
 /*  장바구니 부분 스타일 */
@@ -162,6 +173,21 @@
 	border-radius: 5px;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+#shoppingbasket::-webkit-scrollbar {
+   	 width: 18px; /* 스크롤 바의 너비 */
+	}
+#shoppingbasket::-webkit-scrollbar-thumb {
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+	    border-radius: 5px; /* 스크롤 바의 둥근 모서리 */
+	}
+
+#shoppingbasket::-webkit-scrollbar-track {
+   	 	border-radius: 5px;
+		background-color: #f7f8fa
+	}   
+
+
 
 #shoppingbasket2 {
 	swiper-theme-color: #007aff;
@@ -876,7 +902,7 @@
 				</header>
 				
 				<!-- 주문list 시작 -->
-				<div id="orderlist">
+				<div id="shoppingbasket">
 					<%
 						List<CartDTO> orderlist_after = (List<CartDTO>) request.getAttribute("list3");
 						for (int i = 0; i < orderlist_after.size(); i++) {
@@ -893,42 +919,45 @@
 								String Image = cart.getImage();
 					%>
 				<div id="shoppingbasket2">
-					<div id="orderlist2">
-						<img src="resources/storeimages/<%=Image%>.jpg" border="0"
-							width="200px" height="200px;" 
-							id="image<%=i%>" />
-					</div>
-					<div class="shoppingbasket_info">
-						<table>
-							<colgroup>
-								<col style="width: 35%">
-								<col style="width: 65%">
-							</colgroup>
+						<div>
+							<img src="resources/storeimages/<%=Image%>.jpg" border="0"
+								width="400px" height="400px;" style="float: left;"
+								id="image<%=i%>" />
+						</div>
+						<div class="shoppingbasket_info">
+							<table style="width: 35%; height: 400px;">
+								<colgroup>
+									<col style="width: 35%; height: 400px;">
+									<col style="width: 65%; height: 400px;">
+								</colgroup>
 
-							<tr>
-								<th>이름</th>
-								<td><%=ProductName%></td>
-							</tr>
-							<tr>
-								<th>사이즈</th>
-								<td><%=Psize%></td>
-							</tr>
-							<tr>
-								<th>색상</th>
-								<td><%=Color%></td>
-							</tr>
-							<tr>
-								<th>수량</th>
-								<td><%=Amount%></td>
-							</tr>
-							<tr>
-								<th>가격</th>
-								<td><%=Price%></td>
-							</tr>
+								<tr>
+									<th>이름</th>
+									<td><%=ProductName%></td>
+								</tr>
+								<tr>
+									<th>사이즈</th>
+									<td><%=Psize%></td>
+								</tr>
+								<tr>
+									<th>색상</th>
+									<td><%=Color%></td>
+								</tr>
+								<tr>
+									<th>수량</th>
+									<td><%=Amount%></td>
+								</tr>
+								<tr>
+									<th>가격</th>
+									<td><%=Price%></td>
+								</tr>
 
-						</table>
+							</table>
+						</div>
+
+
+
 					</div>
-				</div>
 					<%
 							}
 						}

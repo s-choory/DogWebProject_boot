@@ -1878,7 +1878,11 @@ input, select, textarea {
 		border-radius: 0.35em;
 		color: #fff !important;
 		text-decoration: none;
+<<<<<<< HEAD
 		padding: 0.5em 2em 0.5em 2em;
+=======
+		padding: 0.2em 0.5em 0.2em 0.5em;
+>>>>>>> branch 'sun' of https://github.com/s-choory/DogWebProject_boot.git
 		background-color: #06f; /* #8ebebc */
 		border: 0;
 		cursor: pointer;
