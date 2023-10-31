@@ -13,6 +13,7 @@
 
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <meta charset="UTF-8">
 <title>커뮤니티-메인화면</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -368,6 +369,7 @@
 	int Likes= dto.getLikes();
 	String CreationTime= dto.getCreationTime();
 	String PostType = dto.getPostType();
+	int hit = dto.getHit();
 	
 	%> 
 	
@@ -400,6 +402,7 @@
                             <span class="like">좋아요❤️<%=Likes %><span id="Like"></span></span>
                             <span class="comment">댓글<span id="Comment"></span></span>
                         <span class="post-time"><%=CreationTime %></span> <!-- 시간 표시 태그 -->
+                        <span class="post-time">조회수 <%=hit %></span> <!-- 시간 표시 태그 -->
                         </div>
                     </div>
                 </div>

@@ -5,25 +5,27 @@
 <!DOCTYPE html>
 <head>
 <% 
-List<RequestDTO> rlist = (List<RequestDTO>) session.getAttribute("request_UserOrderSelectList");
+List<RequestDTO> rlist = (List<RequestDTO>) session.getAttribute("request_SelectList");
 RequestDTO rdto = (RequestDTO) session.getAttribute("request_selectone");
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <style>
+body {
+	    margin: 0;
+	    font-family: Arial, sans-serif;
+	}
 .requestForm_sitename {
 	font-size: 25px;
 	font-weight: bold;
 	padding-bottom: 7px;
-	border-bottom: 1px solid #ccc; /* 테두리 추가 */
+	border-bottom: 1px solid green; /* 테두리 추가 */
+	background: linear-gradient(135deg, white, #429F6B);
 }
 select {
 	height: 25px;
-}
-.requestForm_textbar {
-	width: 476px; 
-	height: 90px;
-	margin: 7px 0px;
 }
 .requestForm_div {
 	padding: 7px 0px;
@@ -36,10 +38,48 @@ select {
 .button-space {
     margin: 0px 5px; 
 }
-td {
+.pagination-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination {
+        display: inline-flex;
+    }
+img,
+.padding_left {
+
+padding-left: 8px;
+}
+.margin_side {
+margin: 0px 12px;
+width: 100%-24px;
+}
+.form-control {
+width: 95%;
+height: 100px;
+margin-bottom: 8px;
+}
+ul {
+margin-bottom: 8px;
+}
+.page-link{
+color: green;
+}
+table {
+	text-align: center;
+}
+.table {
+margin-bottom: 0px;
+}
+.table td, 
+.table th {
+padding: 0.26rem;
 text-align: center;
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 function RequestReRequest(){
@@ -47,7 +87,7 @@ function RequestReRequest(){
 	$("#submitform").submit();
 }
 function RequestList(){
-	$("#submitform").attr("action", "requestPage");
+	$("#submitform").attr("action", "requestList");
 	$("#submitform").submit();
 }
 function Requestclose(){
@@ -58,42 +98,53 @@ function Requestclose(){
 </head>
 <body>
 <div>
-	<div class="requestForm_sitename">사이트 이름</div>
+	<div class="requestForm_sitename">
+	<img alt="" src="/app/resources/서브로고.png" width="200">
+	</div>
 	<!-- <div> 문의하기 > 주문내역 : ???? > 취소문의</div> -->
 	<% for(int i = 0; i<rlist.size(); i++) { %>
 	<% if(rdto.getCount() == rlist.get(i).getCount() && rdto.getRequestid() == rlist.get(i).getRequestid()) { %>
-		<table>
+		<table class="table">
+  		<thead>
 		<tr>
-			<td width="61px">번호</td>
-			<td width="218px">문의 정보</td>
-			<td width="112px">작성 시간</td>
-			<td width="91px">문의 현황</td>
+			<th scope="col">번호</th>
+			<th scope="col">문의 정보</th>
+			<th scope="col">작성 시간</th>
+			<th scope="col">문의 현황</th>
 		</tr>
+		<tbody>
 		<tr>
-			<td><%= i+1 %></td>
+			<th scope="row"><%= rlist.get(i).getCount() %></td>
 			<td><%= rlist.get(i).getCategory() %> > <%= rlist.get(i).getTag() %> > <%= rlist.get(i).getRequestid() %></td>
 			<td><%= rlist.get(i).getCreatetime().substring(0, 10) %></td>
 			<td><%= rlist.get(i).getRequeststate() %></td>
 		</tr>
+		</tbody>
 	</table>
-		<div> 문의 내용</div>
-		<input class="requestForm_textbar" type="text" value="<%= rlist.get(i).getContent() %>" readonly>
-		<div> 답변 내용</div>
+		<div class="margin_side"> 문의 내용</div>
+		<textarea class="form-control margin_side" rows="3" cols="60" wrap="hard" readonly="readonly"><%= rlist.get(i).getContent() %></textarea>
+		<div class="margin_side"> 답변 내용</div>
 		<% if(rlist.get(i).getRecontent() == null) { %>
-		<input class="requestForm_textbar" type="text" value="고객님들의 문의내용을 순차적으로 확인하고 있습니다. 조금만 기다려주세요." readonly>
+		<textarea class="form-control margin_side" rows="3" cols="60" wrap="hard" readonly="readonly">문의내용을 순차적으로 확인하고 있습니다. 조금만 기다려주세요.</textarea>
 		<% } else { %>
-		<input class="requestForm_textbar" type="text" value="<%= rlist.get(i).getRecontent() %>" readonly>
+		<textarea class="form-control margin_side" rows="3" cols="60" wrap="hard" readonly="readonly"><%= rlist.get(i).getRecontent() %></textarea>
 		<% } %> <!-- if2문 end -->
-	<div style="text-align: center;">
-		<input type="button" onclick="RequestReRequest()" value="재문의">
-		<span class="button-space"></span>
-		<input type="button" onclick="RequestList()" value="목록">
-		<span class="button-space"></span>
-		<input type="button" onclick="Requestclose()" value="닫기">
+		
+	<div class="pagination-container">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#" onclick="RequestReRequest()">재문의</a></li>
+    </ul>
+    <span class="button-space"></span>
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#" onclick="RequestList()">목록</a></li>
+    </ul>
+    <span class="button-space"></span>
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#" onclick="Requestclose()">닫기</a></li>
+    </ul>
 	</div>
-	<% } %>	<!-- if문 end -->
-	<% } %> <!-- for문 end -->
-		<form id="submitform">
+	<%}} %>
+	<form id="submitform">
 			<input type="hidden" name="userid" value="<%= rdto.getUserid() %>">
 			<input type="hidden" name="orderid" value="<%= rdto.getRequestid() %>">
 		</form>

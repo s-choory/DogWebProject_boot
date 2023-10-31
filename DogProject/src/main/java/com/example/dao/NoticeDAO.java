@@ -19,7 +19,6 @@ public class NoticeDAO {
 	
 	
 	public NoticeDTO read(int NoticeID){
-		System.out.println("sss");
 		return session.selectOne("NoticeMapper.Notice_read", NoticeID);
 	}
 	
@@ -42,25 +41,5 @@ public class NoticeDAO {
 		session.insert("NoticeMapper.insert",nDTO);
 	}
 	
-	
-	
-	
-//	public List<NoticeDTO> list(pageDTO cri){
-//		return session.selectList("NoticeMapper.Notice_list", cri);
-//	}
-//	
-//	public NoticeDTO read(int NoticeID){
-//		System.out.println("sss");
-//		return session.selectOne("NoticeMapper.Notice_read", NoticeID);
-//	}
-//
-//	public int boardCount() {
-//		return session.selectOne("NoticeMapper.board_boardCount");
-//	}
-//
-//	public void hitadd(int NoticeID) {
-//		session.update("NoticeMapper.Notice_hitadd", NoticeID);
-//		
-//	}
 
 }

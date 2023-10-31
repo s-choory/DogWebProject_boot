@@ -39,12 +39,10 @@ public class PostsDAO {
 	
 	public int updateContent(PostsDTO post) {
 		int n = session.update("PostsMapper.updateContent", post);
-		System.out.println("업뎃됨:========"+n);
 		return n;
 	}
 	
 	public PostsDTO read(int PostID){
-		System.out.println("sss");
 		return session.selectOne("PostsMapper.Posts_read", PostID);
 	}
 	
@@ -63,9 +61,7 @@ public class PostsDAO {
 		Map<String, String> map = new HashMap<>();
 		map.put("Likes", Likes);
 		map.put("PostID", postID);
-		System.out.println(map);
 		int n = session.update("PostsMapper.likeUpdate",map);
-		System.out.println("찍혀라"+n);
 	}
 	
 } // end

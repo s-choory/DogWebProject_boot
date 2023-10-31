@@ -97,6 +97,7 @@ CREATE TABLE Comments (
     CreationTime date default sysdate,
     repIndent   number(4),
     CommentType VARCHAR2(10) CHECK(CommentType IN ('undeleted', 'deleted')) NOT NULL,
+    ParentAuthorID VARCHAR2(255),
     FOREIGN KEY (PostID) REFERENCES Posts(PostID),
     FOREIGN KEY (ParentCommentID) REFERENCES Comments(CommentID),
     FOREIGN KEY (AuthorID) REFERENCES Users(UserID)
@@ -254,7 +255,7 @@ CREATE SEQUENCE FAQs_FAQID_SEQ
 CREATE TABLE FAQs (
     FAQID INT  PRIMARY KEY,
     Title VARCHAR2(255) NOT NULL,
-    Content VARCHAR2(255) NOT NULL  
+    Content VARCHAR2(2000) NOT NULL  
 );
 
 

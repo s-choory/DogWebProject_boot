@@ -19,7 +19,6 @@ public class NoticeService {
 	}
 	
 	public NoticeDTO read(int NoticeID) {
-		System.out.println("ss");
 		return dao.read(NoticeID);
 	}
 	
@@ -40,23 +39,4 @@ public class NoticeService {
 		dao.insert(nDTO);
 	}
 
-//	public List<NoticeDTO> list(pageDTO cri){
-//		return dao.list(cri);
-//	}
-//
-//	public NoticeDTO read(int NoticeID) {
-//		System.out.println("ss");
-//		return dao.read(NoticeID);
-//	}
-//
-//	public int boardCount() {
-//		// TODO Auto-generated method stub
-//		return dao.boardCount();
-//	}
-//
-//	public void hitadd(int NoticeID) {
-//		dao.hitadd(NoticeID);
-//		
-//	}
-	
 }

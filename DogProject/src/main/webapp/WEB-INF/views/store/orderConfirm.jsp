@@ -21,6 +21,7 @@ String email = user.getEmail1() + "@" + user.getEmail2();
 <link rel="stylesheet" type="text/css" href="resources/resource/styles/cart.css">
 <link rel="stylesheet" type="text/css" href="resources/resource/styles/cart_responsive.css">
 <title>상품주문</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <!-- 포트원 결제 -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -30,8 +31,8 @@ function payMethod() {
 	if($(".payChoice:checked").val() === "신용카드"){
 		console.log("신용카드");
 		requestPay();
-	} else if ($(".payChoice:checked").val() === "카카오페이"){
-		console.log("카카오페이");
+	} else if ($(".payChoice:checked").val() === "토스페이"){
+		console.log("토스페이");
 		requestPay();
 	} else if ($(".payChoice:checked").val() === "무통장입금"){
 		console.log("무통장입금");
@@ -57,8 +58,9 @@ function requestPay() {
 	var rp_buyer_postcode = $("#sample4_postcode").val();
 	if($(".payChoice:checked").val() === "신용카드") {
 		rp_pg = 'html5_inicis.INIpayTest';
-	} else if($(".payChoice:checked").val() === "카카오페이"){
-		rp_pg = 'kakaopay.TC0ONETIME';
+	} else if($(".payChoice:checked").val() === "토스페이"){
+		//rp_pg = 'kakaopay.TC0ONETIME'; //카카오페이
+		rp_pg = 'tosspay.tosstest'; //토스페이로 변경시 60줄,317줄 코드 변경
 	}//if, else if end
  
 	IMP.request_pay({
@@ -166,6 +168,10 @@ $(function(){
 	});	
 </script>
 <style>
+body {
+	    margin: 0;
+	    font-family: Arial, sans-serif;
+	}
 .input-form {
 	max-width: 680px;
 	margin-top: 80px;
@@ -308,8 +314,9 @@ $(function(){
 							</div>
 						</div>
 						<hr class="mb-4">
+						<h4 class="mb-3">결제 수단</h4>
 						<input type="radio" name="PayMethod" class="payChoice" id="creditCard" value="신용카드" checked> 신용카드
-						<input type="radio" name="PayMethod" class="payChoice" id="kakaoPay" value="카카오페이"> 카카오페이
+						<input type="radio" name="PayMethod" class="payChoice" id="kakaoPay" value="토스페이"> 토스페이
 						<input type="radio" name="PayMethod" class="payChoice" id="bankTransfer" value="무통장입금"> 무통장입금
 						<div class="form-control" id="creditCardInfo" style="color:black; font-size:13px; margin-top: 17px;">
 						※결제지원 카드사<br>
@@ -318,7 +325,7 @@ $(function(){
 						<div class="form-control" id="kakaoPayInfo" style="color:black; font-size:13px; margin-top: 17px;">
 						※결제지원 방식<br>
 						QR결제 : 스마트폰 카메라 및 모든 QR스캐너로 스캔하여 결제하는 방식
-						연락처 : 휴대폰번호, 생년월일을 입력하여 결제요청 메시지를 카카오톡으로 받아 결제하는 방식
+						연락처 : 휴대폰번호, 생년월일을 입력하여 결제요청 메시지를 토스 어플로 받아 결제하는 방식
 						</div>
 						<div class="form-control" id="bankTransferInfo" style="color:black; font-size:13px; margin-top: 17px;">
 						※무통장입금 전용 입금계좌<BR>
@@ -474,9 +481,9 @@ $(function(){
      }).open();
  }
 </script>
-
-
 </div>
 <script src="resources/resource/js/cart_custom.js"></script>
+<br>
+<jsp:include page = "../common/footer.jsp" flush="true"/>
 </body>
 </html>

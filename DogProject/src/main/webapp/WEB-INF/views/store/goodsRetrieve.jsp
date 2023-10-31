@@ -7,6 +7,7 @@
 <html>
 <head>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <style type="text/css">
 
 

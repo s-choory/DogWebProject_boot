@@ -17,14 +17,13 @@ public class PageNoticeService {
 	public PageNoticeDTO selectAll(int curPage, String search, PageNoticeDTO pnDTO, String order) {
 		HashMap<String, String> map = new HashMap<>();
 		if (search != null) {
-		map.put("search", search);
+			map.put("search", search);
 		}
 		if (order != null) {
-		map.put("order", order);
-		// 카테고리별 정렬 함수
-		return dao.selectOrder(map, curPage, pnDTO);
+			map.put("order", order);
+			// 카테고리별 정렬 함수
+			return dao.selectOrder(map, curPage, pnDTO);
 		}
-		System.out.println("map>>>"+map);
 		// 검색조건별 정렬함수
 		return dao.selectSearch(map, curPage, pnDTO);
 	}

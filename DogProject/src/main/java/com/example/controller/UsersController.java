@@ -57,7 +57,6 @@ public class UsersController {
 		}else {
 			session.setAttribute("msg", "아이디를 잘못 입력했습니다.");
 		}
-		System.out.println(session.getAttribute("User"));
 		return href;
 	}
 	
@@ -160,20 +159,20 @@ public class UsersController {
             String ran = Integer.toString(rand.nextInt(10));
             numStr+=ran;
         }
-//        
-//		String apiKey = "NCSCTEIDBZTOQ6LU";
-//		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
-//		String domain = "https://api.coolsms.co.kr";
-//		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
-//
-//        Message message = new Message();
-//        message.setFrom("01092681933");
-//        message.setTo(PhoneNumber);
-//        message.setText("DoggyDoggy\n"+
-//        "인증번호는["+numStr+"]입니다.");
-//
-//        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
+        
+		String apiKey = "NCSCTEIDBZTOQ6LU";
+		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
+		String domain = "https://api.coolsms.co.kr";
+		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
 
+        Message message = new Message();
+        message.setFrom("01092681933");
+        message.setTo(PhoneNumber);
+        message.setText("DoggyDoggy\n"+
+        "인증번호는["+numStr+"]입니다.");
+        System.out.println(numStr);
+        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
+        
         return numStr;
 	}
 	

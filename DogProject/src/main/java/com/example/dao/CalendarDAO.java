@@ -34,7 +34,6 @@ public class CalendarDAO {
         Map<String, Object> params = new HashMap<>();
         params.put("startDate", startDate);
         params.put("endDate", endDate);
-        System.out.println("DAO Params>>>"+ params);
         return session.selectOne("CalendarMapper.findcalNO", params);
     }
 
@@ -42,7 +41,6 @@ public class CalendarDAO {
 		Map<String, Object> params = new HashMap<>();
         params.put("oldStart", oldStart);
         params.put("oldEnd", oldEnd);
-        System.out.println("DAO findCalDate>>>"+ params);
 		return session.selectOne("CalendarMapper.findCalDate", params);
 	}
 

@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 <title>커뮤니티-게시물</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Bootstrap CSS -->
@@ -134,15 +135,27 @@ $(document).ready(function(){ //좋아요 버튼
 
 $(document).ready(function() {
 	getreplylist();
+	$("input[name='order']").on("click",function(){	
+		var order = $("input[name='order']:checked").val();
+			console.log(order);
+			getreplylist();
+	});
 });
 
 
 function getreplylist() { ////댓글 리스트 출력 이벤트
-	var replyurl = "${root}replyui/";
+	var replyurl = "${root}";
 	var PostID = $("#PostID").val();
-
+	var order = $("input[name='order']:checked").val(); // 선택된 라디오 버튼의 값을 가져옵니다.
+    // 선택된 라디오 버튼의 값에 따라 URL을 변경합니다.
+   	if(order === "오래된 순") {
+        replyurl += "replyui/" + PostID;
+    } else if (order === "최신순") {
+        replyurl += "replyut/" + PostID;
+    }
+	
 	$.ajax({
-		url : replyurl + PostID,
+		url : replyurl,
 		type : 'post',
 		dataType : 'json',
 		async : false,
@@ -159,60 +172,13 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 							if (this.commentType === 'deleted') {	
 							comments += '<div id="CommentID'+this.commentID+'" class="grid-container"><div>삭제된 글입니다</div></div>';
 							
-							} else if(!this.parentCommentID){
-							comments += '<div id="CommentID'+this.commentID+'" class="grid-container grid-container--posted">';
-							comments += '<picture class="user">';
-							comments += '<img src="resources/a.jpg" alt="julius avatar">';
-							comments += '</picture>';
-							comments += '<h3>'
-									+ '작성자 : '
-									+ this.authorID
-									+ '</h3>&nbsp;&nbsp;&nbsp;&nbsp;';
-							comments += '<p class="time">'
-							comments += '작성 날짜 : '
-									+ this.creationTime
-									+ '</p>';
-									+ '<br/>';
-							comments += '<p class="comment">';
-							comments += '댓글 내용 : &nbsp;&nbsp;&nbsp;'
-									+ this.content;
-							comments += '</p>';
-							comments += '<br/>';
-					
-							
-							comments += '<input type="hidden" id="CommentType" name="CommentType" value="'+ this.commentType +'">';
-							comments += '<input type="hidden" id="ParentCommentID" name="ParentCommentID" value="'+ this.parentCommentID +'">';
-							comments += '<button type="button" class="purple" style="border: none" onclick="updateviewBtn('
-									+ this.commentID
-									+ ',\''
-									+ this.creationTime 
-									+ '\', \''
-									+ this.content
-									+ '\', \''
-									+ this.authorID
-									+ '\')"><img src="resources/postcss/icon-edit.svg" alt="edit button" width="27" height="27">';
-							comments += 'EDIT</button>';
-							comments += '<button type="button" class="red delete" onclick="deleteBtn('
-									+ this.commentID
-									+ ',\''
-									+ this.authorID
-									+ '\')"><img src="resources/postcss/icon-delete.svg" alt="delete button" width="27" height="27">';
-							//comments +='<button type="button" onclick="replydelete('+this.commentID+')">'>';
-							comments += 'DELETE</button>';
-							comments += '<button type="button" id="reply" class="purple" style="border: none" onclick="commentsviewBtn('
-								+ this.commentID
-								+ ')"><img src="resources/postcss/icon-reply.svg" alt="reply button" width="27" height="27">';
-							comments += 'REPLY</button>';
-							comments += '</div>';
-
-							}else{
-								
-								comments += '<div id="CommentID'+this.commentID+'" class="grid-container grid-container--posted reply">';
+							}
+							else if(!this.parentCommentID){
+								comments += '<div id="CommentID'+this.commentID+'" class="grid-container grid-container--posted">';
 								comments += '<picture class="user">';
-								comments += '<img src="resources/a.jpg" alt="julius avatar">';
+								comments += '<img src="resources/postcss/pet-care-cat.png" alt="julius avatar">';
 								comments += '</picture>';
-								comments += '<h3>'
-										+ '작성자 sdsdsdsdd: '
+								comments += '<h3 class="name">'
 										+ this.authorID
 										+ '</h3>&nbsp;&nbsp;&nbsp;&nbsp;';
 								comments += '<p class="time">'
@@ -221,15 +187,14 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 										+ '</p>';
 										+ '<br/>';
 								comments += '<p class="comment">';
-								comments += '댓글 내용 : &nbsp;&nbsp;&nbsp;'
+								comments += '내용 : &nbsp;&nbsp;&nbsp&nbsp;'
 										+ this.content;
 								comments += '</p>';
-								comments += '<br/>';
 						
 								
 								comments += '<input type="hidden" id="CommentType" name="CommentType" value="'+ this.commentType +'">';
 								comments += '<input type="hidden" id="ParentCommentID" name="ParentCommentID" value="'+ this.parentCommentID +'">';
-								comments += '<button type="button" class="purple" style="border: none" onclick="updateviewBtn('
+								comments += '<button type="button" id="edit" class="purple" style="border: none" onclick="updateviewBtn('
 										+ this.commentID
 										+ ',\''
 										+ this.creationTime 
@@ -237,18 +202,68 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 										+ this.content
 										+ '\', \''
 										+ this.authorID
-										+ '\')"><img src="resources/postcss/icon-edit.svg" alt="edit button" width="27" height="27">';
+										+ '\')"><img src="resources/postcss/icon-edit.svg" alt="edit button" width="23" height="23">';
 								comments += 'EDIT</button>';
 								comments += '<button type="button" class="red delete" onclick="deleteBtn('
 										+ this.commentID
 										+ ',\''
 										+ this.authorID
-										+ '\')"><img src="resources/postcss/icon-delete.svg" alt="delete button" width="27" height="27">';
+										+ '\')"><img src="resources/postcss/icon-delete.svg" alt="delete button" width="23" height="23">';
 								//comments +='<button type="button" onclick="replydelete('+this.commentID+')">'>';
 								comments += 'DELETE</button>';
 								comments += '<button type="button" id="reply" class="purple" style="border: none" onclick="commentsviewBtn('
 									+ this.commentID
-									+ ')"><img src="resources/postcss/icon-reply.svg" alt="reply button" width="27" height="27">';
+									+ ',\''
+									+ this.authorID
+									+ '\')"><img src="resources/postcss/icon-reply.svg" alt="reply button" width="23" height="23">';
+								comments += 'REPLY</button>';
+								comments += '</div>';
+
+							}else{
+								
+								comments += '<div id="CommentID'+this.commentID+'" class="grid-container grid-container--postedd reply">';
+								comments += '<picture class="user">';
+								comments += '<img src="resources/postcss/pet-care-dog.png" alt="julius avatar">';
+								comments += '</picture>';
+								comments += '<h3 class="name1" style="color: green;">'
+										+ '@'+this.parentAuthorID
+										+ '</h3><h3 class="name2">'+this.authorID
+										+ '</h3>';
+								comments += '<p class="time">'
+								comments += '작성 날짜 : '
+										+ this.creationTime
+										+ '</p>';
+										+ '<br/>';
+								comments += '<div class="comment">';
+								comments += '내용 : &nbsp;&nbsp;&nbsp&nbsp;'
+										+ this.content;
+								comments += '</div>';
+						
+								
+								comments += '<input type="hidden" id="CommentType" name="CommentType" value="'+ this.commentType +'">';
+								comments += '<input type="hidden" id="ParentCommentID" name="ParentCommentID" value="'+ this.parentCommentID +'">';
+								comments += '<button type="button" id="edit" class="purple" style="border: none" onclick="updateviewBtn('
+										+ this.commentID
+										+ ',\''
+										+ this.creationTime 
+										+ '\', \''
+										+ this.content
+										+ '\', \''
+										+ this.authorID
+										+ '\')"><img src="resources/postcss/icon-edit.svg" alt="edit button" width="23" height="23">';
+								comments += 'EDIT</button>';
+								comments += '<button type="button" class="red delete" onclick="deleteBtn('
+										+ this.commentID
+										+ ',\''
+										+ this.authorID
+										+ '\')"><img src="resources/postcss/icon-delete.svg" alt="delete button" width="23" height="23">';
+								//comments +='<button type="button" onclick="replydelete('+this.commentID+')">'>';
+								comments += 'DELETE</button>';
+								comments += '<button type="button" id="reply" class="purple" style="border: none" onclick="commentsviewBtn('
+									+ this.commentID
+									+ ',\''
+									+ this.authorID
+									+ '\')"><img src="resources/postcss/icon-reply.svg" alt="reply button" width="23" height="23">';
 								comments += 'REPLY</button>';
 								comments += '</div>';	
 								
@@ -283,10 +298,26 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 				dataType : 'json',
 				async : false,
 				success : function(result) {
+					if(result.result == 'error'){
+						Swal.fire({
+							   title: '로그인이 필요합니다',
+							   text: '',
+							   icon: 'error',
+							   
+							   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+							   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+							   
+							}).then(function (result) {
+							   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+								   getreplylist();
+								}
+							});
+					}else{		
 					getreplylist();
 					$('#rCONTENT').val('');
 					count++;
 					$('#replyCount').text(count+"개의 댓글");
+					}
 				},
 				error : function(error) {
 					console.log("에러 : " + error);
@@ -363,33 +394,32 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 
 	};//end
 	
-
 	function updateviewBtn(CommentID, CreationTime, Content, AuthorID) {// 댓글 수정해주는 이벤트
 		console.log("들어와라");
 
 		var commentsview = "";
 
-		commentsview += '<div id="CommentID'+CommentID+'">';
-		commentsview += '<strong>';
-		commentsview += '작성자 : ' + AuthorID;
-		commentsview += '</strong>&nbsp;&nbsp;&nbsp;&nbsp;';
-		commentsview += '작성 날짜 : ' + CreationTime;
-		commentsview += '<br/><p>';
-		commentsview += '댓글 내용 : &nbsp;&nbsp;&nbsp;';
-		commentsview += '<textarea class="form-control" id="reply_edit_content">';
+		commentsview += '<div class="grid-container grid-container--newUpdate">';
+		commentsview += '<div class="input-group">';
+		commentsview += ' <textarea class="form-control" type="text" id="reply_edit_content">'
 		commentsview += Content;
 		commentsview += '</textarea>';
-		commentsview += '</p>';
-		commentsview += '<br/>';
-		commentsview += '<button type="button" class="btn btn-outline-success"';
+		commentsview += ' </div>';
+		
+		commentsview += '<picture class="user">';
+		commentsview += '<img src="resources/postcss/dogreplyedit.png" alt="julius avatar">';
+		commentsview += '</picture>';
+		
+		commentsview += '<button type="button" class="btn btn1"';
 		commentsview += 'onclick="updateBtn(' + CommentID + ',\'' + AuthorID
-				+ '\')">댓글작성</button>';
-		commentsview += '<button type="button" class="btn btn-outline-success" onclick="getreplylist()" >';
+		+ '\')">수정</button>';
+		
+		commentsview += '<button type="button" class="btn btn2" id="cancel" onclick="getreplylist()" >';
 		commentsview += '취소';
 		commentsview += '</button>';
 		commentsview += '</div>';
 		commentsview += '<br/>';
-
+		
 		$('#CommentID' + CommentID).replaceWith(commentsview);
 		$('#CommentID' + CommentID + '#reply_content').focus();
 
@@ -463,16 +493,17 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 
 	//////////////////////////////////////////
 	
-	function commentBtn(CommentID) {     //대댓글 작성 이벤트
+	function commentBtn(CommentID, AuthorID) {     //대댓글 작성 이벤트
 			console.log("들어오기는 함?????");
 			var Content = $('#cCONTENT').val();
 			PostID = ${read.postID};
 			ParentCommentID = CommentID;
+			ParentAuthorID = AuthorID;
 			var count= ${replyCount};
 
 			var writeurl = "${root}replywritewrite/";
 			$.ajax({
-				url : writeurl + PostID + '/' + Content + '/' + ParentCommentID,
+				url : writeurl + PostID + '/' + Content + '/' + ParentCommentID + '/' + ParentAuthorID,
 				type : 'post',
 				dataType : 'json',
 				async : false,
@@ -490,16 +521,16 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 	};
 	
 
-	function commentsviewBtn(CommentID) {  //대댓글 작성 이벤트
+	function commentsviewBtn(CommentID, AuthorID) {  //대댓글 작성 이벤트
 		console.log("들어와라");
 
 		var commentsview = "";
 		
-		commentsview += '<div class="grid-container grid-container--new">';
+		commentsview += '<div class="grid-container grid-container--newnew">';
 		commentsview += '<div class="input-group">';
 		
 		commentsview += '<input type="hidden" id="PostID" name="PostID" value="${retrieve.postID}">';
-		commentsview += '<br/><p>';
+		commentsview += '<br/>';
 		commentsview += '<input type="hidden" id="postType" name="postType" value="${retrieve.postType}">';
 		commentsview += '<input type="hidden" id="AuthorID" name="AuthorID" value="${read.authorID}">';
 		commentsview += '<input type="file" id="imageInput" style="display: none;">';
@@ -508,12 +539,13 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 		
 		commentsview += ' </div>';
 		commentsview += '<picture class="user">';
-		commentsview += '<img src="resources/a.jpg" alt="julius avatar">';
+		commentsview += '<img src="resources/postcss/dogcomment.png" alt="julius avatar">';
 		commentsview += '</picture>';
 		
 		commentsview += '<button type="button" class="btn btn1"';
-		commentsview += 'onclick="commentBtn(' + CommentID + ')">대댓글작성</button>';
-		commentsview += '<button type="button" class="btn btn-outline-success" onclick="getreplylist()" >';
+		commentsview += 'onclick="commentBtn(' + CommentID + ',\'' + AuthorID
+		+ '\')">작성</button>';
+		commentsview += '<button type="button" class="btn btn2" id="cancel" onclick="getreplylist()" >';
 		commentsview += '취소';
 		commentsview += '</button>';
 		commentsview += '</div>';
@@ -532,9 +564,30 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 	
 $(function() {     //게시글 수정하는 이벤트
 	$("#modify").click(function(){
-		
+		var userID = $("#userID").val()	
 		var PostID = $("#PostID").val()	
-			location.href = "/app/updatePost?PostID="+PostID;	           		
+		var AuthorID = $("#AuthorID").val()	
+		if(userID == ""){
+			Swal.fire({
+				   title: '로그인이 필요합니다',
+				   text: '',
+				   icon: 'error',
+				   
+				   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+				   confirmButtonText: '확인', // confirm 버튼 텍스트 지정 
+			})			
+		}else if(userID != AuthorID){
+			Swal.fire({
+				   title: '수정할 수 없습니다',
+				   text: '',
+				   icon: 'error',
+				   
+				   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+				   confirmButtonText: '확인', // confirm 버튼 텍스트 지정 
+			})	
+		}else{
+			location.href = "/app/updatePost?PostID="+PostID;	
+		}             		
 	
 	});
 }); 
@@ -585,7 +638,7 @@ $(function() {     //게시글 수정하는 이벤트
         align-items: center;
     }
     .input-field {
-        flex-grow: 1;
+       	flex-grow: 1; 
         margin-right: 10px;
         padding: 5px;
         border: 1px solid #ccc;
@@ -644,9 +697,10 @@ body{
 	    font-size: 12px; /* 폰트 크기 조정 */
 	    padding: 10px; /* 내부 여백 설정 */
 	   	border-radius: 24px;
-	   	border: 2px solid #8a8984;
+	   	border: 1px solid #8a8984;
 	   	box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.2);
 	   	  position: absolute;
+	   	  background-color:hsl(96,85%,92%);
 	  	top:1px;
 	  	left:47px;
 }
@@ -683,7 +737,6 @@ body{
   left:12.5px;
 }
 #div6{
-
   position: relative;
 /*   padding: 30px 0 29px 35px; */
   text-align: center;
@@ -694,25 +747,6 @@ body{
   	width: 500px; */
 }
 
- .NoticeDetail_detail_top__3e1t1 {
-    position: relative;
-    padding: 35px 35px 29px 35px;
-   	border-bottom-width: 10px;
-   	border: none;
-  	/* height:300px;
-  	width: 500px; */
-  	/* margin: 40px 250px 40px 250px;   */
-} 
-
-.listbtn{
-	background-color: transparent;
-	border-style:solid;
-	border-radius:10px;
-	font-size: 25px;
-	position: absolute;
-    right: 0;
-    bottom: 0;
-}
 
  .ContactCenter_Notice_Bottom_Center {
 	top: 100px;
@@ -736,9 +770,6 @@ body{
   border-bottom: none;
  
 } */
-
-
-
 
 
 @charset "UTF-8";
@@ -830,7 +861,7 @@ body {
 /* make images easier to work with */
 img, picture {
     max-width: 100%;
-    display: block;
+   /*  display: block;  */
 }
 
 /* make form elements easier to work with */
@@ -886,48 +917,49 @@ h3 {
 }
 
  .grid-container {
-  border: 3px solid #b2c3d3;
+  border: 1px solid #F0FFF0;
   display: grid;
   margin:1rem;
   padding:1rem;
   border-radius: 10px; 
- /*  place-items:center; */
+ place-items:center;	
   background-color: hsl( var(--clr-white) ); 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   /* grid-gap: 1rem; */
  
 } 
 
 
-.grid-container--posted {
-  align-items: center;
+/*  .grid-container--posted {
+  align-items: center; */
   /* justify-content: left; */
-  grid-template-areas:
+/*   grid-template-areas:
     "user name time edit ."
     "comment comment comment comment"
     "vote vote . . reply"
     
-}
+}  */
 
-.grid-container--you {
+/* .grid-container--you {
   align-items: center;
   grid-template-areas:
     "user name you time time"
     "comment comment comment comment comment"
     "vote vote vote delete reply";
 }
-
-.grid-container--new {
+ */
+/* .grid-container--new {
   grid-template-areas:
     "textbox textbox"
     "user btn "
-}
+} */
 
- .grid-container--posted > a, .grid-container--you > a{
+/*  .grid-container--posted > a, .grid-container--you > a{
   grid-area: reply;
   justify-self:right;
   text-decoration: none;
   grid-column-end:-1;
-} 
+}  */
  .delete {
   grid-area: delete;
   justify-self:right;
@@ -937,8 +969,36 @@ h3 {
   background-color: inherit; 
   padding: 0;
 }
+ #edit {
+  grid-area: edit;
+  justify-self:right;
+  text-decoration: none;
+  align-items: center;
+  border:none;
+  background-color: inherit; 
+  padding: 0;
+}
+ #reply {
+  grid-area: reply;
+  justify-self:right;
+  text-decoration: none;
+  align-items: center;
+  border:none;
+  background-color: inherit; 
+ /*  padding: 0; */
+}
+.cancel{
+	grid-area: cancel;
+  justify-self:right;
+  text-decoration: none;
+  align-items: center;
+  border:none;
+  background-color: inherit; 
+  padding: 0;
+}
+
 .grid-container--posted a > img, .grid-container--you a > img , .grid-container--you button > img {
-  display: inline-block;
+  display: inline-block; 
   padding-right: 0.2rem;
 }
 .grid-container--posted > h3, .grid-container--you > h3 {
@@ -947,22 +1007,34 @@ h3 {
 .time {
   grid-area:time;
 }
-.vote {
+/* .vote {
   grid-area:vote;
   background-color: hsl( var(--clr-vlightg) );
   padding:0.5rem 1rem;
   border-radius: 10%;
   width:min(60%, 7rem);
-}
-.vote > img {
+} */
+/* .vote > img {
   opacity: 0.5;
-}
-.vote > img:hover {
+} */
+/* .vote > img:hover {
   cursor: pointer;
   opacity: 1;
-}
+} */
 .user {
   grid-area:user;
+  justify-self:left;
+  }
+.name {
+  grid-area:name;
+  justify-self:left;
+}
+.name1 {
+  grid-area:name1;
+  justify-self:left;
+}
+.name2 {
+  grid-area:name2;
   justify-self:left;
 }
 .you {
@@ -976,7 +1048,13 @@ h3 {
 .comment {
   grid-area:comment;
   justify-self:left;
+  width: 500px;
+  border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 .input-group{
   grid-area: textbox;
 }
@@ -999,7 +1077,21 @@ h3 {
   grid-area: btn;
   justify-self:right;
 }
+.btn2 {
+  width:100px;
+  height: 3rem;
+  color: hsl( var(--clr-white) );
+  background-color: hsl(2,97%,54%);
+  grid-area: cancel;
+  justify-self:right;
+}
+
 .btn1:hover,.btn1:focus {
+  opacity: 0.5;
+  color: hsl( var(--clr-white) );
+  transition: opacity 300ms linear;
+}
+.btn2:hover,.btn2:focus {
   opacity: 0.5;
   color: hsl( var(--clr-white) );
   transition: opacity 300ms linear;
@@ -1016,13 +1108,22 @@ h3 {
 
     .grid-container {
       margin-inline: auto;
-      width: 60%;
+      width: 80%;
     }
   
-     .grid-container--posted {
+    .grid-container--posted {
       grid-template-areas:
-        "user name time . reply"
-        "comment comment comment comment comment";
+        "user name time edit reply"
+        ". comment comment comment delete";
+      grid-template-columns: 80px auto auto 80px 110px; 
+      grid-template-rows: auto;
+    }
+    
+    .grid-container--postedd{
+      grid-template-areas:
+        "user name1 name2 time edit reply"
+        ". comment comment comment comment delete";
+     /*  grid-template-columns: 80px auto auto 80px 110px;  */
     }
     
     .grid-container--you {
@@ -1030,12 +1131,24 @@ h3 {
         "user name you time . delete reply"
         "comment comment comment comment comment comment comment";
 
-    }
-    .grid-container--new {
+    } 
+   	.grid-container--new {
       grid-template-areas:
           "user textbox btn";
       grid-template-columns: 80px auto 110px;
-    }
+    } 
+    
+   	.grid-container--newnew {
+      grid-template-areas:
+          "user textbox btn cancel";
+      grid-template-columns: 80px auto 110px 110px;
+    } 
+    
+    .grid-container--newUpdate {
+      grid-template-areas:
+          "user textbox btn cancel";
+      grid-template-columns: 80px auto 110px 110px;
+    } 
     .flex {
       flex-direction: column;
       justify-content: space-evenly;
@@ -1046,15 +1159,19 @@ h3 {
       height: 80%;
       padding-block:0.5em;
     }
+    
     .user {
       align-self: flex-start;
       width:55px;
     }
-    .reply{
-      width: 57%;
-      margin-left: 23%;
-      margin-right: 20%;
-    }
+    
+   	.reply{
+      width: 70%;
+     /*  margin-left: 23%;
+      margin-right: 20%; */
+      margin-left: 20%;
+      margin-right: 23%;
+    } 
     .reply > .grid-container {
       width:auto;
       margin-left: 2rem;
@@ -1062,8 +1179,7 @@ h3 {
     }
 }
    	
-   	
-   	    	
+   
  .NoticeDetail_detail_top__3e1t1 {
     position: relative;
     padding: 35px 35px 29px 35px;
@@ -1075,13 +1191,15 @@ h3 {
 }  
 
 .listbtn{
-	background-color: transparent;
+	background-color: #eaeaea;
 	border-style:solid;
-	border-radius:10px;
-	font-size: 25px;
+	border-radius:7px;
+	border-color:transparent;
+	font-size: 18px;
 	position: absolute;
     right: 0;
     bottom: 0;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
 }	
 
 
@@ -1104,12 +1222,11 @@ h3 {
 }
 
 .postpost{
-	/* padding: 0 10% 0 10%; */
-	margin:  0 10% 0 10%;
-	border-top: 3px solid #b2c3d3;
-  	border-left: 3px solid #b2c3d3;
-  	border-right: 3px solid #b2c3d3; 
-  	border-bottom: 3px solid #b2c3d3; 
+	padding: 0 2% 0 2%; 
+	margin:  0 13% 0 15%;
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+	border-radius: 3px;
+	border: 1px solid #F0FFF0;
 }
 
 /* hr .hr{
@@ -1118,7 +1235,10 @@ h3 {
 } */
 
 
-
+.card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem 0rem 0.5rem 1rem;
+}
 
 </style>
 </head>
@@ -1155,25 +1275,27 @@ h3 {
 					<input type="hidden" id="AuthorID" name="AuthorID" value="${read.authorID}">
 				</form>
 			<span id ="tag1">${read.tag}</span><br>
-			<div id="NoticeTitle" class="ContactCenter_Notice_Top_Name">${read.postID}번 게시물 ===== ${read.title}</div>
+			<div id="NoticeTitle" class="ContactCenter_Notice_Top_Name">${read.title}</div>
 			<div id="div6">
-			<div id="NoticeWriter">운영자</div>
-			<div id="NoticePicture"><img src="resources/네이버아이콘.png" alt="운영자 사진" width="45" height="45"></div>
+			<div id="NoticeWriter">${read.authorID}</div>
+			<div id="NoticeHit">조회수 ${read.hit}</div>
+			<div id="NoticePicture"><img src="resources/postcss/dogread.png" alt="운영자 사진" width="45" height="45"></div>
 			<div id="NoticeTime" class="ContactCenter_Notice_Top_Uploaddate">${read.creationTime}</div>
 	
 			                   <div id="card" class="card" style="cursor: pointer; ">
+			                   <input type="hidden" id="userID" value="${uDTO.userID}"> 
 			                    <div class="card-body">
 			                        <div class="dropdown ms-auto">
 			                            <i class="fas fa-ellipsis-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
 			                            <ul class="dropdown-menu">
 			                              <li>
 			                                <span class="dropdown-item">
-			                                  <button type="button" id="modify" class="fas fa-pen mx-2">수정</button>
+			                                  <button type="button" id="modify" class="fas fa-pen mx-2" style="border: 0; background-color: transparent;">수정</button>		                                
 			                                </span>
 			                              </li>
 			                              <li>
 			                                <span class="dropdown-item">
-			                                    <button type="button" id="delete_column" class="fas fa-trash mx-2">삭제</button>
+			                                    <button type="button" id="delete_column" class="fas fa-trash mx-2" style="border: 0; background-color: transparent;">삭제</button>
 			                                </span>
 			                              </li>
 			                            </ul>
@@ -1192,34 +1314,59 @@ h3 {
 	첨부파일: <a href="${upload.fileurl}" target="_blank">${upload.filename}</a><br><br>
      </div>
 
+
+<%-- <%List<LikeDTO> ldto = (List<LikeDTO>) request.getAttribute("ldto");%> 
+<%UsersDTO uudto = (UsersDTO) session.getAttribute("User"); 	
+%>  --%>
 				<form action="like" method="post">
 					<input type="hidden" name="PostID" id="LikePostID" value="${read.postID}"> 
 					<span style="text-align: center; display: block;">
-                        <button type="button" id="likelike" value="좋아요${n2222}">
-          				<img id="heartImg" src="resources/postcss/heart.png" alt="좋아요사진" width="45" height="45">
-          				</button>		
-                      
-                  
-					<%-- <c:choose>
+					<%-- <div>
+                        <button type="button" id="likelike" value="좋아요${n2222}" style="border: 0; background-color: transparent;">
+          				<img id="heartImg" src="resources/postcss/emptyheart.png" alt="좋아요사진" width="45" height="45">
+          				</button>
+          			</div>	 --%>
+                   
+           <%--        <%for(int i = 0; i< ldto.size(); i++){
+           			if(UserID == null) {%>
+                   	<button type="button" id="likelike" value="좋아요${n2222}">
+								<img id="heartImg" src="resources/postcss/dots.png"
+									alt="좋아요사진" width="45" height="45">
+							</button> --%>
+                   <%-- <%}else if(userID == ldto.get(i).getUserID()){ %>
+                   <button type="button" id="likelike" value="좋아요${n2222}">
+								<img id="heartImg" src="resources/postcss/emptyheart.png"
+									alt="좋아요사진" width="45" height="45">
+							</button>
+					<%}else if(userID != ldto.get(i).getUserID()){ %>
+                   <button type="button" id="likelike" value="좋아요${n2222}">
+								<img id="heartImg" src="resources/postcss/heart.png"
+									alt="좋아요사진" width="45" height="45">
+							</button> --%>
+               <%--  	<%} %> 
+                   <%} %>   --%>
+                   
+					<c:choose>
+						<c:when test="${uDTO.userID == null}">
+							<button type="button" id="likelike" value="좋아요${n2222}">
+								<img id="heartImg" src="resources/postcss/dots.png"
+									alt="좋아요사진" width="45" height="45">
+							</button>
+						</c:when>
 						<c:when test="${uDTO.userID ne ldto.userID}">
 							<button type="button" id="likelike" value="좋아요${n2222}">
 								<img id="heartImg" src="resources/postcss/emptyheart.png"
 									alt="좋아요사진" width="45" height="45">
 							</button>
 						</c:when>
-						<c:when test="${uDTO.userID eq ldto.userID}">
+						<c:when test="${uDTO.userID eq ldto.userID}"> 
 							<button type="button" id="likelike" value="좋아요${n2222}">
 								<img id="heartImg" src="resources/postcss/heart.png"
 									alt="좋아요사진" width="45" height="45">
 							</button>
 						</c:when>
-						<c:otherwise>
-							<button type="button" id="likelike" value="좋아요${n2222}">
-								<img id="heartImg" src="resources/postcss/dots.png"
-									alt="좋아요사진" width="45" height="45">
-							</button>
-						</c:otherwise>
-					</c:choose> --%>
+					</c:choose> 
+					
 				</span>
 				</form>
 				
@@ -1227,10 +1374,10 @@ h3 {
 							
 				
 	<div class="NoticeDetail_detail_top__3e1t1">
-	<button type="button" id="listbtn" class="listbtn">이전 페이지가 적용된 목록으로</button>
+	<button type="button" id="listbtn" class="listbtn">목록</button>
 	</div>		
      
-   <hr align="center" style="border: ridge 5px rgb(128,249,204); text-align:center;">  
+   <hr align="center" style="border: 5px rgb(125,127,117); text-align:center;">  
 
 </div> 
 
@@ -1239,8 +1386,8 @@ h3 {
 
 <div class="postComments" style="margin-left: 10%;">
     <div id="replyCount">${replyCount}개의 댓글</div>
-    최신순<input type="radio" name="commentRadio" value="최신순">
-    인기순<input type="radio" name="commentRadio" value="인기순">
+    최신순<input type="radio" name="order" value="최신순">
+    오래된순<input type="radio" name="order" value="오래된 순" checked="checked">
 </div>   
 
    <div class="grid-container grid-container--new">
@@ -1249,6 +1396,7 @@ h3 {
   
    		<input type="hidden" id="PostID" name="PostID" value="${read.postID}"> 
    		<input type="hidden" id="postType" name="postType" value="${read.postType}">
+   		<input type="hidden" id="AuthorID" name="AuthorID" value="${read.authorID}">
    		<input type="hidden" id="AuthorID" name="AuthorID" value="${read.authorID}">
    		<input type="file" id="imageInput" style="display: none;">
 	    <label for="imageInput" class="attach-button">사진 첨부</label>
@@ -1279,9 +1427,10 @@ h3 {
    <!-- </form> -->
  	<picture class="user"> 
  	<% if(userImgBytes == null){%>
- 		<img src="resources/<%= imageSrc %>.JPG" alt="julius avatar">
+ 		<img src="resources/<%= imageSrc %>.JPG" alt="defaultIMG">
  	<% } else{%>
-      <img src="<%= imageSrc %>" alt="julius avatar">
+      <img src="<%= imageSrc %>" alt="userIMG" style="size: auto;">
+       <input type="hidden" id="userIMG" name="userIMG" value="<%= imageSrc %>">
      <% } }%>
      
     
@@ -1295,7 +1444,7 @@ h3 {
 		<div id="replylist"></div>
 
 	
-</div>
+</div>  
 <br>
 <jsp:include page = "../common/footer.jsp" flush="true"/><br><br><br>
 </body>

@@ -1851,10 +1851,11 @@ input, select, textarea {
 		}
 
 		table th {
-			text-align: left;
-			padding: 0.5em 1em 0.5em 1em;
+			text-align: center;
+			padding: 15px 10px 0 10px;
 			color: #fff;
-			background: #222729 url("images/overlay.png");
+			font-weight:bolder;
+			background: linear-gradient(135deg, #7AFF7A, #429F6B); /* 그라데이션 색상 지정 */
 		}
 
 		table thead {

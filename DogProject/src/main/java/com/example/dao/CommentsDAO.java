@@ -27,8 +27,11 @@ public class CommentsDAO {
 	}
 	
 	public List<CommentsDTO> replylist(int PostID){
-		System.out.println("=====");
 		return session.selectList("CommentsMapper.replylist", PostID);
+	}
+	
+	public List<CommentsDTO> replylisttt(int PostID){
+		return session.selectList("CommentsMapper.replylisttt", PostID);
 	}
 	
 	public int replyCount(CommentsDTO dto) {

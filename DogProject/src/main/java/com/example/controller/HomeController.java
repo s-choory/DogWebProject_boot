@@ -23,6 +23,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.example.dao.PageDAO;
 import com.example.dto.AccompanyingFacilitiesDTO;
 import com.example.dto.CartDTO;
+import com.example.dto.CommentsDTO;
 import com.example.dto.GoodsDTO;
 import com.example.dto.LikeDTO;
 import com.example.dto.NoticeDTO;
@@ -63,7 +64,6 @@ public class HomeController {
 	//마이페이지
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model, String curPage, PageDTO pDTO, PageDAO dao ,HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("mypage 호출됨");
 
 		UsersDTO user = (UsersDTO)session.getAttribute("User");
 		if(user == null) {
@@ -188,26 +188,6 @@ public class HomeController {
 		return "redirect:/mypage";
 	}
 		
-		
-	
-	
-	/* group */
-	//모임생성
-	@RequestMapping(value = "/meeting_create", method = RequestMethod.GET)
-	public String meeting_create(Locale locale, Model model) {
-		return "group/meeting_create";
-	}
-	//모임목록
-	@RequestMapping(value = "/MoIm", method = RequestMethod.GET)
-	public String MoIm(Locale locale, Model model) {
-		return "group/MoIm";
-	}
-	//모임상세화면
-	@RequestMapping(value = "/MoIm2", method = RequestMethod.GET)
-	public String MoIm2(Locale locale, Model model) {
-		return "group/MoIm2";
-	}
-	
 	
 //	/* customer_center*/
 //	//고객센터QnA
@@ -222,7 +202,7 @@ public class HomeController {
 //	}
 	
 	
-	//인덱스페이지
+	//메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 		List<GoodsDTO> random=gservice.random();
@@ -241,6 +221,7 @@ public class HomeController {
 			List<GoodsDTO> Products_list = searchService.Products_search(search);
 			List<LikeDTO> Like_list = searchService.Like_search();
 			List<ReviewsDTO> Review_list = searchService.Review_search();
+			List<CommentsDTO> Comments_list = searchService.Comments_search();
 			//댓글 관련으로 list 필요
 			m.addAttribute("search",search);
 			m.addAttribute("AccompanyingFacilities_list",AccompanyingFacilities_list);
@@ -249,6 +230,7 @@ public class HomeController {
 			m.addAttribute("Products_list",Products_list);
 			m.addAttribute("Like_list",Like_list);
 			m.addAttribute("Review_list",Review_list);
+			m.addAttribute("Comments_list",Comments_list);
 			
 			return "main_searchList";
 		}

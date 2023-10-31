@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type=text/javascript charset=utf-8 src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -74,13 +74,15 @@ $(function () {
 
 
 .submitButton{
-	background-color: transparent;
+	background-color: #eaeaea;
 	border-style:solid;
-	border-radius:1px;
-	font-size: 25px;
+	border-radius:7px;
+	font-size: 18px;
 	position: absolute;
+	border-color:transparent;
     right: 0;
     bottom: 0;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .container{

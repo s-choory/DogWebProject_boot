@@ -30,13 +30,16 @@ public class CommentsService {
 		return dao.replylist(PostID);
 	}
 	
+	public List<CommentsDTO> replylisttt(int PostID){
+		return dao.replylisttt(PostID);
+	}
+	
 	public int replyCount(CommentsDTO dto) {
 		return dao.replyCount(dto);
 	}
 	
 	
 	public void replyinsert(CommentsDTO dto) {
-		System.out.println("ss");
 		dao.replyinsert(dto);
 	}
 	
