@@ -169,7 +169,7 @@ hr .hr{
 			<div id="NoticeTitle" class="ContactCenter_Notice_Top_Name">[공지사항]${read.title}</div>
 			<div id="div6">
 			<div id="NoticeWriter">운영자</div>
-			<div id="NoticePicture"><img src="resources/네이버아이콘.png" alt="운영자 사진" width="45" height="45"></div>
+			<div id="NoticePicture"><img src="resources/로고아이콘.png" alt="운영자 사진" width="45" height="45"></div>
 			<div id="NoticeTime" class="ContactCenter_Notice_Top_Uploaddate">${read.creationTime}</div>
 			<div id="NoticeHit" class="ContactCenter_Notice_Top_Count">조회수 ${read.hit}</div>
 			</div>
