@@ -121,15 +121,18 @@ body{
   	margin: 40px 250px 40px 250px;  
 } 
 
+
 .listbtn{
-	background-color: transparent;
+	background-color: #eaeaea;
 	border-style:solid;
-	border-radius:10px;
-	font-size: 25px;
+	border-radius:7px;
+	border-color:transparent;
+	font-size: 16px;
 	position: absolute;
     right: 0;
     bottom: 0;
-}
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+}	
 
  .ContactCenter_Notice_Bottom_Center {
 	top: 100px;
@@ -159,26 +162,26 @@ hr .hr{
 	</form>
 
 	<h1>공지사항</h1>
-	<div class="ContactCenter_Notice_Top_Count">게시물 번호입니다 == ${read.noticeID}</div>
+	<div class="ContactCenter_Notice_Top_Count"></div>
 		
 		<div class="NoticeDetail_detail_top__3e1t0">
-			<div id="NoticeTitle" class="ContactCenter_Notice_Top_Name">[공지사항]제목입니다 ===== ${read.title}</div>
+			<div id="NoticeTitle" class="ContactCenter_Notice_Top_Name">[공지사항]${read.title}</div>
 			<div id="div6">
 			<div id="NoticeWriter">운영자</div>
 			<div id="NoticePicture"><img src="resources/네이버아이콘.png" alt="운영자 사진" width="45" height="45"></div>
 			<div id="NoticeTime" class="ContactCenter_Notice_Top_Uploaddate">${read.creationTime}</div>
-			<div id="NoticeHit" class="ContactCenter_Notice_Top_Count">조회수 입니다 ====== ${read.hit}</div>
+			<div id="NoticeHit" class="ContactCenter_Notice_Top_Count">조회수 ${read.hit}</div>
 			</div>
 			<hr class="hr"> 
 		</div>
 
 	
 	<div class="NoticeDetail_detail_top__3e1t1">
-     <div class="ContactCenter_Notice_Bottom_Center">글입니다 ==== ${read.content}</div>
+     <div class="ContactCenter_Notice_Bottom_Center">${read.content}</div>
      </div>
 
 	<div class="NoticeDetail_detail_top__3e1t1">
-	<button type="button" id="listbtn" class="listbtn">이전 페이지가 적용된 목록으로</button>
+	<button type="button" id="listbtn" class="listbtn">목록으로</button>
 	</div>
 	
 </div>

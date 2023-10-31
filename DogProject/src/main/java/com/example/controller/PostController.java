@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -84,9 +85,12 @@ public class PostController {
 	//게시물 클릭 시 상세 내용 보기
 			@RequestMapping(value = "/post", method = RequestMethod.GET)
 			public String post(Locale locale, Model model, 
-				@RequestParam("PostID") int PostID, LikeDTO ldto, HttpServletResponse response, HttpServletRequest request,
+				@RequestParam("PostID") int PostID, HttpServletResponse response, HttpServletRequest request,
 				HttpSession session, PageDTO ppDTO, CommentsDTO cdto) {
 				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+				if(uDTO != null) {
+					model.addAttribute("uDTO", uDTO); //게시글 수정 관련 model
+				}
 				
 //				List<LikeDTO> Like_list = LikeService.selectLikeList();
 //				model.addAttribute("Like_list", Like_list);
@@ -128,7 +132,12 @@ public class PostController {
 				model.addAttribute("read", pdto);// 게시글 상세보기
 				model.addAttribute("upload", fdto);// 게시글 상세보기
 				
-			
+				List<LikeDTO> ldtoList = LikeService.likeUser_read(PostID);
+				for (LikeDTO likeDTO : ldtoList) {
+					model.addAttribute("ldto",likeDTO);
+				}
+		
+				
 				//model.addAttribute("cri", cri);//페이징 관련
 				model.addAttribute("ppDTO",ppDTO);//페이징 관련
 				return "community/community_post";
