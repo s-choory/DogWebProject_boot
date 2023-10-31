@@ -14,8 +14,8 @@ public class OrdersService {
 	@Autowired
 	OrdersDAO dao;
 
-	public List<OrdersDTO> ordersAllList(String UserID) {
-		return dao.ordersAllList(UserID);
+	public int ordersAllList() {
+		return dao.ordersAllList();
 	}
 
 	public void orderInsert(OrdersDTO ordersdto) {
@@ -40,6 +40,10 @@ public class OrdersService {
 
 	public void adminUpdateOrderStat2e(int orderID) {
 		dao.adminUpdateOrderState2(orderID);
+	}
+
+	public List<OrdersDTO> ordersAllList2(String UserID) {
+		return dao.ordersAllList2(UserID);
 	}
 	
 	

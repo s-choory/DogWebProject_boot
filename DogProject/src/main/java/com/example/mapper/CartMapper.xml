@@ -8,8 +8,12 @@
 	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, 0, 'before', 'true')
 </insert>
 
-<insert id="addAfterList" parameterType="Cart">
+<update id="addAfterList" parameterType="Cart">
 	UPDATE CART SET OrderState = 'after', OrderNumber = #{OrderNumber} where CartNum = #{CartNum}
+</update>
+
+<insert id="insertCartList" parameterType="Cart">
+	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, #{OrderNumber}, #{OrderState}, 'true')
 </insert>
 
 <select id="findCartOrder" parameterType="hashmap" resultType="Cart">

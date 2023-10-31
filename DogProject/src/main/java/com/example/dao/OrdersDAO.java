@@ -15,8 +15,8 @@ public class OrdersDAO {
 	@Autowired
 	SqlSessionTemplate session;
 
-	public List<OrdersDTO> ordersAllList(String UserID) {
-		return session.selectList("OrdersMapper.ordersAllList", UserID);
+	public int ordersAllList() {
+		return session.selectOne("OrdersMapper.ordersAllList");
 	}
 
 	public void orderInsert(OrdersDTO ordersdto) {
@@ -41,6 +41,10 @@ public class OrdersDAO {
 
 	public void adminUpdateOrderState2(int OrderID) {
 		session.update("OrdersMapper.adminUpdateOrderState2", OrderID);
+	}
+
+	public List<OrdersDTO> ordersAllList2(String UserID) {
+		return  session.selectList("OrdersMapper.ordersAllList2", UserID);
 	}
 	
 

@@ -45,11 +45,20 @@ public class OrdersController {
 		        int total = 0;
 		        for (int i = 0; i < CartDTO_list.size(); i++) { 
 		        	CartDTO cDTO = new CartDTO();
+		        	//카트에 없을 때
+		        	int n = 0;
+		        	if(cDTO.getCartNum() == 0) {
+		        		n = service.insertCartList(CartDTO_list.get(i), UserID, OrderID);
+		        	}else {
+		        	//카트에 있을 때
 		        	cDTO.setCartNum(CartDTO_list.get(i).getCartNum());
 		        	cDTO.setOrderNumber(OrderID);
-		        	int n = service.addAfterList(cDTO);
+		        		n = service.addAfterList(cDTO);
+		        	}
+		        	//
 					total += n;
 					OrderName = CartDTO_list.get(0).getProductName();
+					
 				}
 		        if(total == 1) {
 		        	ordersdto.setOrderName(OrderName);
@@ -67,6 +76,7 @@ public class OrdersController {
 			        ordersdto.setPaymethodcard(cardname);
 			        ordersdto.setPaymethodnumber(cardnumber);
 		        }
+		        System.out.println("==============ordersdto="+ordersdto);
 		        oService.orderInsert(ordersdto);
 		        //orderid와 동일한 장바구니 정보 select
 		        CartDTO cdto = new CartDTO();
@@ -93,8 +103,9 @@ public class OrdersController {
 			        return "redirect:/login";
 			        }
 				String userid = udto.getUserID();
-				List<OrdersDTO> olist = oService.ordersAllList(userid);
+				List<OrdersDTO> olist = oService.ordersAllList2(userid);
 				List<CartDTO> clist = service.selectOrderAllList(userid);
+				System.out.println("olist이다!!"+olist);
 				session.setAttribute("olist", olist);
 				session.setAttribute("clist", clist);
 				return "store/orderList";
