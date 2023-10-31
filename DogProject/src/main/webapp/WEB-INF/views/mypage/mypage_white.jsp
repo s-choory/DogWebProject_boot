@@ -13,7 +13,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Prologue by HTML5 UP</title>
+		<title>MyPage</title>
 		<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -110,6 +110,14 @@
 /* 내 정보 부분 스타일 끝  */
 
 /*  구매목록 부분 스타일 */
+/* 상세보기 버튼 */
+.OrderList {
+    position: absolute;
+    top: 100;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+}
 /*  구매목록 부분 스타일 끝 */
 
 /*  장바구니 부분 스타일 */
@@ -857,9 +865,9 @@
 			<div class="container">
 
 				<header>
-					<h2>구매목록</h2>
+					<h2>구매목록</h2> 
+					<a href="/app/orderList"><button class="OrderList" style="background-color: #A0FA78;">상세보기</button></a>
 				</header>
-				
 				<!-- 주문list 시작 -->
 				<div id="shoppingbasket">
 					<%
