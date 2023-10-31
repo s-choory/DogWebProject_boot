@@ -8,13 +8,13 @@
 <select id="dogsList" resultType="DogType" parameterType="map">
 	select * from DogType 
 	<where>
-		<if test="dogSize == 'standard'">
-			1=1
+		<if test="dogSize == 'medium'">
+			dogSize= #{dogSize}
 		</if>
 		<if test="dogSize == 'small'">
 			dogSize= #{dogSize}
 		</if>
-		<if test="dogSize == 'big'">
+		<if test="dogSize == 'large'">
 			dogSize= #{dogSize}
 		</if>
 	</where>

@@ -57,7 +57,9 @@ $(function () {
 </script>
 
 <style type="text/css">
-
+body{
+	margin:0;
+}
 #postTitle{
  	background-color: transparent; 
 	border-style: none;
