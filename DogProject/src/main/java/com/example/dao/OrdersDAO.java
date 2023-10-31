@@ -15,8 +15,8 @@ public class OrdersDAO {
 	@Autowired
 	SqlSessionTemplate session;
 
-	public List<OrdersDTO> ordersAllList(String UserID) {
-		return session.selectList("OrdersMapper.ordersAllList", UserID);
+	public int ordersAllList() {
+		return session.selectOne("OrdersMapper.ordersAllList");
 	}
 
 	public void orderInsert(OrdersDTO ordersdto) {

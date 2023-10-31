@@ -14,8 +14,8 @@ public class OrdersService {
 	@Autowired
 	OrdersDAO dao;
 
-	public List<OrdersDTO> ordersAllList(String UserID) {
-		return dao.ordersAllList(UserID);
+	public int ordersAllList() {
+		return dao.ordersAllList();
 	}
 
 	public void orderInsert(OrdersDTO ordersdto) {

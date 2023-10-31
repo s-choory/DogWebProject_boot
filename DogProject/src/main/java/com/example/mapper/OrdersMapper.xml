@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="OrdersMapper">      
 
-<select id="ordersAllList" parameterType="String" resultType="Orders">
-	SELECT * FROM ORDERS WHERE UserID=#{UserID} order by OrderID desc
+<select id="ordersAllList" resultType="int">
+	SELECT count(*) FROM ORDERS order by OrderID desc
 </select>
 
 <select id="orderSelect" parameterType="int" resultType="Orders">

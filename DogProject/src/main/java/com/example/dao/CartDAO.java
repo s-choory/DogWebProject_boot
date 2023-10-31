@@ -70,4 +70,8 @@ public class CartDAO {
 	public List<CartDTO> selectOrderAllList(String userid) {
 		return session.selectList("CartMapper.selectOrderAllList", userid);
 	}
+
+	public int insertCartList(CartDTO CartDTO) {
+		return session.insert("CartMapper.insertCartList", CartDTO);
+	}
 }

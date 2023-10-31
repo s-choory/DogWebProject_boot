@@ -70,4 +70,11 @@ public class CartService {
 		return dao.selectOrderAllList(userid);
 	}
 
+	public int insertCartList(CartDTO CartDTO, String UserID, int OrderID) {
+		CartDTO.setUserID(UserID);
+		CartDTO.setOrderNumber(OrderID);
+		CartDTO.setOrderState("after");
+		return dao.insertCartList(CartDTO);
+	}
+
 }
