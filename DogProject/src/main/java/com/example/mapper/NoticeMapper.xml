@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- list 화면 출력 및 페이징 관련 SQL문 -->
  <select id="selectList" resultType="Notice">
-	select * from notices
+	select * from notices order by CreationTime desc
 </select>
 
 <!-- 카테고리 totalCount -->
@@ -68,6 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     		title like '%'||#{search}||'%' or content like '%'||#{search}||'%'
     	</if>
     </where>
+    order by CreationTime DESC
 </select> 
 	
 	<!-- 조회수 -->
