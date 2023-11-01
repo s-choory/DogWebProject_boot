@@ -88,7 +88,7 @@ body{
  
   right:3px;
  
-}
+}	
 #NoticeWriter{
   position: absolute;
   top:8px;
@@ -112,15 +112,16 @@ body{
 }
 
 
- .NoticeDetail_detail_top__3e1t1 {
+.NoticeDetail_detail_top__3e1t1 {
     position: relative;
     padding: 35px 0 29px 35px;
    	border-bottom-width: 10px;
    	border: none;
   	/* height:300px;
   	width: 500px; */
-  	margin: 40px 250px 40px 250px;  
-} 
+  	margin: 40px 250px 40px 250px;
+  	text-align: center;
+}
 
 
 .listbtn{
@@ -178,6 +179,7 @@ hr .hr{
 
 	
 	<div class="NoticeDetail_detail_top__3e1t1">
+	<div><img src="resources/dognitocepicture.png" style="width: 800px"></div>
      <div class="ContactCenter_Notice_Bottom_Center">${read.content}</div>
      </div>
 

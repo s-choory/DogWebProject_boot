@@ -1,0 +1,27 @@
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '서울 반려견 순찰대 선발심사 안내','서울 반려견 순찰대 선발심사 안내' ,sysdate,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '반려동물과 함께하세요!','반려동물과 함께하세요!' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '강아지의 날 기념 이벤트','강아지의 날 기념 이벤트' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '2023 가을 나들이 자원봉사자 모집','2023 가을 나들이 자원봉사자 모집' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '반려견 사료 무료 나눔 조기 마감','반려견 사료 무료 나눔 조기 마감' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '홈페이지 만족도 조사 이벤트','홈페이지 만족도 조사 이벤트' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, 'DOGGY DOGGY 시스템 개편 안내','DOGGY DOGGY 시스템 개편 안내' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '개인정보처리방침(2023.1.27.~ 현재 적용 지침)','개인정보처리방침(2023.1.27.~ 현재 적용 지침)' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '[펫티켓 페스티벌] 반려동물 영상 자랑대회 투표방법 안내','[펫티켓 페스티벌] 반려동물 영상 자랑대회 투표방법 안내' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '[안내]사랑하는 만큼 가까이, 반려견과 산책 시 2m 이내 유지해주세요! - 2월 11일부터 반려견 외출 시 목줄·가슴줄 길이 2m 이내 적용 -','[안내]사랑하는 만큼 가까이, 반려견과 산책 시 2m 이내 유지해주세요! - 2월 11일부터 반려견 외출 시 목줄·가슴줄 길이 2m 이내 적용 -' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '🐶반려동물의 날 맞이 평일 이벤트😻','✔ 기간 : 23.10.27~23.11.30' ,sysdate ,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '👪국제 떠돌이 동물의 날 알리기 이벤트🐶','가족이 필요한 아이들에게 손을 내밀어주세요.' ,sysdate,0);
+INSERT INTO NOTICES (NOTICEID,TITLE,CONTENT,CREATIONTIME,HIT)
+VALUES (NOTICES_NOTICEID_SEQ.nextval, '🐇도그마루 설맞이 이벤트🎊','🐇도그마루 설맞이 이벤트🎊' ,sysdate ,0);
+commit;
