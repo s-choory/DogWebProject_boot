@@ -13,8 +13,8 @@
 </select>
 
 <insert id="memberAdd" parameterType="Users">
-	INSERT INTO Users (UserID, UserName, UserAlias, Password, Email1, Email2, RodeAddress, HouseAddress, PhoneNumber, DogName, DogType, UserType ) 
-	values (#{UserID}, #{UserName}, #{UserAlias}, #{Password}, #{Email1}, #{Email2}, #{RodeAddress}, #{HouseAddress}, #{PhoneNumber}, #{DogName}, #{DogType},
+	INSERT INTO Users (UserID, UserName, UserAlias, Password, Email1, Email2, Post, RodeAddress, HouseAddress, DetailAddress, PhoneNumber, DogName, DogType, UserType ) 
+	values (#{UserID}, #{UserName}, #{UserAlias}, #{Password}, #{Email1}, #{Email2}, #{Post}, #{RodeAddress}, #{HouseAddress}, #{DetailAddress}, #{PhoneNumber}, #{DogName}, #{DogType},
 	'user')
 </insert>
 

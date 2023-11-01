@@ -115,6 +115,7 @@ public class UsersController {
 		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
 		user.setPassword(encodePW);
 		
+		
 		int n = service.memberAdd(user);
 		
 		if(n == 1) {

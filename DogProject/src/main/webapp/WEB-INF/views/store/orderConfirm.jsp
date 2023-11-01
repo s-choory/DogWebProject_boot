@@ -42,7 +42,7 @@ function payMethod() {
 }  
 
 var IMP = window.IMP; 
-IMP.init("imp67011510"); 
+IMP.init("imp02762160");
 
 function requestPay() {
 	
