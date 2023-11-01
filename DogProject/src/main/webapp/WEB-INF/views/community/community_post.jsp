@@ -1349,7 +1349,7 @@ h3 {
 					<c:choose>
 						<c:when test="${uDTO.userID == null}">
 							<button type="button" id="likelike" value="좋아요${n2222}" style="border: 0; background-color: transparent;">
-								<img id="heartImg" src="resources/postcss/dots.png"
+								<img id="heartImg" src="resources/postcss/emptyheart.png"
 									alt="좋아요사진" width="45" height="45">
 							</button>
 						</c:when>
